@@ -10,15 +10,6 @@
     <welcome-file>DendrytAA.html</welcome-file>
   </welcome-file-list>
   
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.dendrytdev.org.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/dendrytaa/greet</url-pattern>
-  </servlet-mapping>
+ 
 
 </web-app>

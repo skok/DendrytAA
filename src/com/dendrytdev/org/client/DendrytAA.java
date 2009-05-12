@@ -1,6 +1,7 @@
 package com.dendrytdev.org.client;
 
 
+
 import com.dendrytdev.org.client.problemOverview.ProblemOverview;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -33,8 +34,7 @@ public class DendrytAA implements EntryPoint {
 	/**
 	 * Create a remote service proxy to talk to the server-side Greeting service.
 	 */
-	private final GreetingServiceAsync greetingService = GWT
-			.create(GreetingService.class);
+//	//private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
 	/**
 	 * This is the entry point method.
