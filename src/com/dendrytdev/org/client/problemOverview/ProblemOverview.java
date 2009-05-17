@@ -2,13 +2,27 @@ package com.dendrytdev.org.client.problemOverview;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import com.dendrytdev.org.client.bean.Problem;
+import com.dendrytdev.org.client.tools.GuiFactory;
+import com.dendrytdev.org.client.tools.IDialogBoxFactory;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Panel;
@@ -76,12 +90,38 @@ public class ProblemOverview extends Composite {
 	Button _assignmentButton;
 	Button _refreshListButton;
 
+	IDialogBoxFactory _factory = GuiFactory.getInstance();
+	
+	// Service:
+	
+
+	
+	
 	public ProblemOverview() {
+		ProblemOverviewServiceAsync service = GWT.create(ProblemOverviewService.class);
+		//------
+		ServiceDefTarget endpoint = (ServiceDefTarget) service;
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "ProblemOverviewService");
+		
+		//------
+		
+		
 		// initialize listBox
 		_listBox = new ListBox();
 		
-		_listBox.setSize("250", "300");
+
 		_listBox.setVisibleItemCount(5);
+		_listBox.addClickListener(new ClickListener(){
+
+			@Override
+			public void onClick(Widget sender) {
+				String s = _listBox.getItemText(_listBox.getSelectedIndex());
+				s = s.split("\\.")[0];
+				Integer i = Integer.valueOf(s);
+				fillTextBoxes(i);			
+			}
+			
+		});
 		
 		
 		// initialize textboxes
@@ -97,41 +137,58 @@ public class ProblemOverview extends Composite {
 		_programmerTextBox = new TextBox();
 		_testerTextBox = new TextBox();
 		
-		
 		_textArea = new TextArea();
-		
+	
 		_suggestBox = new SuggestBox();
 		
-		// initialize buttons
-		_assignmentButton = new Button("Przydziel pracownikow");
 		
+		
+		
+		// initialize buttons
+		final DialogBox todoDialogBox1 = _factory.createTODODialogBox();
+		_assignmentButton = new Button("Przydziel pracownikow", new ClickListener(){
+			@Override
+			public void onClick(Widget sender) {
+				todoDialogBox1.center();
+			}
+		});
+		
+		
+
+		final DialogBox todoDialogBox2 = _factory.createTODODialogBox();
 		_refreshListButton = new Button("Odswiez liste", new ClickListener(){
 			@Override
 			public void onClick(Widget sender) {
-				// TODO Auto-generated method stub
-				
+				todoDialogBox2.center();
 			}
 		});
 
 		
 		
+		
+		
 		//////////////////////////// TODO: testing purposes ONLY
 		fillForTest();
-		
 		//////////////////////// TODO: testing purposes ONLY
+		
+		
+		
 		
 		HorizontalPanel mainPanel = new HorizontalPanel();
 		initWidget(mainPanel);
-		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		mainPanel.setWidth("500");
 
 		/////////////////////////////////////////////////////////
-		//wrapp by decorator LEFT Panel and add it to the mainPanel
-		DecoratorPanel leftWrapper = new DecoratorPanel();
+		//wrapp LEFT Panel and add it to the mainPanel
 		Panel leftPanel = generateLeftVerticalPanel(); // creating leftPanel HERE
-		leftWrapper.setWidget(leftPanel);
-		leftWrapper.setHeight("400");
-		mainPanel.add(leftWrapper);
+
+		
+		CaptionPanel leftCaptionPanel = new CaptionPanel("Lista problemow");
+		leftCaptionPanel.add(leftPanel);
+		leftCaptionPanel.setHeight("400");
+		mainPanel.add(leftCaptionPanel);
+		
 		
 		/////////////////////////////////////////////////////////
 		//create RIGHT Panel
@@ -140,15 +197,10 @@ public class ProblemOverview extends Composite {
 
 		//add labels with textboxes on up of RIGHT Panel
 		rightVerticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		DecoratorPanel rightWrapper = new DecoratorPanel();
-		rightWrapper.setWidget(generatePropertiesFieldsPanel()); // creating Properties panel HERE
-		rightWrapper.setHeight("200");
-		rightVerticalPanel.add(rightWrapper);
+		
+		rightVerticalPanel.add(generateMiddlePanel());
+		rightVerticalPanel.setHeight("400");
 
-		// add to RIGHT Panel new RightDown panel with assignment and description
-		Panel rightDownPanel = generateRightDownPanel();
-		rightDownPanel.setHeight("200");
-		rightVerticalPanel.add(rightDownPanel);
 		
 		
 		
@@ -158,60 +210,73 @@ public class ProblemOverview extends Composite {
 		//create RIGHT RIGHT ;) Panel
 		
 		VerticalPanel descriptionPanel = new VerticalPanel();
-		descriptionPanel.add(new Label("OPIS PROBLEMU"));
-		
+
 		// generate description text area here
 		
-	    _textArea.setCharacterWidth(50);
+	    _textArea.setCharacterWidth(40);
 	    _textArea.setVisibleLines(20);
 
 		descriptionPanel.add(_textArea);
 		
-		DecoratorPanel descriptionWrapper = new DecoratorPanel();
-		descriptionWrapper.setWidget(descriptionPanel);
-		descriptionWrapper.setHeight("400");
-		mainPanel.add(descriptionWrapper);
+//		DecoratorPanel descriptionWrapper = new DecoratorPanel();
+//		descriptionWrapper.setWidget(descriptionPanel);
+//		descriptionWrapper.setHeight("400");
+//		mainPanel.add(descriptionWrapper);
 		
+		CaptionPanel cpRight = new CaptionPanel("Opis problemu");
+		cpRight.setHeight("400");
+		cpRight.add(descriptionPanel);		
+		mainPanel.add(cpRight);
 		
-		
-		
+		service.f(new AsyncCallback<String>(){
 
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				_productTextBox.setText("XXXXXXXXX");
+				
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				_productTextBox.setText(result);
+				
+			}
+			});
+		
 	}
 
 	Panel generateRightDownPanel() {
 
 		VerticalPanel assignmentPanel = new VerticalPanel();
-		assignmentPanel.add(new Label("PRZYDZIAL"));
 		assignmentPanel.add(generateAssignmentFieldsPanel()); //creating ASSIGNMENT panel HERE
+		assignmentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		assignmentPanel.add(_assignmentButton);
+
 		
-		DecoratorPanel assignmentWrapper = new DecoratorPanel();
-		assignmentWrapper.setWidget(assignmentPanel);
-		return assignmentWrapper;
+		CaptionPanel panel = new CaptionPanel("Przydzial");
+		panel.add(assignmentPanel);
+		VerticalPanel vp = new VerticalPanel();
+		vp.add(panel);
+		return vp; // fucking workaround ... TODO: refactor IT !!!!!!!!!		
 	}
 	
 	
 	
 	VerticalPanel generateLeftVerticalPanel(){
 		VerticalPanel leftVerticalPanel = new VerticalPanel();
-		leftVerticalPanel.add(new Label("LISTA PROBLEMOW"));
+		leftVerticalPanel.setWidth("250");
+//		leftVerticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		_listBox.setSize("200", "300");
+		leftVerticalPanel.add(_listBox);
 
-		leftVerticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		
-
-		AbsolutePanel absolutePanel = new AbsolutePanel();
-		leftVerticalPanel.add(absolutePanel);
-		absolutePanel.setSize("250", "300");
-		
-		absolutePanel.add(_listBox);
-
-		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		leftVerticalPanel.add(horizontalPanel_1);
-		horizontalPanel_1.setWidth("200");
-
+		HorizontalPanel hp = new HorizontalPanel();
 		Label label = new Label("Wyszukaj:");
-		horizontalPanel_1.add(label);
-		horizontalPanel_1.add(_suggestBox);
+		hp.add(label);
+		hp.add(_suggestBox);
+
+		leftVerticalPanel.add(hp);
+
 		_suggestBox.setWidth("120");
 		
 		leftVerticalPanel.add(_refreshListButton);
@@ -265,7 +330,9 @@ public class ProblemOverview extends Composite {
 	 * All it is connected with content of Problem-bean	 * 
 	 * @param panel - panel to which it adds this hPanels
 	 */
-	VerticalPanel generatePropertiesFieldsPanel() {
+	VerticalPanel generateMiddlePanel() {
+		
+		
 		VerticalPanel panel = new VerticalPanel();
 		StaticHelperClass.setWidth("200");
 		panel.add(StaticHelperClass.generateLabeledTextBoxPanel("Produkt:", _productTextBox));
@@ -274,7 +341,15 @@ public class ProblemOverview extends Composite {
 		panel.add(StaticHelperClass.generateLabeledTextBoxPanel("Telefon zglaszajacego:", _phoneTextBox));
 		panel.add(StaticHelperClass.generateLabeledTextBoxPanel("Waga zglaszajacego:", _ratioTextBox));
 		panel.add(StaticHelperClass.generateLabeledTextBoxPanel("Data zgloszenia:", _dateTextBox));
-		return panel;
+		
+		CaptionPanel cp = new CaptionPanel("Informacje o produkcie");
+		cp.add(panel);
+		VerticalPanel vp = new VerticalPanel();
+		vp.setHeight("400");
+		vp.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
+		vp.add(cp);
+		vp.add(generateRightDownPanel());
+		return vp; // sorry ... refactor this shit later !!! TODO!
 	}
 		
 	
@@ -289,22 +364,81 @@ public class ProblemOverview extends Composite {
 	}
 	
 	
+	Map<Integer, Problem> _problemMap = new HashMap<Integer, Problem>();
+	
 	public void updateOfProblemList(List<Problem> problemList){
 		_listBox.clear();
-//		_listBox.addItem("SSS");
-		_listBox.addItem("SSS");
+		_problemMap.clear();
+
+		Integer i = 1; 
+		String s;
+		for(Problem p : problemList){
+			_problemMap.put(i, p);
+			s = i++ + "." + p.getProdukt();
+			_listBox.addItem(s);
+		}		
 
 		blankAllFields();
-		
 	}
 	
 	
 	void fillForTest(){
 		List<Problem> list = new ArrayList<Problem>();
-		Problem p = new Problem();
-//		p.setDataZgloszenia(Calendar.getInstance().getTime());
-		p.setImieZglaszajacego("IMIE");
-		p.setNazwiskoZglaszajacego("NAZWISKO");
-		updateOfProblemList(null); 
+		Problem p = new Problem();		
+		List<Problem> testingList = new ArrayList<Problem>();
+		Problem pr = new Problem();
+		pr.setProdukt("ProduktXX1");
+		pr.setImieZglaszajacego("IMIE1");
+		pr.setNazwiskoZglaszajacego("NAZWISKO1");
+		pr.setTelefonZglaszajacego("0774822244");
+		pr.setWagaKlienta("2");
+		pr.setDataZgloszenia(new Date());
+		pr.setSerwisant("S");
+		pr.setProjektant("PR");
+		pr.setProgramista("PROG");
+		pr.setTester("T");
+		pr.setOpis("Cos sie zepsulo chyba w czyms tam, albo i nie nawet");
+		
+		testingList.add(pr);
+		
+		pr = new Problem();
+		pr.setProdukt("ProduktXX2");
+		pr.setImieZglaszajacego("IMIE2");
+		pr.setNazwiskoZglaszajacego("NAZWISKO2");
+		pr.setTelefonZglaszajacego("0774821111");
+		pr.setWagaKlienta("4");
+		pr.setDataZgloszenia(new Date());
+		pr.setSerwisant("S2");
+		pr.setProjektant("PR2");
+		pr.setProgramista("PROG2");
+		pr.setTester("T2");
+		pr.setOpis("Wyskoczylo okno z napisem jakims tam bla bla bla");
+		testingList.add(pr);
+		
+		
+		updateOfProblemList(testingList); 
 	}
+	
+	
+	/**
+	 * @param i - index from the map
+	 */
+	void fillTextBoxes(int i){
+		Problem p = _problemMap.get(i);
+		_productTextBox.setText(p.getProdukt());
+		_firstNameTextBox.setText(p.getImieZglaszajacego());
+		_surnameTextBox.setText(p.getNazwiskoZglaszajacego());
+		_phoneTextBox.setText(p.getTelefonZglaszajacego());
+		_ratioTextBox.setText(p.getWagaKlienta());
+		_dateTextBox.setText(p.getDataZgloszenia().toLocaleString());
+		
+		_servicemanTextBox.setText(p.getSerwisant());
+		_designerTextBox.setText(p.getProjektant());
+		_programmerTextBox.setText(p.getProgramista());
+		_testerTextBox.setText(p.getTester());
+		
+		_textArea.setText(p.getOpis());		
+	}
+	
+	
 }

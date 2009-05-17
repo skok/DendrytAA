@@ -11,5 +11,13 @@
   </welcome-file-list>
   
  
+<servlet>
+  <servlet-name>problemOverviewServiceImpl</servlet-name>
+  <servlet-class>com.dendrytdev.org.server.ProblemOverviewServiceImpl</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>problemOverviewServiceImpl</servlet-name>
+  <url-pattern>/dendrytaa/ProblemOverviewService</url-pattern>
+</servlet-mapping>
 
 </web-app>
