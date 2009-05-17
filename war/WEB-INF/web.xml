@@ -12,12 +12,12 @@
   
  
 <servlet>
-  <servlet-name>problemOverviewServiceImpl</servlet-name>
-  <servlet-class>com.dendrytdev.org.server.ProblemOverviewServiceImpl</servlet-class>
+  <servlet-name>problemOverviewServlet</servlet-name>
+  <servlet-class>com.dendrytdev.org.server.ProblemOverviewServlet</servlet-class>
 </servlet>
 <servlet-mapping>
-  <servlet-name>problemOverviewServiceImpl</servlet-name>
-  <url-pattern>/dendrytaa/ProblemOverviewService</url-pattern>
+  <servlet-name>problemOverviewServlet</servlet-name>
+  <url-pattern>/dendrytaa/ProblemOverviewServlet</url-pattern>
 </servlet-mapping>
 
 </web-app>

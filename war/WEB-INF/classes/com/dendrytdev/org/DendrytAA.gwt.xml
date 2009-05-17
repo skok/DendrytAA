@@ -3,8 +3,8 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="com.google.gwt.user.theme.standard.Standard" />
 	<entry-point class="com.dendrytdev.org.client.DendrytAA" />
-	<servlet class="com.dendrytdev.org.server.ProblemOverviewServiceImpl"
-		path="/ProblemOverviewService" />
+	<servlet class="com.dendrytdev.org.server.ProblemOverviewServlet"
+		path="/ProblemOverviewServlet" />
 
 
 </module>

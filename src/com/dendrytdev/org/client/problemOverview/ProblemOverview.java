@@ -42,7 +42,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author michal
  *
  */
-public class ProblemOverview extends Composite {
+public class ProblemOverview extends Composite implements IProblemOverview {
 	
 	
 	void blankAllFields(){
@@ -92,19 +92,14 @@ public class ProblemOverview extends Composite {
 
 	IDialogBoxFactory _factory = GuiFactory.getInstance();
 	
-	// Service:
+	//register controler - refactor later ...
+	IProblemOverviewController controller = new ProblemOverviewController(this);
 	
-
 	
+	Map<Integer, Problem> _problemMap;
+	int _problemListHashCode;
 	
 	public ProblemOverview() {
-		ProblemOverviewServiceAsync service = GWT.create(ProblemOverviewService.class);
-		//------
-		ServiceDefTarget endpoint = (ServiceDefTarget) service;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "ProblemOverviewService");
-		
-		//------
-		
 		
 		// initialize listBox
 		_listBox = new ListBox();
@@ -140,6 +135,8 @@ public class ProblemOverview extends Composite {
 		_textArea = new TextArea();
 	
 		_suggestBox = new SuggestBox();
+	
+		
 		
 		
 		
@@ -159,20 +156,18 @@ public class ProblemOverview extends Composite {
 		_refreshListButton = new Button("Odswiez liste", new ClickListener(){
 			@Override
 			public void onClick(Widget sender) {
-				todoDialogBox2.center();
+				controller.updateProblemList();
 			}
 		});
 
 		
 		
+		_problemMap = new HashMap<Integer, Problem>();
+		_problemListHashCode = IProblemOverview.PROBLEM_LIST_NOT_DOWNLOADED_YET;
 		
 		
-		//////////////////////////// TODO: testing purposes ONLY
-		fillForTest();
-		//////////////////////// TODO: testing purposes ONLY
-		
-		
-		
+		// download problem list from server and fill the GUI
+		controller.updateProblemList();	
 		
 		HorizontalPanel mainPanel = new HorizontalPanel();
 		initWidget(mainPanel);
@@ -228,21 +223,7 @@ public class ProblemOverview extends Composite {
 		cpRight.add(descriptionPanel);		
 		mainPanel.add(cpRight);
 		
-		service.f(new AsyncCallback<String>(){
 
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				_productTextBox.setText("XXXXXXXXX");
-				
-			}
-
-			@Override
-			public void onSuccess(String result) {
-				_productTextBox.setText(result);
-				
-			}
-			});
 		
 	}
 
@@ -364,9 +345,16 @@ public class ProblemOverview extends Composite {
 	}
 	
 	
-	Map<Integer, Problem> _problemMap = new HashMap<Integer, Problem>();
 	
-	public void updateOfProblemList(List<Problem> problemList){
+	/* (non-Javadoc)
+	 * @see com.dendrytdev.org.client.problemOverview.IProblemOverview#updateProblemList(java.util.List)
+	 */
+	public void updateProblemList(List<Problem> problemList){
+		if(problemList == null){
+			// internal error here, this argument should not be null !
+			return; 
+		}
+		_problemListHashCode = problemList.hashCode();
 		_listBox.clear();
 		_problemMap.clear();
 
@@ -381,43 +369,6 @@ public class ProblemOverview extends Composite {
 		blankAllFields();
 	}
 	
-	
-	void fillForTest(){
-		List<Problem> list = new ArrayList<Problem>();
-		Problem p = new Problem();		
-		List<Problem> testingList = new ArrayList<Problem>();
-		Problem pr = new Problem();
-		pr.setProdukt("ProduktXX1");
-		pr.setImieZglaszajacego("IMIE1");
-		pr.setNazwiskoZglaszajacego("NAZWISKO1");
-		pr.setTelefonZglaszajacego("0774822244");
-		pr.setWagaKlienta("2");
-		pr.setDataZgloszenia(new Date());
-		pr.setSerwisant("S");
-		pr.setProjektant("PR");
-		pr.setProgramista("PROG");
-		pr.setTester("T");
-		pr.setOpis("Cos sie zepsulo chyba w czyms tam, albo i nie nawet");
-		
-		testingList.add(pr);
-		
-		pr = new Problem();
-		pr.setProdukt("ProduktXX2");
-		pr.setImieZglaszajacego("IMIE2");
-		pr.setNazwiskoZglaszajacego("NAZWISKO2");
-		pr.setTelefonZglaszajacego("0774821111");
-		pr.setWagaKlienta("4");
-		pr.setDataZgloszenia(new Date());
-		pr.setSerwisant("S2");
-		pr.setProjektant("PR2");
-		pr.setProgramista("PROG2");
-		pr.setTester("T2");
-		pr.setOpis("Wyskoczylo okno z napisem jakims tam bla bla bla");
-		testingList.add(pr);
-		
-		
-		updateOfProblemList(testingList); 
-	}
 	
 	
 	/**
@@ -438,6 +389,11 @@ public class ProblemOverview extends Composite {
 		_testerTextBox.setText(p.getTester());
 		
 		_textArea.setText(p.getOpis());		
+	}
+
+	@Override
+	public int getProblemListHashCode() {
+		return _problemListHashCode;
 	}
 	
 	
