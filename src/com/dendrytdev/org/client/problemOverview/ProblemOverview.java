@@ -142,8 +142,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	
 		_oracle = new ProblemSuggestOracle(); 
 		_suggestBox = new SuggestBox(_oracle);
-		I wona shit
-		You beteer dont wona shit on the bed
+
 		_suggestBox.addEventHandler(new SuggestionHandler(){
 
 			@Override

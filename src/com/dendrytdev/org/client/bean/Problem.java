@@ -129,6 +129,124 @@ public class Problem {
 	}
 
 
+	
+	
+	
+	
+	////////////// TMP!!! refactor the shit
+	@Persistent
+	String produkt;
+	
+	
+	public String getProdukt() {
+		return produkt;
+	}
+
+	public void setProdukt(String produkt) {
+		this.produkt = produkt;
+	}
+
+	public String getImieZglaszajacego() {
+		return imieZglaszajacego;
+	}
+
+	public void setImieZglaszajacego(String imieZglaszajacego) {
+		this.imieZglaszajacego = imieZglaszajacego;
+	}
+
+	public String getNazwiskoZglaszajacego() {
+		return nazwiskoZglaszajacego;
+	}
+
+	public void setNazwiskoZglaszajacego(String nazwiskoZglaszajacego) {
+		this.nazwiskoZglaszajacego = nazwiskoZglaszajacego;
+	}
+
+	public String getTelefonZglaszajacego() {
+		return telefonZglaszajacego;
+	}
+
+	public void setTelefonZglaszajacego(String telefonZglaszajacego) {
+		this.telefonZglaszajacego = telefonZglaszajacego;
+	}
+
+	public String getSerwisant() {
+		return serwisant;
+	}
+
+	public void setSerwisant(String serwisant) {
+		this.serwisant = serwisant;
+	}
+
+	public String getProjektant() {
+		return projektant;
+	}
+
+	public void setProjektant(String projektant) {
+		this.projektant = projektant;
+	}
+
+	public String getProgramista() {
+		return programista;
+	}
+
+	public void setProgramista(String programista) {
+		this.programista = programista;
+	}
+
+	public String getTester() {
+		return tester;
+	}
+
+	public void setTester(String tester) {
+		this.tester = tester;
+	}
+
+	public String getOpis() {
+		return opis;
+	}
+
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
+
+
+
+
+
+
+	@Persistent
+	String imieZglaszajacego;
+	
+	
+	@Persistent
+	String nazwiskoZglaszajacego;
+	
+	
+	@Persistent
+	String telefonZglaszajacego;
+	
+	
+	@Persistent
+	String serwisant;
+	
+	
+	@Persistent
+	String projektant;
+	
+	
+	@Persistent
+	String programista;
+	
+	
+	@Persistent
+	String tester;
+	
+	
+	@Persistent
+	String opis;
+	
+	
 
 	
 
