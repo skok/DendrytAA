@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<module rename-to='dendrytaa'>
-	<inherits name="com.google.gwt.user.User" />
-	<inherits name="com.google.gwt.user.theme.standard.Standard" />
-	<entry-point class="com.dendrytdev.org.client.DendrytAA" />
-	<servlet class="com.dendrytdev.org.server.ProblemOverviewServlet"
-		path="/ProblemOverviewServlet" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><module rename-to="dendrytaa">
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name="com.google.gwt.user.User"/>
+
+  <!-- Inherit the default GWT style sheet.  You can change       -->
+  <!-- the theme of your GWT application by uncommenting          -->
+  <!-- any one of the following lines.                            -->
+  <inherits name="com.google.gwt.user.theme.standard.Standard"/>
+  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+  <!-- Other module inherits                                      -->
+  
+<inherits name="fredsa.appengine.workaround.Datastore" />	
+	
+
+
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class="com.dendrytdev.org.client.DendrytAA"/>
+  
+ 
 
 
 </module>

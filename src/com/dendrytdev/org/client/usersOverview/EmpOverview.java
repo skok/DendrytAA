@@ -12,24 +12,22 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.DecoratorPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 public class EmpOverview extends Composite{
 	public EmpOverview() {
 		{
 			HorizontalPanel horizontalPanel = new HorizontalPanel();
 			initWidget(horizontalPanel);
-			
-			DecoratorPanel decoratorPanel_1 = new DecoratorPanel();
-			horizontalPanel.add(decoratorPanel_1);
-			decoratorPanel_1.setSize("400", "340");
+			horizontalPanel.setSize("630", "331");
 			{
 				CaptionPanel captionPanel = new CaptionPanel("Lista pracownikow");
-				decoratorPanel_1.setWidget(captionPanel);
+				horizontalPanel.add(captionPanel);
 				captionPanel.setSize("390", "330");
 				{
 					VerticalPanel verticalPanel = new VerticalPanel();
 					captionPanel.setContentWidget(verticalPanel);
-					verticalPanel.setSize("5cm", "3cm");
+					verticalPanel.setSize("386", "300");
 					{
 						HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 						verticalPanel.add(horizontalPanel_1);
@@ -41,9 +39,10 @@ public class EmpOverview extends Composite{
 							ListBox listBox = new ListBox();
 							horizontalPanel_1.add(listBox);
 							listBox.setSize("200", "40");
-							listBox.setVisibleItemCount(5);
+							listBox.setVisibleItemCount(1);
 							listBox.addItem("Login");
 							listBox.addItem("Nazwisko i imie");
+							listBox.setSelectedIndex(0);
 						}
 					}
 					{
@@ -60,12 +59,9 @@ public class EmpOverview extends Composite{
 					}
 				}
 			}
-			
-			DecoratorPanel decoratorPanel = new DecoratorPanel();
-			horizontalPanel.add(decoratorPanel);
 			{
 				VerticalPanel verticalPanel = new VerticalPanel();
-				decoratorPanel.setWidget(verticalPanel);
+				horizontalPanel.add(verticalPanel);
 				{
 					CaptionPanel captionPanel = new CaptionPanel("Dane");
 					verticalPanel.add(captionPanel);

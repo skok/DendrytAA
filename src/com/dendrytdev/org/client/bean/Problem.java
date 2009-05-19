@@ -1,53 +1,75 @@
 package com.dendrytdev.org.client.bean;
 
 import java.util.Date;
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Problem implements IsSerializable{
-	private String Produkt;
-	private String imieZglaszajacego;
-	private String nazwiskoZglaszajacego;
-	private String telefonZglaszajacego;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+
+
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class Problem {
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Long id;
+
+
+	//	@Persistent
+//	private Product product;
+	@Persistent
+	Person client;
+	@Persistent
 	private String wagaKlienta;
+	@Persistent
 	private Date dataZgloszenia;
-	
-	private String serwisant;
-	private String projektant;
-	private String programista;
-	private String tester;
-	
-	private String opis;
+//	@Persistent
+//	private Person serwice;
+//	@Persistent
+//	private Person designer;
+//	@Persistent
+//	private Person programmer;
+//	@Persistent
+//	private Person tester;
+	@Persistent
+	private String description;
+	/*
+	Persistent
+	private Set<Comment> comments;
 
-	public String getProdukt() {
-		return Produkt;
+	public Set<Comment> getComments() {
+		return comments;
 	}
 
-	public void setProdukt(String produkt) {
-		Produkt = produkt;
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 
-	public String getImieZglaszajacego() {
-		return imieZglaszajacego;
+	public void addComment(Comment c) {
+		if (comments == null) {
+			comments = new HashSet<Comment>();
+		}
+		comments.add(c);
+	}
+*/
+//	public Product getProduct() {
+//		return product;
+//	}
+//
+//	public void setProduct(Product product) {
+//		this.product = product;
+//	}
+
+	public Person getClient() {
+		return client;
 	}
 
-	public void setImieZglaszajacego(String imieZglaszajacego) {
-		this.imieZglaszajacego = imieZglaszajacego;
-	}
-
-	public String getNazwiskoZglaszajacego() {
-		return nazwiskoZglaszajacego;
-	}
-
-	public void setNazwiskoZglaszajacego(String nazwiskoZglaszajacego) {
-		this.nazwiskoZglaszajacego = nazwiskoZglaszajacego;
-	}
-
-	public String getTelefonZglaszajacego() {
-		return telefonZglaszajacego;
-	}
-
-	public void setTelefonZglaszajacego(String telefonZglaszajacego) {
-		this.telefonZglaszajacego = telefonZglaszajacego;
+	public void setClient(Person client) {
+		this.client = client;
 	}
 
 	public String getWagaKlienta() {
@@ -66,52 +88,48 @@ public class Problem implements IsSerializable{
 		this.dataZgloszenia = dataZgloszenia;
 	}
 
-	public String getSerwisant() {
-		return serwisant;
+//	public Person getSerwice() {
+//		return serwice;
+//	}
+//
+//	public void setSerwice(Person serwice) {
+//		this.serwice = serwice;
+//	}
+
+//	public Person getDesigner() {
+//		return designer;
+//	}
+//
+//	public void setDesigner(Person designer) {
+//		this.designer = designer;
+//	}
+//
+//	public Person getProgrammer() {
+//		return programmer;
+//	}
+//
+//	public void setProgrammer(Person programmer) {
+//		this.programmer = programmer;
+//	}
+//
+//	public Person getTester() {
+//		return tester;
+//	}
+//
+//	public void setTester(Person tester) {
+//		this.tester = tester;
+//	}
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setSerwisant(String serwisant) {
-		this.serwisant = serwisant;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getProjektant() {
-		return projektant;
-	}
 
-	public void setProjektant(String projektant) {
-		this.projektant = projektant;
-	}
 
-	public String getProgramista() {
-		return programista;
-	}
-
-	public void setProgramista(String programista) {
-		this.programista = programista;
-	}
-
-	public String getTester() {
-		return tester;
-	}
-
-	public void setTester(String tester) {
-		this.tester = tester;
-	}
-
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
 	
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append(Produkt).append(" - ").append(imieZglaszajacego);
-		sb.append(" ").append(nazwiskoZglaszajacego);
-		sb.append(opis);
-		return sb.toString();	
-	}
 
 }

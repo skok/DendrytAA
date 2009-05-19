@@ -10,6 +10,16 @@
     <welcome-file>DendrytAA.html</welcome-file>
   </welcome-file-list>
   
+<servlet>
+  <servlet-name>employeeServiceImpl</servlet-name>
+  <servlet-class>
+    com.dendrytdev.org.server.EmployeeServiceImpl
+  </servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>employeeServiceImpl</servlet-name>
+  <url-pattern>/dendrytaa/EmployeeService</url-pattern>
+</servlet-mapping>
  
 <servlet>
   <servlet-name>problemOverviewServlet</servlet-name>
