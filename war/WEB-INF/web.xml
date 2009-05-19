@@ -21,5 +21,13 @@
   <url-pattern>/dendrytaa/EmployeeService</url-pattern>
 </servlet-mapping>
  
+<servlet>
+  <servlet-name>problemOverviewServlet</servlet-name>
+  <servlet-class>com.dendrytdev.org.server.ProblemOverviewServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>problemOverviewServlet</servlet-name>
+  <url-pattern>/dendrytaa/ProblemOverviewServlet</url-pattern>
+</servlet-mapping>
 
 </web-app>
