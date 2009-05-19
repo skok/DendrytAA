@@ -303,8 +303,8 @@ public class ProblemOverview extends Composite {
 		List<Problem> list = new ArrayList<Problem>();
 		Problem p = new Problem();
 //		p.setDataZgloszenia(Calendar.getInstance().getTime());
-		p.setImieZglaszajacego("IMIE");
-		p.setNazwiskoZglaszajacego("NAZWISKO");
+//		p.setImieZglaszajacego("IMIE");  --zmaina encji
+//		p.setNazwiskoZglaszajacego("NAZWISKO");
 		updateOfProblemList(null); 
 	}
 }

@@ -10,7 +10,15 @@
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
   <!-- Other module inherits                                      -->
+  
+<inherits name="fredsa.appengine.workaround.Datastore" />	
+	
+
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class="com.dendrytdev.org.client.DendrytAA"/>
+  
+ 
+
+
 </module>

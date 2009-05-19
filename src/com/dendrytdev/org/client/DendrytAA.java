@@ -190,6 +190,7 @@ public class DendrytAA implements EntryPoint {
 			
 			decoratedTabPanel.add(productsAndGroupsAddition,"Dodawanie grup i produktow");
 			decoratedTabPanel.add(usersOverview,"Przegladanie uzytkownikow");
+			usersOverview.setSize("700", "400");
 			decoratedTabPanel.add(productsAndGroupsOverview,"Przegladanie grup i produktow");
 			decoratedTabPanel.add(problemOverview,"Przeglad zgloszen i raportow");
 			
