@@ -19,8 +19,8 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 			System.out.println("G");
 
 			Problem pr = new Problem();
-			pr.setProdukt("ProduktXzzX1");
-			pr.setImieZglaszajacego("IMIE1");
+			pr.setProdukt("Produkt1");
+			pr.setImieZglaszajacego("Michal");
 			pr.setNazwiskoZglaszajacego("NAZWISKO1");
 			pr.setTelefonZglaszajacego("0774822244");
 			pr.setWagaKlienta("2");
@@ -33,8 +33,8 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 			testingList.add(pr);
 
 			pr = new Problem();
-			pr.setProdukt("ProduktXX2");
-			pr.setImieZglaszajacego("IMIE2");
+			pr.setProdukt("Produkt2");
+			pr.setImieZglaszajacego("Kasia");
 			pr.setNazwiskoZglaszajacego("NAZWISKO2");
 			pr.setTelefonZglaszajacego("0774821111");
 			pr.setWagaKlienta("4");
@@ -49,8 +49,8 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 			
 			
 			pr = new Problem();
-			pr.setProdukt("Produkt__XX3");
-			pr.setImieZglaszajacego("IMIE3");
+			pr.setProdukt("ProduktX3");
+			pr.setImieZglaszajacego("Wojtek");
 			pr.setNazwiskoZglaszajacego("NAZWISKO3");
 			pr.setTelefonZglaszajacego("0774823333");
 			pr.setWagaKlienta("2");
@@ -66,7 +66,7 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 			pr.setProdukt("DENDRYT");
 			pr.setImieZglaszajacego("Michal");
 			pr.setNazwiskoZglaszajacego("Szaman");
-			pr.setTelefonZglaszajacego("514411111");
+			pr.setTelefonZglaszajacego("514414411");
 			pr.setWagaKlienta("1");
 			pr.setDataZgloszenia(new Date());
 			pr.setSerwisant("");
@@ -76,6 +76,19 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 			pr.setOpis("blad .... ;-)");
 			testingList.add(pr);
 			
+			pr = new Problem();
+			pr.setProdukt("CYFRON");
+			pr.setImieZglaszajacego("Olga");
+			pr.setNazwiskoZglaszajacego("Awarja");
+			pr.setTelefonZglaszajacego("8888");
+			pr.setWagaKlienta("1");
+			pr.setDataZgloszenia(new Date());
+			pr.setSerwisant("");
+			pr.setProjektant("");
+			pr.setProgramista("skok");
+			pr.setTester("");
+			pr.setOpis("awaria .... ;-)");
+			testingList.add(pr);
 			
 		}
 
@@ -87,7 +100,8 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 	public List<Problem> getProblemList(int lastListHashCode) {
 		List<Problem> list = generateTestingValues(); // TODO: take it from DB!!!
 		int hash = list.hashCode();
-		System.out.println(hash);
+		System.out.println("hash" + hash);
+		System.out.println("lastListHashCode" + lastListHashCode);
 		if(lastListHashCode == hash){
 			return null; //no changes on server side, no need to send the data
 		}else{

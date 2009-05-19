@@ -25,8 +25,12 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.SuggestOracle;
+import com.google.gwt.user.client.ui.SuggestionEvent;
+import com.google.gwt.user.client.ui.SuggestionHandler;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -86,6 +90,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	TextArea _textArea;
 	
 	SuggestBox _suggestBox;
+	ProblemSuggestOracle _oracle;
 	
 	Button _assignmentButton;
 	Button _refreshListButton;
@@ -106,6 +111,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		
 
 		_listBox.setVisibleItemCount(5);
+	
 		_listBox.addClickListener(new ClickListener(){
 
 			@Override
@@ -134,7 +140,27 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		
 		_textArea = new TextArea();
 	
-		_suggestBox = new SuggestBox();
+		_oracle = new ProblemSuggestOracle(); 
+		_suggestBox = new SuggestBox(_oracle);
+		I wona shit
+		You beteer dont wona shit on the bed
+		_suggestBox.addEventHandler(new SuggestionHandler(){
+
+			@Override
+			public void onSuggestionSelected(SuggestionEvent event) {
+				ProblemMultiWordSuggestion p = (ProblemMultiWordSuggestion) event.getSelectedSuggestion();
+				
+				int inx = 0;
+				for(Integer i : _problemMap.keySet()){
+					if(_problemMap.get(i).equals(p.getProblem())){
+						inx = i;
+					}
+				}
+				_listBox.setSelectedIndex(inx - 1); //indexed from 0
+				
+			}
+			
+		});
 	
 		
 		
@@ -357,6 +383,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_problemListHashCode = problemList.hashCode();
 		_listBox.clear();
 		_problemMap.clear();
+		_oracle.clear();
 
 		Integer i = 1; 
 		String s;
@@ -364,6 +391,9 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 			_problemMap.put(i, p);
 			s = i++ + "." + p.getProdukt();
 			_listBox.addItem(s);
+			
+			// fill oracle below
+			_oracle.add(new ProblemMultiWordSuggestion(p));			
 		}		
 
 		blankAllFields();
