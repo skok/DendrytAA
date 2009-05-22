@@ -1,4 +1,8 @@
-<!-- Indices written at 20.05.09 01:24 -->
+<!-- Indices written at 20.05.09 16:22 -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 5 times in query history -->
+    <datastore-index kind="Person" ancestor="true" source="auto"/>
+
+</datastore-indexes>

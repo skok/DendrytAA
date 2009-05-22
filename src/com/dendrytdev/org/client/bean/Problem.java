@@ -10,6 +10,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 
@@ -39,8 +40,8 @@ public class Problem implements IsSerializable{
 //	private Person tester;
 	@Persistent
 	private String description;
-	/*
-	Persistent
+	
+	@Persistent
 	private Set<Comment> comments;
 
 	public Set<Comment> getComments() {
@@ -57,7 +58,7 @@ public class Problem implements IsSerializable{
 		}
 		comments.add(c);
 	}
-*/
+
 //	public Product getProduct() {
 //		return product;
 //	}

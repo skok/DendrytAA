@@ -1,4 +1,4 @@
-package com.dendrytdev.org.client;
+package com.dendrytdev.org.client.usersAddition;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
