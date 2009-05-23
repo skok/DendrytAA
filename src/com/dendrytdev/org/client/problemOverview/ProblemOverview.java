@@ -171,7 +171,10 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_assignmentButton = new Button("Przydziel pracownikow", new ClickListener(){
 			@Override
 			public void onClick(Widget sender) {
-				todoDialogBox1.center();
+				
+				
+				
+//				todoDialogBox1.center();
 			}
 		});
 		

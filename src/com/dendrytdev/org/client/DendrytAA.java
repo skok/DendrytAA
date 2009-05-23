@@ -30,6 +30,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
@@ -45,7 +46,7 @@ public class DendrytAA implements EntryPoint {
 	/**
 	 * Create a remote service proxy to talk to the server-side Greeting service.
 	 */
-//	//private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
+//	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
 	/**
 	 * This is the entry point method.
@@ -98,7 +99,8 @@ public class DendrytAA implements EntryPoint {
 
 			
 		}
+	}
 	
 
-	}
+	
 }
