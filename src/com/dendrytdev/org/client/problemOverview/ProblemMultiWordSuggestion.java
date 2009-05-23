@@ -18,18 +18,19 @@ public class ProblemMultiWordSuggestion extends MultiWordSuggestion{
 	 * @return
 	 */
 	private static String getText(Problem p) {
-		StringBuilder sb = new StringBuilder(p.getProdukt());
-		sb.append(" zglaszajacy:");
-		sb.append(p.getImieZglaszajacego());
-		sb.append(" ");
-		sb.append(p.getNazwiskoZglaszajacego());
-		sb.append(" telefon:");
-		sb.append(p.getTelefonZglaszajacego());
-		sb.append(" ");
-		sb.append(" data zgloszenia:");
-		sb.append(p.getDataZgloszenia().toLocaleString());
-		String text = sb.toString();
-		return text;
+//		StringBuilder sb = new StringBuilder(p.getProdukt());
+//		sb.append(" zglaszajacy:");
+//		sb.append(p.getImieZglaszajacego());
+//		sb.append(" ");
+//		sb.append(p.getNazwiskoZglaszajacego());
+//		sb.append(" telefon:");
+//		sb.append(p.getTelefonZglaszajacego());
+//		sb.append(" ");
+//		sb.append(" data zgloszenia:");
+//		sb.append(p.getDataZgloszenia().toLocaleString());
+//		String text = sb.toString();
+//		return text;
+		return null;
 	}
 	Problem getProblem(){
 		return _problem;

@@ -388,9 +388,9 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		String s;
 		for(Problem p : problemList){
 			_problemMap.put(i, p);
-			s = i++ + "." + p.getProdukt();
-			_listBox.addItem(s);
-			
+//			s = i++ + "." + p.getProdukt();
+//			_listBox.addItem(s);
+//			
 			// fill oracle below
 			_oracle.add(new ProblemMultiWordSuggestion(p));			
 		}		
@@ -404,20 +404,20 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	 * @param i - index from the map
 	 */
 	void fillTextBoxes(int i){
-		Problem p = _problemMap.get(i);
-		_productTextBox.setText(p.getProdukt());
-		_firstNameTextBox.setText(p.getImieZglaszajacego());
-		_surnameTextBox.setText(p.getNazwiskoZglaszajacego());
-		_phoneTextBox.setText(p.getTelefonZglaszajacego());
-		_ratioTextBox.setText(p.getWagaKlienta());
-		_dateTextBox.setText(p.getDataZgloszenia().toLocaleString());
-		
-		_servicemanTextBox.setText(p.getSerwisant());
-		_designerTextBox.setText(p.getProjektant());
-		_programmerTextBox.setText(p.getProgramista());
-		_testerTextBox.setText(p.getTester());
-		
-		_textArea.setText(p.getOpis());		
+//		Problem p = _problemMap.get(i);
+//		_productTextBox.setText(p.getProdukt());
+//		_firstNameTextBox.setText(p.getImieZglaszajacego());
+//		_surnameTextBox.setText(p.getNazwiskoZglaszajacego());
+//		_phoneTextBox.setText(p.getTelefonZglaszajacego());
+//		_ratioTextBox.setText(p.getWagaKlienta());
+//		_dateTextBox.setText(p.getDataZgloszenia().toLocaleString());
+//		
+//		_servicemanTextBox.setText(p.getSerwisant());
+//		_designerTextBox.setText(p.getProjektant());
+//		_programmerTextBox.setText(p.getProgramista());
+//		_testerTextBox.setText(p.getTester());
+//		
+//		_textArea.setText(p.getOpis());		
 	}
 
 	@Override

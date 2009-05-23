@@ -91,7 +91,7 @@ public class EmpAddition extends Composite {
 
 							@Override
 							public void onSuccess(String result) {
-								if(result.equals("sss"))
+								if(result.equals("ok"))
 									Window.alert("ok");
 								else if(result==null)
 									Window.alert("null");

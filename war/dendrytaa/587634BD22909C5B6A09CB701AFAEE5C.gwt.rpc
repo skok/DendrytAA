@@ -1,9 +1,5 @@
-com.dendrytdev.org.client.bean.Comment, true
-com.dendrytdev.org.client.bean.Function, true
-com.dendrytdev.org.client.bean.Person, true
 com.dendrytdev.org.client.bean.Problem, true
 [Lcom.dendrytdev.org.client.bean.Problem;, true
-com.google.appengine.api.datastore.Key, true
 com.google.gwt.i18n.client.impl.DateRecord, true
 com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true
 java.lang.Boolean, true
