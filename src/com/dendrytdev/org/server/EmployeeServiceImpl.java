@@ -1,5 +1,6 @@
 package com.dendrytdev.org.server;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,10 +21,12 @@ public class EmployeeServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public String myMethod(String s) {
-		s=AdderSampleEntities.addSampleEntities();
-
-		return s;
+	public Boolean addPerson(Person p) {
+		return DatabaseConnector.addPerson(p);	
 	}
+
+
+
+	
 
 }

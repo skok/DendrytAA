@@ -17,8 +17,9 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Problem implements IsSerializable{
-    @PrimaryKey
+    
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    @PrimaryKey
     private Long id;
 
 

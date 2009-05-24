@@ -10,10 +10,10 @@ import javax.jdo.annotations.Unique;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-@Unique(name = "UNIQUE_NAME_VERSION_OF_PRODUCT", members = { "name", "version" })
 public class Product implements IsSerializable{
-	@PrimaryKey
+	
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	@PrimaryKey
 	private Long id;
 
 	@Persistent

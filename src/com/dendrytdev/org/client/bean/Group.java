@@ -11,10 +11,10 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-@Unique(name = "UNIQUE_GROUP_NAME", members = { "name" })
 public class Group implements IsSerializable{
-	@PrimaryKey
+	
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	@PrimaryKey
 	private Long id;
 
 	@Persistent
