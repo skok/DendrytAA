@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+<<<<<<< HEAD:war/WEB-INF/appengine-web.xml
 	<application>testskok666</application>
 	<version>5</version>
+=======
+	<application>dendryt-psi</application>
+	<version>1</version>
+>>>>>>> woyg/master:war/WEB-INF/appengine-web.xml
 	
 	<!-- Configure java.util.logging -->
 	<system-properties>

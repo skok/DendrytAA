@@ -1,5 +1,7 @@
 package com.dendrytdev.org.client.bean;
 
-public enum Function {
-    SERWISANT, PROJEKTANT, PROGRAMISTA, TESTER, KLIENT
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public enum Function implements IsSerializable{
+    SERVICE, DESIGNER, PROGRAMMER, TESTER, CLIENT
 }
