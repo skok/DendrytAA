@@ -5,26 +5,12 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-
-<<<<<<< HEAD:src/com/dendrytdev/org/client/bean/Person.java
-
-=======
->>>>>>> woyg/master:src/com/dendrytdev/org/client/bean/Person.java
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Person implements IsSerializable{
-<<<<<<< HEAD:src/com/dendrytdev/org/client/bean/Person.java
-    @PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Long key;
-=======
-    
-   
->>>>>>> woyg/master:src/com/dendrytdev/org/client/bean/Person.java
-
 	@Persistent
 	@PrimaryKey
 	private String login;
