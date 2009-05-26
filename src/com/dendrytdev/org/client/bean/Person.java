@@ -5,9 +5,8 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Unique;
 
-import com.google.appengine.api.datastore.Key;
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 //Unique(name="UNIQUE_LOGIN_PERSON", members={"login"})
@@ -16,7 +15,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 public class Person implements IsSerializable{
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key key;
+    private Long key;
 
 	@Persistent
 	private String login;
