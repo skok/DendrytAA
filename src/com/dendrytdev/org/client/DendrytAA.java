@@ -21,6 +21,7 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
@@ -48,57 +49,22 @@ public class DendrytAA implements EntryPoint {
 	 */
 //	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
+
+
 	/**
 	 * This is the entry point method.
 	 */
-	/* (non-Javadoc)
-	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
-	 */
+
 	public void onModuleLoad() {
+		
+		IUserInterfaceFactory interfaceFactory;
+		
+		// TODO: implement strategy here
+		interfaceFactory = new ClientUIFactory();
+		interfaceFactory = new DesignerUIFactory();
+		RootPanel.get().clear();
+		RootPanel.get().add(interfaceFactory.generateMainUI());
 
-		RootPanel rootPanel = RootPanel.get();
-		{
-			DecoratedTabPanel usersAddition=new DecoratedTabPanel();
-			usersAddition.add(new EmpAddition(),"Dodawanie pracownikow");
-			usersAddition.add(new ClientsAddition(),"Dodawanie klientow");
-			usersAddition.selectTab(0);
-			
-			DecoratedTabPanel productsAndGroupsAddition=new DecoratedTabPanel();
-			productsAndGroupsAddition.add(new GroupsAddition(),"Dodawanie grup");
-			productsAndGroupsAddition.add(new ProductsAddition(),"Dodawanie produktow");
-			productsAndGroupsAddition.selectTab(0);
-			
-			DecoratedTabPanel usersOverview=new DecoratedTabPanel();
-			usersOverview.add(new EmpOverview(),"Przeglad pracownikow");
-			usersOverview.add(new ClientsOverview(),"Przeglad klientow");
-			usersOverview.selectTab(0);
-			
-			DecoratedTabPanel productsAndGroupsOverview=new DecoratedTabPanel();
-			productsAndGroupsOverview.add(new GroupsOverview(),"Przeglad grup");
-			productsAndGroupsOverview.add(new ProductsOverwiew(),"Przeglad produktow");
-			productsAndGroupsAddition.selectTab(0);
-			
-			DecoratedTabPanel problemOverview=new DecoratedTabPanel();
-			problemOverview.add(new ProblemOverview(),"Przeglad wszystkich zgloszen");
-			problemOverview.selectTab(0);
-			
-			DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-			
-			decoratedTabPanel.add(usersAddition,"Dodawanie uzytkownikow");
-			usersAddition.setSize("700", "400");
-			
-			decoratedTabPanel.add(productsAndGroupsAddition,"Dodawanie grup i produktow");
-			decoratedTabPanel.add(usersOverview,"Przegladanie uzytkownikow");
-			usersOverview.setSize("700", "400");
-			decoratedTabPanel.add(productsAndGroupsOverview,"Przegladanie grup i produktow");
-			decoratedTabPanel.add(problemOverview,"Przeglad zgloszen i raportow");
-			
-			decoratedTabPanel.selectTab(4);
-			rootPanel.add(decoratedTabPanel);
-			
-
-			
-		}
 	}
 	
 

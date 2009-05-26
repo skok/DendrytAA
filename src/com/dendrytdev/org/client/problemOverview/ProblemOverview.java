@@ -275,7 +275,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	VerticalPanel generateLeftVerticalPanel(){
 		VerticalPanel leftVerticalPanel = new VerticalPanel();
 		leftVerticalPanel.setWidth("250");
-//		leftVerticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		_listBox.setSize("200", "300");
 		leftVerticalPanel.add(_listBox);
 
@@ -373,10 +372,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	
-	
-	/* (non-Javadoc)
-	 * @see com.dendrytdev.org.client.problemOverview.IProblemOverview#updateProblemList(java.util.List)
-	 */
+
 	public void updateProblemList(List<Problem> problemList){
 		if(problemList == null){
 			// internal error here, this argument should not be null !
@@ -391,9 +387,9 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		String s;
 		for(Problem p : problemList){
 			_problemMap.put(i, p);
-//			s = i++ + "." + p.getProdukt();
-//			_listBox.addItem(s);
-//			
+			s = i++ + "." + p.getProduct();
+			_listBox.addItem(s);
+			
 			// fill oracle below
 			_oracle.add(new ProblemMultiWordSuggestion(p));			
 		}		
@@ -407,20 +403,27 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	 * @param i - index from the map
 	 */
 	void fillTextBoxes(int i){
-//		Problem p = _problemMap.get(i);
-//		_productTextBox.setText(p.getProdukt());
-//		_firstNameTextBox.setText(p.getImieZglaszajacego());
+		Problem p = _problemMap.get(i);
+		_productTextBox.setText(p.getProduct());
+		_firstNameTextBox.setText(p.getClient());
 //		_surnameTextBox.setText(p.getNazwiskoZglaszajacego());
-//		_phoneTextBox.setText(p.getTelefonZglaszajacego());
-//		_ratioTextBox.setText(p.getWagaKlienta());
-//		_dateTextBox.setText(p.getDataZgloszenia().toLocaleString());
-//		
-//		_servicemanTextBox.setText(p.getSerwisant());
-//		_designerTextBox.setText(p.getProjektant());
-//		_programmerTextBox.setText(p.getProgramista());
-//		_testerTextBox.setText(p.getTester());
-//		
-//		_textArea.setText(p.getOpis());		
+//		_phoneTextBox.setText(p.get);
+		
+		// TODO: what abour surname and phone ??? 
+		// is this information available somewhere 
+		// maybe from joining Person with getClient ????????
+		
+		
+		
+		_ratioTextBox.setText(p.getClientImportance());
+		_dateTextBox.setText(p.getProblemDate().toLocaleString());
+		
+		_servicemanTextBox.setText(p.getService());
+		_designerTextBox.setText(p.getDesigner());
+		_programmerTextBox.setText(p.getProgrammer());
+		_testerTextBox.setText(p.getTester());
+		
+		_textArea.setText(p.getDescription());		
 	}
 
 	@Override
