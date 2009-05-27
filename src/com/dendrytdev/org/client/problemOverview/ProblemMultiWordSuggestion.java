@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.MultiWordSuggestOracle.MultiWordSuggestion;
 
 public class ProblemMultiWordSuggestion extends MultiWordSuggestion{
 	private Problem _problem;
-	ProblemMultiWordSuggestion(Problem p){
+	public ProblemMultiWordSuggestion(Problem p){
 		super(getText(p), getText(p));
 		_problem = p;
 	}
@@ -32,7 +32,7 @@ public class ProblemMultiWordSuggestion extends MultiWordSuggestion{
 //		return text;
 		return null;
 	}
-	Problem getProblem(){
+	public Problem getProblem(){
 		return _problem;
 	}
 

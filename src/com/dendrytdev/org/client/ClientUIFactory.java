@@ -13,8 +13,8 @@ public class ClientUIFactory implements IUserInterfaceFactory{
 	public Composite generateMainUI() {
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
 		ProblemSubmiting s = new ProblemSubmiting();
-		decoratedTabPanel.add(s,"Dodawanie problemow");
-		s.setSize("700", "400");
+		decoratedTabPanel.add(s,"Zglaszanie problemow");
+		s.setSize("300", "300");
 		
 		decoratedTabPanel.selectTab(0);
 		
