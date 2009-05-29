@@ -1,5 +1,6 @@
 package com.dendrytdev.org.client.usersAddition;
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Person;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -38,19 +39,19 @@ public class EmpAddition extends Composite {
 		captionPanel.setContentWidget(verticalPanel_1);
 		verticalPanel_1.setSize("5cm", "3cm");
 
-		RadioButton rbService = new RadioButton("proffesion");
+		final RadioButton rbService = new RadioButton("proffesion");
 		rbService.setText("Serwisant");
 		verticalPanel_1.add(rbService);
 
-		RadioButton rbDesigner = new RadioButton("proffesion");
+		final RadioButton rbDesigner = new RadioButton("proffesion");
 		rbDesigner.setText("Projektant");
 		verticalPanel_1.add(rbDesigner);
 
-		RadioButton rbProgrammer = new RadioButton("proffesion");
+		final RadioButton rbProgrammer = new RadioButton("proffesion");
 		rbProgrammer.setText("Programista");
 		verticalPanel_1.add(rbProgrammer);
 
-		RadioButton rbTest = new RadioButton("proffesion");
+		final RadioButton rbTest = new RadioButton("proffesion");
 		rbTest.setText("Tester");
 		verticalPanel_1.add(rbTest);
 
@@ -128,6 +129,15 @@ public class EmpAddition extends Composite {
 						p.setPassword(ptbPassword.getText());
 						p.setSurname(tbSurname.getText());
 						p.setTelephone(tbTelephone.getText());
+						if(rbDesigner.getValue()){
+							p.setFunction(Function.DESIGNER);
+						}else if(rbProgrammer.getValue()){
+							p.setFunction(Function.PROGRAMMER);
+						}else if(rbService.getValue()){
+							p.setFunction(Function.SERVICE);
+						}else if(rbTest.getValue()){
+							p.setFunction(Function.TESTER);
+						}
 						service.addPerson(p, new AsyncCallback<Boolean>() {
 
 							@Override
