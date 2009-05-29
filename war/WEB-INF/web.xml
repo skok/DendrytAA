@@ -30,4 +30,17 @@
   <url-pattern>/dendrytaa/ProblemOverviewServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+  <servlet-name>AuthenticationServlet</servlet-name>
+  <servlet-class>com.dendrytdev.org.server.login.AuthenticationServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>AuthenticationServlet</servlet-name>
+  <url-pattern>/dendrytaa/AuthenticationServlet</url-pattern>
+</servlet-mapping>
+
+
+
+
+
 </web-app>
