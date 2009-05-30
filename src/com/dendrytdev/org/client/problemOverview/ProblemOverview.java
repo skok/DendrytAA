@@ -1,6 +1,5 @@
 package com.dendrytdev.org.client.problemOverview;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,7 @@ import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.problemOverview.raportOverview.RaportOverview;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;
+import com.dendrytdev.org.client.tools.IType;
 import com.google.gwt.user.client.ui.*;
 
 /**
@@ -22,46 +22,42 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	
 	
 	void blankAllFields(){
-		final String EMPTY = "";
-		
-		// initialize textboxes
-		_productTextBox.setText(EMPTY);
-		_firstNameTextBox.setText(EMPTY);
-		_surnameTextBox.setText(EMPTY);
-		_phoneTextBox.setText(EMPTY);
-		_ratioTextBox.setText(EMPTY);
-		_dateTextBox.setText(EMPTY);
+		_productTextBox.setText(IType.EMPTY_STRING);
+		_firstNameTextBox.setText(IType.EMPTY_STRING);
+		_surnameTextBox.setText(IType.EMPTY_STRING);
+		_phoneTextBox.setText(IType.EMPTY_STRING);
+		_ratioTextBox.setText(IType.EMPTY_STRING);
+		_dateTextBox.setText(IType.EMPTY_STRING);
 
-		_servicemanTextBox.setText(EMPTY);
-		_designerTextBox.setText(EMPTY);
-		_programmerTextBox.setText(EMPTY);
-		_testerTextBox.setText(EMPTY);
-		
-		_textArea.setText(EMPTY);
-		
-		
+		_servicemanTextBox.setText(IType.EMPTY_STRING);
+		_designerTextBox.setText(IType.EMPTY_STRING);
+		_programmerTextBox.setText(IType.EMPTY_STRING);
+		_testerTextBox.setText(IType.EMPTY_STRING);
+	
+		_textArea.setText(IType.EMPTY_STRING);	
 	}
-	ListBox _listBox;
 	
 	
-	// fields connected with PRODUCT
-	TextBox _productTextBox;
-	TextBox _firstNameTextBox;
-	TextBox _surnameTextBox;
-	TextBox _phoneTextBox;
-	TextBox _ratioTextBox;
-	TextBox _dateTextBox;
+	ListBox _listBox = new ListBox();
+	
+		
+	// initialize textboxes connected with PRODUCT
+	TextBox _productTextBox = new TextBox();
+	TextBox _firstNameTextBox = new TextBox();
+	TextBox _surnameTextBox = new TextBox();
+	TextBox _phoneTextBox = new TextBox();
+	TextBox _ratioTextBox = new TextBox();
+	TextBox _dateTextBox = new TextBox();
 	
 	// fields connected with ASSIGNMENT
-	TextBox _servicemanTextBox;
-	TextBox _designerTextBox;
-	TextBox _programmerTextBox;
-	TextBox _testerTextBox;
+	TextBox _servicemanTextBox = new TextBox();
+	TextBox _designerTextBox = new TextBox();
+	TextBox _programmerTextBox = new TextBox();
+	TextBox _testerTextBox = new TextBox();
 	
-	TextArea _textArea;
-	
-	SuggestBox _suggestBox;
-	ProblemSuggestOracle _oracle;
+	TextArea _textArea = new TextArea();	
+	ProblemSuggestOracle _oracle = new ProblemSuggestOracle(); 
+	SuggestBox _suggestBox = new SuggestBox(_oracle);
 	
 	Button _assignmentButton;
 	Button _gotoRaportsButton;
@@ -84,13 +80,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	public ProblemOverview() {
-		
-		// initialize listBox
-		_listBox = new ListBox();
-		
-
 		_listBox.setVisibleItemCount(5);
-	
 		_listBox.addClickListener(new ClickListener(){
 
 			@Override
@@ -101,26 +91,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		});
 		
 		
-		
-		
-		// initialize textboxes
-		_productTextBox = new TextBox();
-		_firstNameTextBox = new TextBox();
-		_surnameTextBox = new TextBox();
-		_phoneTextBox = new TextBox();
-		_ratioTextBox = new TextBox();
-		_dateTextBox = new TextBox();
-
-		_servicemanTextBox = new TextBox();
-		_designerTextBox = new TextBox();
-		_programmerTextBox = new TextBox();
-		_testerTextBox = new TextBox();
-		
-		_textArea = new TextArea();
-	
-		_oracle = new ProblemSuggestOracle(); 
-		_suggestBox = new SuggestBox(_oracle);
-
 		_suggestBox.addEventHandler(new SuggestionHandler(){
 
 			@Override
@@ -139,12 +109,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 			
 		});
 	
-		
-		
-		
-		
-		
-		// initialize buttons
 		_assignmentButton = new Button("Przydziel", new ClickListener(){
 			@Override
 			public void onClick(Widget sender) {
@@ -155,7 +119,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 			}
 		});
 
-		// initialize buttons
 		_gotoRaportsButton = new Button("Otworz raporty", new ClickListener(){
 			@Override
 			public void onClick(Widget sender) {
@@ -211,59 +174,39 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		rightVerticalPanel.add(generateMiddlePanel());
 		rightVerticalPanel.setHeight("400");
 
-		
-		
-		
-		
-		
-		/////////////////////////////////////////////////////////
+			
 		//create RIGHT RIGHT ;) Panel
 		
 		VerticalPanel descriptionPanel = new VerticalPanel();
 
 		// generate description text area here
-		
 	    _textArea.setCharacterWidth(40);
 	    _textArea.setVisibleLines(20);
 
 		descriptionPanel.add(_textArea);
 		
-//		DecoratorPanel descriptionWrapper = new DecoratorPanel();
-//		descriptionWrapper.setWidget(descriptionPanel);
-//		descriptionWrapper.setHeight("400");
-//		mainPanel.add(descriptionWrapper);
-		
 		CaptionPanel cpRight = new CaptionPanel("Opis problemu");
 		cpRight.setHeight("400");
 		cpRight.add(descriptionPanel);		
-		mainPanel.add(cpRight);
-		
-
-		
+		mainPanel.add(cpRight);	
 	}
 
 	Panel generateRightDownPanel() {
-
 		VerticalPanel assignmentPanel = new VerticalPanel();
 		assignmentPanel.add(generateAssignmentFieldsPanel()); //creating ASSIGNMENT panel HERE
 		assignmentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		assignmentPanel.add(_assignmentButton);
-		
 
-		
 		CaptionPanel panel = new CaptionPanel("Przydzial");
 		panel.add(assignmentPanel);
 		VerticalPanel vp = new VerticalPanel();
 		vp.add(panel);
-//		vp.setHorizontalAlignment(align)
 		vp.add(new Grid(1,1));
 		vp.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		vp.add(_gotoRaportsButton);
 		
 		return vp; // fucking workaround ... TODO: refactor IT !!!!!!!!!		
 	}
-	
-	
 	
 	VerticalPanel generateLeftVerticalPanel(){
 		VerticalPanel leftVerticalPanel = new VerticalPanel();
@@ -286,7 +229,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	
-	
 
 	/**
 	 * 
@@ -300,12 +242,15 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	 * 
 	 * Obviously it worked normally (when executing application) but
 	 * DESIGN-mode in instantine-GWT plugin blowed up (DAMN!)
+	 * 
+	 * 
+	 * WARNING - not thread-safe
 	 * @author michal
 	 *
 	 */
-	static class StaticHelperClass{
+	public static class StaticHelperClass{
 		static String width;
-		static void setWidth(String s){
+		public static void setWidth(String s){
 			width = s;			
 		}
 		/**
@@ -315,7 +260,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		 * @param textBox - should be already initialized (member of the class)
 		 * @return
 		 */
-		static HorizontalPanel generateLabeledTextBoxPanel(String labelName, TextBox textBox){
+		public static HorizontalPanel generateLabeledTextBoxPanel(String labelName, TextBox textBox){
 			HorizontalPanel horizontalPane = new HorizontalPanel();
 			Label l = new Label(labelName);
 			l.setWidth(width);
@@ -332,8 +277,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	 * @param panel - panel to which it adds this hPanels
 	 */
 	VerticalPanel generateMiddlePanel() {
-		
-		
 		VerticalPanel panel = new VerticalPanel();
 		StaticHelperClass.setWidth("200");
 		panel.add(StaticHelperClass.generateLabeledTextBoxPanel("Produkt:", _productTextBox));
@@ -391,7 +334,8 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	
-	
+
+    
 	/**
 	 * @param i - index from the map
 	 */
@@ -402,15 +346,12 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 //		_surnameTextBox.setText(p.getNazwiskoZglaszajacego());
 //		_phoneTextBox.setText(p.get);
 		
-		// TODO: what abour surname and phone ??? 
+		// TODO: what about surname and phone ??? 
 		// is this information available somewhere 
 		// maybe from joining Person with getClient ????????
 		
-		
-		
 		_ratioTextBox.setText(p.getClientImportance());
 		_dateTextBox.setText(p.getProblemDate().toLocaleString());
-		
 		_servicemanTextBox.setText(p.getService());
 		_designerTextBox.setText(p.getDesigner());
 		_programmerTextBox.setText(p.getProgrammer());

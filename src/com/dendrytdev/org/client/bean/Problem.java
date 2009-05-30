@@ -2,6 +2,8 @@ package com.dendrytdev.org.client.bean;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -42,13 +44,19 @@ public class Problem implements IsSerializable{
 	@Persistent
 	private String description;
 	@Persistent
-	private Set<String> comments;
+	private List<Long> comments;
 	
-	public void addComment(String comment){
+	/**
+	 * WARNING: does not persist the comment in DB, only adds the reference
+	 * to the comments' list
+	 * You must make the added comment persistent before adding it here!!!
+	 * @param comment
+	 */
+	public void addComment(Long commentId){
 		if(comments==null){
-			comments=new HashSet<String>();
+			comments=new LinkedList<Long>();
 		}
-		comments.add(comment);
+		comments.add(commentId);
 	}
 	
 	public Long getId() {
@@ -111,13 +119,7 @@ public class Problem implements IsSerializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Set<String> getComments() {
+	public List<Long> getComments() {
 		return comments;
 	}
-	public void setComments(Set<String> comments) {
-		this.comments = comments;
-	}
-
-	
-
 }
