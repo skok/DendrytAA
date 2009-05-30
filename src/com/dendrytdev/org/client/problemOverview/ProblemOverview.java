@@ -1,44 +1,16 @@
 package com.dendrytdev.org.client.problemOverview;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 import com.dendrytdev.org.client.bean.Problem;
+import com.dendrytdev.org.client.problemOverview.raportOverview.RaportOverview;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.CaptionPanel;
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
-import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.SuggestBox;
-import com.google.gwt.user.client.ui.SuggestOracle;
-import com.google.gwt.user.client.ui.SuggestionEvent;
-import com.google.gwt.user.client.ui.SuggestionHandler;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.DecoratorPanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 
 /**
  * ProblemOverview composite
@@ -67,7 +39,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		
 		_textArea.setText(EMPTY);
 		
-		//_suggestBox.setText(EMPTY);
 		
 	}
 	ListBox _listBox;
@@ -93,6 +64,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	ProblemSuggestOracle _oracle;
 	
 	Button _assignmentButton;
+	Button _gotoRaportsButton;
 	Button _refreshListButton;
 
 	IDialogBoxFactory _factory = GuiFactory.getInstance();
@@ -103,6 +75,13 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	
 	Map<Integer, Problem> _problemMap;
 	int _problemListHashCode;
+	
+	void onListboxClick(){
+		String s = _listBox.getItemText(_listBox.getSelectedIndex());
+		s = s.split("\\.")[0];
+		Integer i = Integer.valueOf(s);
+		fillTextBoxes(i);	
+	}
 	
 	public ProblemOverview() {
 		
@@ -116,13 +95,12 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 
 			@Override
 			public void onClick(Widget sender) {
-				String s = _listBox.getItemText(_listBox.getSelectedIndex());
-				s = s.split("\\.")[0];
-				Integer i = Integer.valueOf(s);
-				fillTextBoxes(i);			
+				onListboxClick();						
 			}
 			
 		});
+		
+		
 		
 		
 		// initialize textboxes
@@ -156,7 +134,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 					}
 				}
 				_listBox.setSelectedIndex(inx - 1); //indexed from 0
-				
+				onListboxClick();
 			}
 			
 		});
@@ -167,14 +145,23 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		
 		
 		// initialize buttons
-		final DialogBox todoDialogBox1 = _factory.createTODODialogBox();
-		_assignmentButton = new Button("Przydziel pracownikow", new ClickListener(){
+		_assignmentButton = new Button("Przydziel", new ClickListener(){
 			@Override
 			public void onClick(Widget sender) {
 				
-				
-				
-//				todoDialogBox1.center();
+				DialogBox todoDialogBox1 = _factory.createTODODialogBox();
+				todoDialogBox1.center();
+				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);				
+			}
+		});
+
+		// initialize buttons
+		_gotoRaportsButton = new Button("Otworz raporty", new ClickListener(){
+			@Override
+			public void onClick(Widget sender) {
+				DialogBox todoDialogBox1 = _factory.createInfoDialogBox("Przeglad raportow", null, new RaportOverview());
+				todoDialogBox1.center();
+				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);				
 			}
 		});
 		
@@ -259,14 +246,20 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 
 		VerticalPanel assignmentPanel = new VerticalPanel();
 		assignmentPanel.add(generateAssignmentFieldsPanel()); //creating ASSIGNMENT panel HERE
-		assignmentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		assignmentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		assignmentPanel.add(_assignmentButton);
+		
 
 		
 		CaptionPanel panel = new CaptionPanel("Przydzial");
 		panel.add(assignmentPanel);
 		VerticalPanel vp = new VerticalPanel();
 		vp.add(panel);
+//		vp.setHorizontalAlignment(align)
+		vp.add(new Grid(1,1));
+		vp.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		vp.add(_gotoRaportsButton);
+		
 		return vp; // fucking workaround ... TODO: refactor IT !!!!!!!!!		
 	}
 	

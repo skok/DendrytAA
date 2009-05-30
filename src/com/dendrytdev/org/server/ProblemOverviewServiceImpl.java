@@ -14,81 +14,91 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 	
 	static List<Problem> testingList = new ArrayList<Problem>();
 
+	
+	/**
+	 * for mega fucking testing purposes only ;>
+	 */
+	Problem generateOneProblem(String[] s){
+		Problem p = new Problem();
+		p.setProduct(s[0]);
+		p.setClient(s[1]);
+		p.setClientImportance(s[2]);
+		p.setProblemDate(new Date());
+		p.setService(s[3]);
+		p.setDesigner(s[4]);
+		p.setProgrammer(s[5]);
+		p.setTester(s[6]);
+		p.setDescription(s[7]);
+		return p;
+	}
+	
+	/**
+	 * for mega testing purposes only ;>
+	 */
 	List<Problem> generateTestingValues() {
 		if (testingList.size() == 0) { //generate only once
-			System.out.println("G");
-
-//			Problem pr = new Problem();
-//			pr.setProdukt("Produkt1");
-//			pr.setImieZglaszajacego("Michal");
-//			pr.setNazwiskoZglaszajacego("NAZWISKO1");
-//			pr.setTelefonZglaszajacego("0774822244");
-//			pr.setWagaKlienta("2");
-//			pr.setDataZgloszenia(new Date());
-//			pr.setSerwisant("S");
-//			pr.setProjektant("PR");
-//			pr.setProgramista("PROG");
-//			pr.setTester("T");
-//			pr.setOpis("Cos sie zepsulo chyba w czyms tam, albo i nie nawet");
-//			testingList.add(pr);
-//
-//			pr = new Problem();
-//			pr.setProdukt("Produkt2");
-//			pr.setImieZglaszajacego("Kasia");
-//			pr.setNazwiskoZglaszajacego("NAZWISKO2");
-//			pr.setTelefonZglaszajacego("0774821111");
-//			pr.setWagaKlienta("4");
-//			pr.setDataZgloszenia(new Date());
-//			pr.setSerwisant("S2");
-//			pr.setProjektant("PR2");
-//			pr.setProgramista("PROG2");
-//			pr.setTester("T2");
-//			pr.setOpis("Wyskoczylo okno z napisem jakims tam bla bla bla");
-//			testingList.add(pr);
-//			
-//			
-//			
-//			pr = new Problem();
-//			pr.setProdukt("ProduktX3");
-//			pr.setImieZglaszajacego("Wojtek");
-//			pr.setNazwiskoZglaszajacego("NAZWISKO3");
-//			pr.setTelefonZglaszajacego("0774823333");
-//			pr.setWagaKlienta("2");
-//			pr.setDataZgloszenia(new Date());
-//			pr.setSerwisant("S3");
-//			pr.setProjektant("PR3");
-//			pr.setProgramista("PROG3");
-//			pr.setTester("T3");
-//			pr.setOpis("xxxxxxxxxxxxxxxxxx.x..x.c.fd..fd.f.df..f..ff...f.f. AlkoAGILE");
-//			testingList.add(pr);
-//			
-//			pr = new Problem();
-//			pr.setProdukt("DENDRYT");
-//			pr.setImieZglaszajacego("Michal");
-//			pr.setNazwiskoZglaszajacego("Szaman");
-//			pr.setTelefonZglaszajacego("514414411");
-//			pr.setWagaKlienta("1");
-//			pr.setDataZgloszenia(new Date());
-//			pr.setSerwisant("");
-//			pr.setProjektant("");
-//			pr.setProgramista("skok");
-//			pr.setTester("");
-//			pr.setOpis("blad .... ;-)");
-//			testingList.add(pr);
-//			
-//			pr = new Problem();
-//			pr.setProdukt("CYFRON");
-//			pr.setImieZglaszajacego("Olga");
-//			pr.setNazwiskoZglaszajacego("Awarja");
-//			pr.setTelefonZglaszajacego("8888");
-//			pr.setWagaKlienta("1");
-//			pr.setDataZgloszenia(new Date());
-//			pr.setSerwisant("");
-//			pr.setProjektant("");
-//			pr.setProgramista("skok");
-//			pr.setTester("");
-//			pr.setOpis("awaria .... ;-)");
-//			testingList.add(pr);
+			String[] arr;
+			
+			arr = new String[]{
+					"Produkt1",
+					"Michal",
+					"2",
+					"S",
+					"PR",
+					"PROG",
+					"T",
+					"Cos sie zepsulo chyba w czyms tam, albo i nie nawet"
+					};
+			testingList.add(generateOneProblem(arr));
+			
+			arr = new String[]{
+					"Dendryt",
+					"Jozek",
+					"3",
+					"See",
+					"PR",
+					"PROG",
+					"T",
+					"Bla blaaaa blaa. .... "
+			};
+			testingList.add(generateOneProblem(arr));
+			
+			arr = new String[]{
+					"GoogleWave",
+					"Slawek",
+					"2",
+					"Seer",
+					"PR",
+					"PROG11",
+					"T",
+					"xxxxxxxx consult the log for full details........."
+			};
+			testingList.add(generateOneProblem(arr));
+			
+			arr = new String[]{
+					"Dendryt",
+					"Zbigniew",
+					"1",
+					"Serww",
+					"PRrr",
+					"PROGgg",
+					"T",
+					"yyyyyyy / ....."
+			};
+			testingList.add(generateOneProblem(arr));
+			
+			arr = new String[]{
+					"CyfronWIWIII",
+					"Olgiert",
+					"2",
+					"S",
+					"PR",
+					"PROG2",
+					"T",
+					";)"
+			};
+			testingList.add(generateOneProblem(arr));
+			
 			
 		}
 

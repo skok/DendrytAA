@@ -1,5 +1,7 @@
 package com.dendrytdev.org.client.tools;
 
+import com.dendrytdev.org.client.problemOverview.ProblemOverview;
+import com.dendrytdev.org.client.problemSubmiting.ProblemSubmiting;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.ui.*;
 
@@ -10,13 +12,17 @@ public class GuiFactory implements IDialogBoxFactory {
 		return instance;
 	}
 	
-	public DialogBox createInfoDialogBox(String title, String content){
+	public DialogBox createInfoDialogBox(String title, String content, Composite c){
 		final DialogBox dialogBox = new DialogBox();
 		dialogBox.setText(title);
 		dialogBox.setAnimationEnabled(true);
 		final Button closeButton = new Button("Zamknij");
 		VerticalPanel vp = new VerticalPanel();
-		vp.add(new Label(content));
+		if(c != null){
+			vp.add(c);			
+		}else{
+			vp.add(new Label(content));
+		}
 		vp.add(closeButton);
 		dialogBox.setWidget(vp);
 
@@ -31,7 +37,7 @@ public class GuiFactory implements IDialogBoxFactory {
 	}
 	
 	public DialogBox createTODODialogBox(){
-		return createInfoDialogBox("AlkoAGILE2009", "TODO: WILL BE IMPLEMENTED SOON !!!");
+		return createInfoDialogBox("AlkoAGILE2009", "TODO: WILL BE IMPLEMENTED SOON !!!", null);
 	}
 	
 	
