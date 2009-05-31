@@ -39,12 +39,8 @@ public class ProblemDAO implements IProblemDAO{
 		boolean result = false;
 		try {
 			Query q = pm.newQuery(Problem.class);
-			q.setFilter("id == " + p.getId());
-			Collection<Problem> pp = (Collection<Problem>) q.execute();
-			if (pp.size() == 0) {
-				result = true;
-				pm.makePersistent(p);
-			} //else return false(default value)
+			pm.makePersistent(p);
+			result = true;
 		} catch (Throwable e) {
 			throw new DendrytDAOException(e);
 		} finally {

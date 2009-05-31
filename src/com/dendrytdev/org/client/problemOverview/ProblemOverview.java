@@ -73,13 +73,18 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	int _problemListHashCode;
 	
 	void onListboxClick(){
+		int inx = -100;
 		try{
-			String s = _listBox.getItemText(_listBox.getSelectedIndex());			
+			inx = _listBox.getSelectedIndex();
+			if(inx == -1){ // none is selected
+				return;
+			}
+			String s = _listBox.getItemText(inx);			
 			s = s.split("\\.")[0];
 			Integer i = Integer.valueOf(s);
 			fillTextBoxes(i);	
 		}catch(Throwable t){
-			t.printStackTrace();
+//			t.printStackTrace();
 			return; // do nothing TODO: refactor the shit
 		}
 	}

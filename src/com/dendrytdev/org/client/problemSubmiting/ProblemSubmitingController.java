@@ -57,8 +57,6 @@ public class ProblemSubmitingController {
 
 			@Override
 			public void onSuccess(Boolean result) {
-				DialogBox todoDialogBox1 = GuiFactory.getInstance().createInfoDialogBox("DAA", "problem dodany!!!", null);
-				todoDialogBox1.center();
 			}
 			
 		});

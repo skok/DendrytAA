@@ -22,7 +22,7 @@ public class ProductDAO implements IProductDAO{
 			Query q = pm.newQuery(Product.class);
 			q.setFilter("name == \"" + p.getName() + "\""
 					+ " && version == \"" + p.getVersion() + "\"");
-		
+			// TODO: check this stuff :> (validate !!!)
 			Collection<Product> pp = (Collection<Product>) q.execute();
 			if (pp.size() == 0) {
 				result = true;

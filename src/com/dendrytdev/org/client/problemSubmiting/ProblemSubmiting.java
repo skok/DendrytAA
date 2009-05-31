@@ -1,5 +1,7 @@
 package com.dendrytdev.org.client.problemSubmiting;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -231,7 +233,7 @@ public class ProblemSubmiting extends Composite implements IProblemSubmiting{
 			p.setProduct(_productListbox.getItemText(_productListbox.getSelectedIndex()));
 			p.setClientImportance(_importanceTextBox.getItemText(_importanceTextBox.getSelectedIndex()));
 			p.setDescription(_descriptionTextArea.getText());
-			System.out.println(p.getDescription());
+			p.setProblemDate(new Date());
 			return p;
 		}
 		

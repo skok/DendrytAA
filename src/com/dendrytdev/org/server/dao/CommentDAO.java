@@ -22,12 +22,8 @@ public class CommentDAO implements ICommentDAO{
 		boolean result = false;
 		try {
 			Query q = pm.newQuery(Comment.class);
-			q.setFilter("id == " + p.getId());
-			Collection<Comment> pp = (Collection<Comment>) q.execute();
-			if (pp.size() == 0) {
-				result = true;
-				pm.makePersistent(p);
-			} //else return false(default value)
+			pm.makePersistent(p);
+			result = true;
 		} catch (Throwable e) {
 			throw new DendrytDAOException(e);
 		} finally {
