@@ -1,6 +1,5 @@
 package com.dendrytdev.org.client.bean;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -9,9 +8,11 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
+
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Comment implements Serializable{
+public class Comment implements IsSerializable{
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     @PrimaryKey
     private Long id;
@@ -38,6 +39,10 @@ public class Comment implements Serializable{
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -61,4 +66,6 @@ public class Comment implements Serializable{
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
 }

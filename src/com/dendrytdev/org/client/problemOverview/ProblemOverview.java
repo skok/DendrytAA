@@ -34,7 +34,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_programmerTextBox.setText(IType.EMPTY_STRING);
 		_testerTextBox.setText(IType.EMPTY_STRING);
 	
-		_textArea.setText(IType.EMPTY_STRING);	
+		_descriptionTextArea.setText(IType.EMPTY_STRING);	
 	}
 	
 	
@@ -55,7 +55,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	TextBox _programmerTextBox = new TextBox();
 	TextBox _testerTextBox = new TextBox();
 	
-	TextArea _textArea = new TextArea();	
+	TextArea _descriptionTextArea = new TextArea();	
 	ProblemSuggestOracle _oracle = new ProblemSuggestOracle(); 
 	SuggestBox _suggestBox = new SuggestBox(_oracle);
 	
@@ -73,10 +73,15 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	int _problemListHashCode;
 	
 	void onListboxClick(){
-		String s = _listBox.getItemText(_listBox.getSelectedIndex());
-		s = s.split("\\.")[0];
-		Integer i = Integer.valueOf(s);
-		fillTextBoxes(i);	
+		try{
+			String s = _listBox.getItemText(_listBox.getSelectedIndex());			
+			s = s.split("\\.")[0];
+			Integer i = Integer.valueOf(s);
+			fillTextBoxes(i);	
+		}catch(Throwable t){
+			t.printStackTrace();
+			return; // do nothing TODO: refactor the shit
+		}
 	}
 	
 	public ProblemOverview() {
@@ -180,10 +185,10 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		VerticalPanel descriptionPanel = new VerticalPanel();
 
 		// generate description text area here
-	    _textArea.setCharacterWidth(40);
-	    _textArea.setVisibleLines(20);
+	    _descriptionTextArea.setCharacterWidth(40);
+	    _descriptionTextArea.setVisibleLines(20);
 
-		descriptionPanel.add(_textArea);
+		descriptionPanel.add(_descriptionTextArea);
 		
 		CaptionPanel cpRight = new CaptionPanel("Opis problemu");
 		cpRight.setHeight("400");
@@ -351,13 +356,15 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		// maybe from joining Person with getClient ????????
 		
 		_ratioTextBox.setText(p.getClientImportance());
-		_dateTextBox.setText(p.getProblemDate().toLocaleString());
+		if(p.getProblemDate() != null){
+			_dateTextBox.setText(p.getProblemDate().toLocaleString());			
+		}
 		_servicemanTextBox.setText(p.getService());
 		_designerTextBox.setText(p.getDesigner());
 		_programmerTextBox.setText(p.getProgrammer());
 		_testerTextBox.setText(p.getTester());
-		
-		_textArea.setText(p.getDescription());		
+		System.out.println("_" + p.getDescription());
+		_descriptionTextArea.setText(p.getDescription());		
 	}
 
 	@Override

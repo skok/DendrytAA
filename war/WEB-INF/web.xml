@@ -39,6 +39,14 @@
   <url-pattern>/dendrytaa/AuthenticationServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+  <servlet-name>ProblemSubmitingServlet</servlet-name>
+  <servlet-class>com.dendrytdev.org.server.ProblemSubmitingServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>ProblemSubmitingServlet</servlet-name>
+  <url-pattern>/dendrytaa/ProblemSubmitingServlet</url-pattern>
+</servlet-mapping>
 
 
 

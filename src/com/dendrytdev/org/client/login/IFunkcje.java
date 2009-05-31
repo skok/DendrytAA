@@ -1,10 +1,10 @@
 package com.dendrytdev.org.client.login;
 
-public interface IFunkcje
-{
- public static final int SERVICEMAN = 0;
- public static final int DESIGNER = 1;
- public static final int PROGRAMMER = 2;
- public static final int TESTER = 3;
- public static final int CLIENT = 4;
+public interface IFunkcje {
+	public static final byte NOT_LOGGED = -1;
+	public static final byte SERVICEMAN = 0;
+	public static final byte DESIGNER = 1;
+	public static final byte PROGRAMMER = 2;
+	public static final byte TESTER = 3;
+	public static final byte CLIENT = 4;
 }

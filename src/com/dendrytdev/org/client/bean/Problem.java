@@ -46,6 +46,8 @@ public class Problem implements IsSerializable{
 	@Persistent
 	private List<Long> comments;
 	
+
+
 	/**
 	 * WARNING: does not persist the comment in DB, only adds the reference
 	 * to the comments' list
@@ -121,5 +123,9 @@ public class Problem implements IsSerializable{
 	}
 	public List<Long> getComments() {
 		return comments;
+	}
+	
+	public void setComments(List<Long> comments) {
+		this.comments = comments;
 	}
 }

@@ -85,6 +85,6 @@ public class LogInController {
 
 	public void authenticate(String login, String password) {
 		this.login = login;
-		loginService.authenticate(new Data(login, password), logInCallback);
+		loginService.authenticate(new LoginDTO(login, password), logInCallback);
 	}
 }

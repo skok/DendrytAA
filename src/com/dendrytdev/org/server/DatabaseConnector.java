@@ -19,7 +19,7 @@ public class DatabaseConnector {
 	public static Collection<Person> getAllDesigners(){
 		PersistenceManager pm=PMF.get().getPersistenceManager();
 		Query q=pm.newQuery(Person.class);	
-		String arg="function =="+Function.DESIGNER;
+		String arg="function ==" + Function.DESIGNER;
 		q.setFilter(arg);
 		pm.close();
 		return (Collection<Person>) q.execute();
