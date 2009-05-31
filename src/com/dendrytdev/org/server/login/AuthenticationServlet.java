@@ -2,11 +2,11 @@ package com.dendrytdev.org.server.login;
 
 
 import javax.servlet.http.HttpSession;
-import com.dendrytdev.org.client.login.Data;
+import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-public class AuthenticationServlet extends RemoteServiceServlet implements IAuthenticateUser {
+public class AuthenticationServlet extends RemoteServiceServlet implements IAuthenticateUser, IHttpSessionProvider {
 
 	private static final long serialVersionUID = 1L;
 	AuthenticateUserImpl impl = new AuthenticateUserImpl();
@@ -14,14 +14,13 @@ public class AuthenticationServlet extends RemoteServiceServlet implements IAuth
 	public AuthenticationServlet() {
 	}
 	@Override
-	public int authenticate(Data person) {
-		impl.setHttpSession(getHttpSession());
-		int authenticate = impl.authenticate(person);
-
+	public int authenticate(LoginDTO person) {
+		int authenticate = impl.authenticate(person, this);
 		return authenticate;
 	}
 	
-	private HttpSession getHttpSession(){
+	public HttpSession getHttpSession(){
 		return getThreadLocalRequest().getSession();
 	}
+	
 }

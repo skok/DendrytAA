@@ -1,13 +1,8 @@
 package com.dendrytdev.org.server.login;
 
-import java.util.List;
 
-import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
-
-import org.apache.jasper.tagplugins.jstl.If;
-
-import com.dendrytdev.org.client.login.Data;
+import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
 import com.dendrytdev.org.client.login.IFunkcje;
 
@@ -20,13 +15,10 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 	}
 
 	public HttpSession getHttpSession() {
-		return httpSession;
+		return i.getHttpSession();
 	}
 
-	public void setHttpSession(HttpSession httpSession) {
-		this.httpSession = httpSession;
-	}
-
+	IHttpSessionProvider i;
 	
 	private static final String AUTHENTICATE = "AuthenticateUserImpl.authenticate()";
 	/**
@@ -38,9 +30,9 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 	 * 3 - tester
 	 * 4 - klient
 	 */
-	@Override
-	public int authenticate(Data person) {
-		System.out.println("authenticate:" + person.getLogin() + "/" + person.getPassword());
+
+	public int authenticate(LoginDTO person, IHttpSessionProvider i) {
+		this.i = i;
 		String login = person.getLogin();
 		if(login == null){
 			login = "";
@@ -51,7 +43,7 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 		}else if(login.equals("designer")){
 			return IFunkcje.DESIGNER;
 		}else{
-			return -1;
+			return IFunkcje.NOT_LOGGED;
 		}
 
 //		
@@ -90,6 +82,11 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 		logger.info("RETURN");*/
 //		return result;
 
+	}
+
+	@Override
+	public int authenticate(LoginDTO person) {
+		throw new RuntimeException("not implemented yet!");
 	}
 
 	
