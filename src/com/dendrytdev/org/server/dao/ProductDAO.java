@@ -20,7 +20,9 @@ public class ProductDAO implements IProductDAO{
 		boolean result = false;
 		try {
 			Query q = pm.newQuery(Product.class);
-			q.setFilter("id == " + p.getId());
+			q.setFilter("name == \"" + p.getName() + "\""
+					+ " && version == \"" + p.getVersion() + "\"");
+		
 			Collection<Product> pp = (Collection<Product>) q.execute();
 			if (pp.size() == 0) {
 				result = true;

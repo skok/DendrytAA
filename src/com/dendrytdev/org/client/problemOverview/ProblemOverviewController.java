@@ -9,6 +9,7 @@ import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.ui.DialogBox;
 
 public class ProblemOverviewController implements IProblemOverviewController {
 	
@@ -29,7 +30,8 @@ public class ProblemOverviewController implements IProblemOverviewController {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub				
+				DialogBox todoDialogBox1 = GuiFactory.getInstance().createInfoDialogBox("DAA", "Problem:updateProblemList()", null);
+				todoDialogBox1.center();				
 			}
 
 			@Override

@@ -5,9 +5,11 @@ import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.problemOverview.IProblemOverview;
 import com.dendrytdev.org.client.problemOverview.ProblemOverviewService;
 import com.dendrytdev.org.client.problemOverview.ProblemOverviewServiceAsync;
+import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.ui.DialogBox;
 
 public class ProblemSubmitingController {
 	
@@ -49,14 +51,14 @@ public class ProblemSubmitingController {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				
+				DialogBox todoDialogBox1 = GuiFactory.getInstance().createInfoDialogBox("DAA", "Problem przy dodawaniu problemu.", null);
+				todoDialogBox1.center();
 			}
 
 			@Override
 			public void onSuccess(Boolean result) {
-				// TODO Auto-generated method stub
-				
+				DialogBox todoDialogBox1 = GuiFactory.getInstance().createInfoDialogBox("DAA", "problem dodany!!!", null);
+				todoDialogBox1.center();
 			}
 			
 		});

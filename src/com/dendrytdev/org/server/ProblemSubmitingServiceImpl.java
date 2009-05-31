@@ -1,5 +1,7 @@
 package com.dendrytdev.org.server;
 
+import java.util.logging.Logger;
+
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
@@ -8,6 +10,8 @@ import com.dendrytdev.org.server.dao.ProblemDAO;
 import com.dendrytdev.org.server.dao.ProductDAO;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 import com.dendrytdev.org.server.dao.intf.IProductDAO;
+
+
 
 public class ProblemSubmitingServiceImpl implements ProblemSubmitingService{
 	
@@ -26,27 +30,43 @@ public class ProblemSubmitingServiceImpl implements ProblemSubmitingService{
 				Product p;
 				p = new Product();
 				p.setName("Dendryt");
+				p.setVersion("1");
 				prod.create(p);
 				
 				p = new Product();
 				p.setName("GoogleWave");
+				p.setVersion("1");
 				prod.create(p);
 				
 				p = new Product();
 				p.setName("CyfronWIWI");
+				p.setVersion("1");
 				prod.create(p);
 				
 				p = new Product();
 				p.setName("Eclipse");
+				p.setVersion("1");
 				prod.create(p);
 				
 				p = new Product();
 				p.setName("Gmail");
+				p.setVersion("1");
 				prod.create(p);
 				
 			}
 		}catch(Throwable t){
-			t.printStackTrace();
+			Logger l = Logger.getLogger(ProblemSubmitingServiceImpl.class.getName());
+			
+			StackTraceElement[] arr = t.getStackTrace();
+			StringBuilder s = new StringBuilder();
+			for(StackTraceElement e : arr){
+				s.append(e.toString() + "\n");
+			}
+			
+			l.warning(s.toString());
+			Product p = new Product();
+			p.setName(s.toString());
+			return new Product[]{p};
 		}
 		
 		return prod.readAll();
