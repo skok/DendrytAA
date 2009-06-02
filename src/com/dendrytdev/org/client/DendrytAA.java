@@ -26,10 +26,20 @@ public class DendrytAA implements EntryPoint {
 
 
 
+	
+	
+	/**
+	 * TODO: refactor :>
+	 */
+	public static void start(){
+		IUserInterface i = new LogInInterface();
+		i.mainInterface();
+	}
+	
+	
 	/**
 	 * This is the entry point method.
 	 */
-
 	public void onModuleLoad() {
 		
 		IUserInterfaceFactory interfaceFactory;
@@ -40,9 +50,8 @@ public class DendrytAA implements EntryPoint {
 //		RootPanel.get().clear();
 //		RootPanel.get().add(interfaceFactory.generateMainUI());
 
-		IUserInterface i = new LogInInterface();
-		i.mainInterface();
 		
+		start();
 		
 		
 //		RootPanel.get().clear();

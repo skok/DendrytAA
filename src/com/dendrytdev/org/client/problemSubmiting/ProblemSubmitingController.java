@@ -57,6 +57,9 @@ public class ProblemSubmitingController {
 
 			@Override
 			public void onSuccess(Boolean result) {
+				DialogBox todoDialogBox1 = GuiFactory.getInstance().createInfoDialogBox("Dendryt", "Dodano problem do systemu.", null);
+				todoDialogBox1.center();
+				i.clearProblemDescription();
 			}
 			
 		});

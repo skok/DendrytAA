@@ -15,6 +15,8 @@ public class Person implements IsSerializable{
 	@PrimaryKey
 	private String login;
 	@Persistent
+	private String companyName;
+	@Persistent
 	private String firstName;
 	@Persistent
 	private String surname;

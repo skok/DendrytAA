@@ -5,6 +5,7 @@ package com.dendrytdev.org.client.login;
 import com.dendrytdev.org.client.ClientUIFactory;
 import com.dendrytdev.org.client.DesignerUIFactory;
 import com.dendrytdev.org.client.IUserInterface;
+import com.dendrytdev.org.client.tools.IType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -45,13 +46,13 @@ public class LogInController {
 //				userInterface = new ServiceInterface(login);
 //				break;
 //				
-			case IFunkcje.DESIGNER:
+			case IType.Funkcje.DESIGNER:
 //				userInterface = new DesignerInterface(login);
 				//REFACTOR THIS CRAP!!!!!!!!!!!!!!!!!!!!!!!!! TODO:
 				RootPanel.get().add(new DesignerUIFactory().generateMainUI());
 				break;
 				
-			case IFunkcje.CLIENT:
+			case IType.Funkcje.CLIENT:
 //				userInterface = new ClientInterface();
 				RootPanel.get().add(new ClientUIFactory().generateMainUI());
 				break;
@@ -70,6 +71,7 @@ public class LogInController {
 				return;
 			}
 //			userInterface.mainInterface();
+			RootPanel.get().add(new LogoutButton());
 			
 		}
 		

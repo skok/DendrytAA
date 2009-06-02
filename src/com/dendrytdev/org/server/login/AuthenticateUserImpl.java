@@ -2,9 +2,12 @@ package com.dendrytdev.org.server.login;
 
 
 import javax.servlet.http.HttpSession;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
-import com.dendrytdev.org.client.login.IFunkcje;
+import com.dendrytdev.org.client.tools.IType;
 
 
 public class AuthenticateUserImpl implements IAuthenticateUser{
@@ -14,12 +17,7 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 	public AuthenticateUserImpl(){	
 	}
 
-	public HttpSession getHttpSession() {
-		return i.getHttpSession();
-	}
 
-	IHttpSessionProvider i;
-	
 	private static final String AUTHENTICATE = "AuthenticateUserImpl.authenticate()";
 	/**
 	 * return:
@@ -30,21 +28,25 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 	 * 3 - tester
 	 * 4 - klient
 	 */
-
-	public int authenticate(LoginDTO person, IHttpSessionProvider i) {
-		this.i = i;
+	@Override
+	public int authenticate(LoginDTO person) {
+	
 		String login = person.getLogin();
 		if(login == null){
 			login = "";
 		}
 		
+		
+		// TODO: hardcoded!!!
 		if (login.equals("client")){
-			return IFunkcje.CLIENT;
+			return IType.Funkcje.CLIENT;
 		}else if(login.equals("designer")){
-			return IFunkcje.DESIGNER;
+			return IType.Funkcje.DESIGNER;
 		}else{
-			return IFunkcje.NOT_LOGGED;
+			return IType.Funkcje.NOT_A_USER;
 		}
+		
+		
 
 //		
 //		int result;
@@ -83,12 +85,12 @@ public class AuthenticateUserImpl implements IAuthenticateUser{
 //		return result;
 
 	}
-
 	@Override
-	public int authenticate(LoginDTO person) {
+	public void logout() {
 		throw new RuntimeException("not implemented yet!");
 	}
 
+	
 	
 	
 	

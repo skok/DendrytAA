@@ -1,8 +1,12 @@
 package com.dendrytdev.org.server;
 
+import javax.servlet.http.HttpSession;
+
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
+import com.dendrytdev.org.client.tools.IType;
+import com.dendrytdev.org.server.login.LoginTool;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class ProblemSubmitingServlet extends RemoteServiceServlet implements ProblemSubmitingService{
@@ -19,7 +23,12 @@ public class ProblemSubmitingServlet extends RemoteServiceServlet implements Pro
 
 	@Override
 	public boolean submitProblem(Problem p) {
+		p.setClient(LoginTool.getLogin(getHttpSession()));
 		return impl.submitProblem(p);
+	}
+	
+	public HttpSession getHttpSession(){
+		return getThreadLocalRequest().getSession();
 	}
 
 }
