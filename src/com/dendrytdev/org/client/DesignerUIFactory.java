@@ -9,6 +9,11 @@ import com.dendrytdev.org.client.usersAddition.ClientsAddition;
 import com.dendrytdev.org.client.usersAddition.EmpAddition;
 import com.dendrytdev.org.client.usersOverview.ClientsOverview;
 import com.dendrytdev.org.client.usersOverview.EmpOverview;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 
@@ -29,9 +34,10 @@ public class DesignerUIFactory implements IUserInterfaceFactory{
 		productsAndGroupsAddition.add(new ProductsAddition(),"Dodawanie produktow");
 		productsAndGroupsAddition.selectTab(0);
 		
-		DecoratedTabPanel usersOverview=new DecoratedTabPanel();
+		final DecoratedTabPanel usersOverview=new DecoratedTabPanel();
 		usersOverview.add(new EmpOverview(),"Przeglad pracownikow");
 		usersOverview.add(new ClientsOverview(),"Przeglad klientow");
+		
 		usersOverview.selectTab(0);
 		
 		DecoratedTabPanel productsAndGroupsOverview=new DecoratedTabPanel();

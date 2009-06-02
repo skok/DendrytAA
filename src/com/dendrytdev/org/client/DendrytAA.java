@@ -1,6 +1,7 @@
 package com.dendrytdev.org.client;
 
 import com.dendrytdev.org.client.login.LogInInterface;
+import com.dendrytdev.org.client.programmer.Programmer;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -40,9 +41,9 @@ public class DendrytAA implements EntryPoint {
 //		RootPanel.get().add(interfaceFactory.generateMainUI());
 
 		RootPanel.get().clear();
-		IUserInterface i = new LogInInterface();
-		i.mainInterface();
-
+	//	IUserInterface i = new LogInInterface();
+	//	i.mainInterface();
+		RootPanel.get().add(new Programmer());
 		
 
 	}

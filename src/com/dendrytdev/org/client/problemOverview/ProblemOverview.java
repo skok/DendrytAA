@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;
@@ -105,6 +106,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	int _problemListHashCode;
 	
 	public ProblemOverview() {
+	
 		
 		// initialize listBox
 		_listBox = new ListBox();

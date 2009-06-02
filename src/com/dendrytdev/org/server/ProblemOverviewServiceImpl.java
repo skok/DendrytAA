@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.problemOverview.ProblemOverviewService;
+import com.google.appengine.repackaged.com.google.common.base.Function;
 
 public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 	
