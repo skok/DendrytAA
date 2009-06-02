@@ -2,6 +2,7 @@ package com.dendrytdev.org.server.login;
 
 import javax.servlet.http.HttpSession;
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.tools.IType;
 
 /**
@@ -17,11 +18,11 @@ public class LoginTool {
 		h.setAttribute(IType.SESSION_LOGIN, login);
 	}
 	
-	public static Integer getUsertype(HttpSession h){
-		return (Integer) h.getAttribute(IType.SESSION_USERTYPE);	
+	public static Function getUsertype(HttpSession h){
+		return (Function) h.getAttribute(IType.SESSION_USERTYPE);	
 	}
 	
-	public static void setUsertype(HttpSession h, int usertype){
+	public static void setUsertype(HttpSession h, Function usertype){
 		h.setAttribute(IType.SESSION_USERTYPE, usertype);
 	}
 

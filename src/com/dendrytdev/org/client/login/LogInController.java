@@ -5,6 +5,7 @@ package com.dendrytdev.org.client.login;
 import com.dendrytdev.org.client.ClientUIFactory;
 import com.dendrytdev.org.client.DesignerUIFactory;
 import com.dendrytdev.org.client.IUserInterface;
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.tools.IType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -17,66 +18,50 @@ public class LogInController {
 	private String login;
 	
 	
-	private AsyncCallback<Integer> logInCallback=new AsyncCallback<Integer>(){
+	private AsyncCallback<Function> logInCallback=new AsyncCallback<Function>(){
 
 		public void onFailure(Throwable caught) {
 			Window.alert("Error"+caught.toString());
 			 
 		}
 
-		public void onSuccess(Integer result) {
+		//REFACTOR THIS CRAP!!!!!!!!!!!!!!!!!!!!!!!!! TODO:
+		public void onSuccess(Function result) {
 			IUserInterface userInterface = null;
-			
-			//TODO - tylko na czas testowania, poki nie ma kont klienckich
-//			if(DebugModeSetting.ALWAYS_LOGIN_CLIENT){
-//				result = IFunkcje.KLIENT;				
-//			}
 			
 			RootPanel.get().clear();
 			
-			switch(result) {
-			case -1:
+			if(result == Function.NOT_A_USER){
 				userInterface = new LogInInterface();
 				//TODO sprawdzic kolejnosc
 				//(new LogInInterface()).mainInterface();
 				Window.alert("Niepoprawny login lub haslo!");
 				userInterface.mainInterface();
-				break;
-//			case IFunkcje.SERWISANT:
-//				userInterface = new ServiceInterface(login);
-//				break;
-//				
-			case IType.Funkcje.DESIGNER:
+			}else if(result == Function.SERVICE){
+//				userInterface = new ServiceInterface(login);		
+			}else if(result == Function.DESIGNER){
 //				userInterface = new DesignerInterface(login);
-				//REFACTOR THIS CRAP!!!!!!!!!!!!!!!!!!!!!!!!! TODO:
 				RootPanel.get().add(new DesignerUIFactory().generateMainUI());
-				break;
-				
-			case IType.Funkcje.CLIENT:
+			}else if(result == Function.CLIENT){
 //				userInterface = new ClientInterface();
 				RootPanel.get().add(new ClientUIFactory().generateMainUI());
-				break;
-				
-//			case IFunkcje.PROGRAMISTA:
+			}else if(result == Function.PROGRAMMER){
 //				userInterface = new ProgrammerInterface(login);
-//				break;
-//				
-//			case IFunkcje.TESTER:
+			}else if(result == Function.TESTER){
 //				userInterface = new TesterInterface(login);
-//				break;
-				
-			default:
-				System.err.println(result);
-				Window.alert("Nieobsluzony typ uzytkownika!");
+			}else{
+				Window.alert("Nieobsluzony typ uzytkownika: " + result);
 				return;
 			}
+				
+			
 //			userInterface.mainInterface();
 			RootPanel.get().add(new LogoutButton());
 			
 		}
 		
 	};
-	public void setLogInCallback(AsyncCallback<Integer> as){
+	public void setLogInCallback(AsyncCallback<Function> as){
 		logInCallback=as;
 	}
 	LogInController() {
