@@ -59,7 +59,7 @@ public class DendrytAA implements EntryPoint {
 		// for gui designing purposes - its easy to see what i actually develop without logging
 		
 
-		
+	
 
 	}
 	

@@ -5,50 +5,58 @@
 
 <web-app>
 
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>DendrytAA.html</welcome-file>
-  </welcome-file-list>
-  
-<servlet>
-  <servlet-name>employeeServiceImpl</servlet-name>
-  <servlet-class>
-    com.dendrytdev.org.server.EmployeeServiceImpl
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>DendrytAA.html</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>employeeServiceImpl</servlet-name>
+		<servlet-class>
+			com.dendrytdev.org.server.EmployeeServiceImpl
   </servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>employeeServiceImpl</servlet-name>
-  <url-pattern>/dendrytaa/EmployeeService</url-pattern>
-</servlet-mapping>
- 
-<servlet>
-  <servlet-name>problemOverviewServlet</servlet-name>
-  <servlet-class>com.dendrytdev.org.server.ProblemOverviewServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>problemOverviewServlet</servlet-name>
-  <url-pattern>/dendrytaa/ProblemOverviewServlet</url-pattern>
-</servlet-mapping>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>employeeServiceImpl</servlet-name>
+		<url-pattern>/dendrytaa/EmployeeService</url-pattern>
+	</servlet-mapping>
 
-<servlet>
-  <servlet-name>AuthenticationServlet</servlet-name>
-  <servlet-class>com.dendrytdev.org.server.login.AuthenticationServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>AuthenticationServlet</servlet-name>
-  <url-pattern>/dendrytaa/AuthenticationServlet</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>problemOverviewServlet</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.ProblemOverviewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>problemOverviewServlet</servlet-name>
+		<url-pattern>/dendrytaa/ProblemOverviewServlet</url-pattern>
+	</servlet-mapping>
 
-<servlet>
-  <servlet-name>ProblemSubmitingServlet</servlet-name>
-  <servlet-class>com.dendrytdev.org.server.ProblemSubmitingServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>ProblemSubmitingServlet</servlet-name>
-  <url-pattern>/dendrytaa/ProblemSubmitingServlet</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>AuthenticationServlet</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.login.AuthenticationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthenticationServlet</servlet-name>
+		<url-pattern>/dendrytaa/AuthenticationServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ProblemSubmitingServlet</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.ProblemSubmitingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProblemSubmitingServlet</servlet-name>
+		<url-pattern>/dendrytaa/ProblemSubmitingServlet</url-pattern>
+	</servlet-mapping>
 
 
+	<servlet>
+		<servlet-name>clientAdditionOverviewServiceImpl</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.ClientAdditionOverviewServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>clientAdditionOverviewServiceImpl</servlet-name>
+		<url-pattern>/dendrytaa/ClientAdditionOverviewService</url-pattern>
+	</servlet-mapping>
 
 
 </web-app>

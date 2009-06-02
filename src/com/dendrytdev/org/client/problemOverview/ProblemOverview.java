@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.problemOverview.raportOverview.RaportOverview;
 import com.dendrytdev.org.client.tools.GuiFactory;
@@ -90,6 +91,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	public ProblemOverview() {
+
 		_listBox.setVisibleItemCount(5);
 		_listBox.addClickListener(new ClickListener(){
 

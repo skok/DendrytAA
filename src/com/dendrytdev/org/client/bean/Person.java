@@ -29,11 +29,41 @@ public class Person implements IsSerializable{
 	@Persistent
 	private Function function;
 	
-	//policy-only for clients
+	//address,policy-only for clients
 	@Persistent
 	private Boolean policy;
-
+	@Persistent
+	private String address;
+	@Persistent
+	private String city;
 	
+	
+	public Person(){
+		super();
+		login="";
+		firstName="";
+		surname="";
+		password="";
+		email="";
+		telephone="";
+		
+	}
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public String getLogin() {
 		return login;
