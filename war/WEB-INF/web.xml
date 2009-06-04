@@ -58,5 +58,23 @@
 		<url-pattern>/dendrytaa/ClientAdditionOverviewService</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>productsServiceImpl</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.ProductsServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>productsServiceImpl</servlet-name>
+		<url-pattern>/dendrytaa/ProductsService</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>groupsServiceImpl</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.GroupsServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>groupsServiceImpl</servlet-name>
+		<url-pattern>/dendrytaa/GroupsService</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
