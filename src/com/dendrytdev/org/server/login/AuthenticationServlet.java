@@ -3,6 +3,8 @@ package com.dendrytdev.org.server.login;
 
 
 import javax.servlet.http.HttpSession;
+
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
 import com.dendrytdev.org.client.tools.IType;
@@ -16,11 +18,11 @@ public class AuthenticationServlet extends RemoteServiceServlet implements IAuth
 	public AuthenticationServlet() {
 	}
 	
-	public void fillUserIntoSession(int userType, String login){
+	public void fillUserIntoSession(Function userType, String login){
 		HttpSession h = getHttpSession();
 		LoginTool.setUsertype(h, userType);
-		if(userType == IType.Funkcje.NOT_A_USER){
-			LoginTool.setLogin(h, "");			
+		if(userType == Function.NOT_A_USER){
+			LoginTool.logout(h);		
 		}else{
 			LoginTool.setLogin(h, login);			
 		}
@@ -28,9 +30,9 @@ public class AuthenticationServlet extends RemoteServiceServlet implements IAuth
 	}
 	
 	@Override
-	public int authenticate(LoginDTO person) {
-		int userType = impl.authenticate(person);
-		if(userType != IType.Funkcje.NOT_A_USER){ // handle successful login
+	public Function authenticate(LoginDTO person) {
+		Function userType = impl.authenticate(person);
+		if(userType != Function.NOT_A_USER){ // handle successful login
 			fillUserIntoSession(userType, person.getLogin());			
 		}
 		return userType;
