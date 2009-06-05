@@ -18,7 +18,7 @@ public class DendrytAA implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-		IUserInterfaceFactory interfaceFactory;
+//		IUserInterfaceFactory interfaceFactory;
 		
 		// TODO: implement strategy here
 //		interfaceFactory = new DesignerUIFactory();

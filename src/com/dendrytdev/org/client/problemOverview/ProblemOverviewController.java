@@ -27,7 +27,7 @@ public class ProblemOverviewController implements IProblemOverviewController {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				DialogBox todoDialogBox1 = GuiFactory.getInstance().createInfoDialogBox("DAA", "Problem:updateProblemList()", null);
+				DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox("Problem:updateProblemList()" + caught.getMessage());
 				todoDialogBox1.center();				
 			}
 

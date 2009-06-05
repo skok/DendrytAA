@@ -10,8 +10,8 @@ import com.dendrytdev.org.client.login.IAuthenticateUser;
 import com.dendrytdev.org.server.DatabaseConnector;
 
 public class AuthenticateUserImpl implements IAuthenticateUser {
-	public static final String HARDCODED_CLIENT_ACCOUNT_LOGIN = "client";
-	public static final String HARDCODED_DESIGNER_ACCOUNT_LOGIN = "designer";
+	public static final String HARDCODED_CLIENT_ACCOUNT_LOGIN = "c";
+	public static final String HARDCODED_DESIGNER_ACCOUNT_LOGIN = "d";
 
 	private HttpSession httpSession;
 

@@ -13,4 +13,5 @@ public interface IDialogBoxFactory {
 	 */
 	public DialogBox createInfoDialogBox(String title, String content, Composite c);
 	public DialogBox createTODODialogBox();
+	public DialogBox createSystemErrorBox(String content);
 }
