@@ -4,7 +4,7 @@ import com.dendrytdev.org.client.problemOverview.ProblemOverview;
 import com.dendrytdev.org.client.productsAndGroupsAddition.GroupsAddition;
 import com.dendrytdev.org.client.productsAndGroupsAddition.ProductsAddition;
 import com.dendrytdev.org.client.productsAndGroupsOverview.GroupsOverview;
-import com.dendrytdev.org.client.productsAndGroupsOverview.ProductsOverwiew;
+import com.dendrytdev.org.client.productsAndGroupsOverview.ProductsOverview;
 import com.dendrytdev.org.client.usersAddition.ClientsAddition;
 import com.dendrytdev.org.client.usersAddition.EmpAddition;
 import com.dendrytdev.org.client.usersOverview.ClientsOverview;
@@ -42,8 +42,8 @@ public class DesignerUIFactory implements IUserInterfaceFactory{
 		
 		DecoratedTabPanel productsAndGroupsOverview=new DecoratedTabPanel();
 		productsAndGroupsOverview.add(new GroupsOverview(),"Przeglad grup");
-		productsAndGroupsOverview.add(new ProductsOverwiew(),"Przeglad produktow");
-		productsAndGroupsAddition.selectTab(0);
+		productsAndGroupsOverview.add(new ProductsOverview(),"Przeglad produktow");
+		productsAndGroupsOverview.selectTab(0);
 		
 		DecoratedTabPanel problemOverview=new DecoratedTabPanel();
 		problemOverview.add(new ProblemOverview(),"Przeglad wszystkich zgloszen");
@@ -58,6 +58,8 @@ public class DesignerUIFactory implements IUserInterfaceFactory{
 		decoratedTabPanel.add(usersOverview,"Przegladanie uzytkownikow");
 		usersOverview.setSize("700", "400");
 		decoratedTabPanel.add(productsAndGroupsOverview,"Przegladanie grup i produktow");
+		productsAndGroupsOverview.setSize("800", "400");
+		productsAndGroupsAddition.setSize("250", "210");
 		decoratedTabPanel.add(problemOverview,"Przeglad zgloszen i raportow");
 		
 		decoratedTabPanel.selectTab(4);

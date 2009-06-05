@@ -169,9 +169,7 @@ public class EmployeeOverviewController implements IEmployeeOverviewController {
 
 			@Override
 			public void onSuccess(List<Person> result) {
-				while (eo.listBoxEmployees.getItemCount() > 0) {
-					eo.listBoxEmployees.removeItem(0);
-				}
+				eo.listBoxEmployees.clear();
 				persons = result;
 				setAnyEmployee();
 
@@ -184,14 +182,16 @@ public class EmployeeOverviewController implements IEmployeeOverviewController {
 	public void deleteEmployee() {
 		String login = eo.listBoxEmployees.getItemText(eo.listBoxEmployees
 				.getSelectedIndex());
-		eo.listBoxEmployees.removeItem(eo.listBoxEmployees.getSelectedIndex());
+		eo.listBoxEmployees.clear();
 
+		
 		Person p = new Person();
 		p.setLogin(login);
-
-		for (int i = 0; i < persons.size(); i++) {
+		Boolean koniec=false;
+		
+		for (int i = 0; i < persons.size() && !koniec; i++) {
 			if (persons.get(i).getLogin().equals(login)) {
-				p = persons.get(i);
+				koniec=true;
 				persons.remove(i);
 			}
 		}
