@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 import com.dendrytdev.org.client.bean.Product;
-import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
+import com.dendrytdev.org.client.client.problemSubmiting.ProblemSubmitingService;
 import com.dendrytdev.org.server.ProblemSubmitingServiceImpl;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProductDAO;

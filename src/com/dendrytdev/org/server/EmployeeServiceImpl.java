@@ -5,7 +5,7 @@ import java.util.List;
 
 
 import com.dendrytdev.org.client.bean.Person;
-import com.dendrytdev.org.client.usersAddition.EmployeeService; 
+import com.dendrytdev.org.client.designer.usersAddition.EmployeeService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 

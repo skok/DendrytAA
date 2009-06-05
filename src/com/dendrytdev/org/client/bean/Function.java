@@ -4,8 +4,24 @@ import com.dendrytdev.org.client.IUserInterfaceFactory;
 import com.dendrytdev.org.client.UserInterfaceFactory;
 import com.google.gwt.user.client.ui.Composite;
 
-
-public enum Function {
+/*@                                    /\  /\
+ * @                                  /  \/  \
+ *  @                                /        --
+ *   \---\                          /           \
+ *    |   \------------------------/       /-\    \
+ *    |                                    \-/     \ 
+ *     \                                             ------O
+ *      \         AlkoAgileDOG                            /
+ *       |    |                    |    |                /
+ *       |    |                    |    |-----    -------
+ *       |    |\                  /|    |     \  WWWWWW/
+ *       |    | \                / |    |      \-------
+ *       |    |  \--------------/  |    |
+ *      /     |                   /     |
+ *      \      \                  \      \
+ *       \-----/                   \-----/
+ */
+public enum Function{
 	
 	DESIGNER, 
 	PROGRAMMER, 

@@ -1,16 +1,16 @@
 package com.dendrytdev.org.client;
 
-import com.dendrytdev.org.client.Servicer.Services;
-import com.dendrytdev.org.client.problemOverview.ProblemOverview;
-import com.dendrytdev.org.client.problemSubmiting.ProblemSubmiting;
-import com.dendrytdev.org.client.productsAndGroupsAddition.GroupsAddition;
-import com.dendrytdev.org.client.productsAndGroupsAddition.ProductsAddition;
-import com.dendrytdev.org.client.productsAndGroupsOverview.GroupsOverview;
-import com.dendrytdev.org.client.productsAndGroupsOverview.ProductsOverview;
-import com.dendrytdev.org.client.usersAddition.ClientsAddition;
-import com.dendrytdev.org.client.usersAddition.EmpAddition;
-import com.dendrytdev.org.client.usersOverview.ClientsOverview;
-import com.dendrytdev.org.client.usersOverview.EmpOverview;
+import com.dendrytdev.org.client.client.problemSubmiting.ProblemSubmiting;
+import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview;
+import com.dendrytdev.org.client.designer.productsAndGroupsAddition.GroupsAddition;
+import com.dendrytdev.org.client.designer.productsAndGroupsAddition.ProductsAddition;
+import com.dendrytdev.org.client.designer.productsAndGroupsOverview.GroupsOverview;
+import com.dendrytdev.org.client.designer.productsAndGroupsOverview.ProductsOverview;
+import com.dendrytdev.org.client.designer.usersAddition.ClientsAddition;
+import com.dendrytdev.org.client.designer.usersAddition.EmpAddition;
+import com.dendrytdev.org.client.designer.usersOverview.ClientsOverview;
+import com.dendrytdev.org.client.designer.usersOverview.EmpOverview;
+import com.dendrytdev.org.client.servicer.Services;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 

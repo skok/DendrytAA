@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Problem;
-import com.dendrytdev.org.client.problemOverview.ProblemOverviewService;
+import com.dendrytdev.org.client.designer.problemOverview.ProblemOverviewService;
 import com.dendrytdev.org.server.dao.ProblemDAO;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 

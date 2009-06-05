@@ -1,6 +1,7 @@
 package com.dendrytdev.org.server;
 
 import javax.jdo.PersistenceManager;
+
 import com.dendrytdev.org.client.bean.*;
 
 //tu dodajemy przykladowe klasy

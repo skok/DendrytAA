@@ -1,4 +1,4 @@
-package com.dendrytdev.org.client.Servicer;
+package com.dendrytdev.org.client.servicer;
 
 import java.util.Calendar;
 import java.util.Iterator;

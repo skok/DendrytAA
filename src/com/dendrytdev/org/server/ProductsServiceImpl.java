@@ -3,7 +3,7 @@ package com.dendrytdev.org.server;
 import java.util.List;
 
 import com.dendrytdev.org.client.bean.Product;
-import com.dendrytdev.org.client.productsAndGroupsAddition.ProductsService;
+import com.dendrytdev.org.client.designer.productsAndGroupsAddition.ProductsService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class ProductsServiceImpl extends RemoteServiceServlet implements ProductsService{

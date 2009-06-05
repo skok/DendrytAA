@@ -1,4 +1,4 @@
-package com.dendrytdev.org.client.Servicer;
+package com.dendrytdev.org.client.servicer;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;

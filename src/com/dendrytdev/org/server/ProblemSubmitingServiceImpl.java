@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
-import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
+import com.dendrytdev.org.client.client.problemSubmiting.ProblemSubmitingService;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProblemDAO;
 import com.dendrytdev.org.server.dao.ProductDAO;
