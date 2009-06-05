@@ -2,10 +2,7 @@ package com.dendrytdev.org.client.login;
 
 
 
-import com.dendrytdev.org.client.UserInterfaceFactory;
 import com.dendrytdev.org.client.DendrytAA;
-
-import com.dendrytdev.org.client.IUserInterface;
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;
@@ -15,13 +12,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+
 
 public class LogInController {
 	private IAuthenticateUserAsync loginService;

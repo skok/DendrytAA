@@ -1,6 +1,7 @@
 package com.dendrytdev.org.server;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.eclipse.jdt.internal.compiler.IErrorHandlingPolicy;
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Group;
 import com.dendrytdev.org.client.bean.Person;
+import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
 
 public class DatabaseConnector {
@@ -263,6 +265,39 @@ public class DatabaseConnector {
 			t.printStackTrace();
 		}
 		finally{
+			pm.close();
+		}
+		return result;
+	}
+
+	public static void addProblem(Problem problem) {
+		Calendar c=Calendar.getInstance();
+		problem.setProblemDate(c.getTime());
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try{
+			
+			pm.makePersistent(problem);
+		}catch(Throwable t){
+			t.printStackTrace();
+		}finally{
+			pm.close();
+		}
+	}
+	public static List<Problem> getAllProblems(){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		List<Problem> result=new ArrayList<Problem>();
+		try{
+			Query q=pm.newQuery(Problem.class);
+			List<Problem> pr=(List<Problem>) q.execute();
+			Iterator<Problem> it=pr.iterator();
+			while(it.hasNext()){
+				result.add(it.next());
+			}
+			
+			
+		}catch(Throwable t){
+			t.printStackTrace();
+		}finally{
 			pm.close();
 		}
 		return result;

@@ -77,7 +77,7 @@ public class ClientsOverviewController implements IClientOverviewController {
 			p.setAddress(co.tbAddress.getText());
 			p.setCity(co.tbCity.getText());
 			p.setEmail(co.tbEmail.getText());
-			p.setFirstName(co.tbNazwa.getName());
+			p.setCompanyName(co.tbNazwa.getName());
 			p.setFunction(Function.CLIENT);
 			p.setLogin(co.tbLogin.getText());
 			p.setPassword(co.ptbHaslo.getText());
@@ -105,9 +105,11 @@ public class ClientsOverviewController implements IClientOverviewController {
 			co.tbCity.setText(p.getCity());
 			co.tbEmail.setText(p.getEmail());
 			co.tbLogin.setText(p.getLogin());
-			co.tbNazwa.setText(p.getFirstName());
+			co.tbNazwa.setText(p.getCompanyName());
 			co.tbTelefon.setText(p.getTelephone());
 			co.cbPolisa.setValue(p.getPolicy());
+			co.ptbHaslo.setText(p.getPassword());
+			co.ptbPowtHaslo.setText(p.getPassword());
 		}else{
 			co.tbAddress.setText("");
 			co.tbCity.setText("");
@@ -115,6 +117,8 @@ public class ClientsOverviewController implements IClientOverviewController {
 			co.tbLogin.setText("");
 			co.tbNazwa.setText("");
 			co.tbTelefon.setText("");
+			co.ptbHaslo.setText("");
+			co.ptbPowtHaslo.setText("");
 			co.cbPolisa.setValue(false);
 		}
 
@@ -137,7 +141,7 @@ public class ClientsOverviewController implements IClientOverviewController {
 			co.tbCity.setText(p.getCity());
 			co.tbEmail.setText(p.getEmail());
 			co.tbLogin.setText(p.getLogin());
-			co.tbNazwa.setText(p.getFirstName());
+			co.tbNazwa.setText(p.getCompanyName());
 			co.tbTelefon.setText(p.getTelephone());
 			co.cbPolisa.setValue(p.getPolicy());
 		}else{
