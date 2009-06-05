@@ -2,38 +2,43 @@ package com.dendrytdev.org.server.login;
 
 
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpSession;
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
+import com.dendrytdev.org.server.ProblemSubmitingServiceImpl;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class AuthenticationServlet extends RemoteServiceServlet implements IAuthenticateUser, IHttpSessionProvider {
 
 	private static final long serialVersionUID = 1L;
 	AuthenticateUserImpl impl = new AuthenticateUserImpl();
-
+	Logger _tracer = Logger.getLogger(this.getClass().getName());
+	
 	public AuthenticationServlet() {
 	}
 	
-	public void fillUserIntoSession(Function userType, String login){
+	public void updateSessionState(Function userType, String login){
 		HttpSession h = getHttpSession();
 		LoginTool.setUsertype(h, userType);
 		if(userType == Function.NOT_A_USER){
-			LoginTool.logout(h);		
+			_tracer.info("attempt to login as [" + login + "] failed.");
+			logoutInternal();		
 		}else{
+			_tracer.info("user [" + login + ";" + userType + "] loged in.");
 			LoginTool.setLogin(h, login);			
 		}
-		System.out.println("filled, user logedin: " + userType + " login:" + login);
 	}
 	
 	@Override
 	public Function authenticate(LoginDTO person) {
 		Function userType = impl.authenticate(person);
-		if(userType != Function.NOT_A_USER){ // handle successful login
-			fillUserIntoSession(userType, person.getLogin());			
-		}
+		updateSessionState(userType, person.getLogin());			
 		return userType;
 	}
 	
@@ -43,7 +48,18 @@ public class AuthenticationServlet extends RemoteServiceServlet implements IAuth
 
 	@Override
 	public void logout() {
-		LoginTool.logout(getHttpSession());		
+		//TODO: refactor
+		HttpSession h = getHttpSession();
+		_tracer.info("user [" + LoginTool.getLogin(h) + "] loged off.");
+		logoutInternal();
+	}
+	
+	/**
+	 * splited into internal impl for tracing purposes only
+	 */
+	void logoutInternal(){
+		HttpSession h = getHttpSession();
+		LoginTool.logout(h);				
 	}
 	
 	

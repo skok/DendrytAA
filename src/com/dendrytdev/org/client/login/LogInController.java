@@ -3,14 +3,24 @@ package com.dendrytdev.org.client.login;
 
 
 import com.dendrytdev.org.client.ClientUIFactory;
+import com.dendrytdev.org.client.DendrytAA;
 import com.dendrytdev.org.client.DesignerUIFactory;
 import com.dendrytdev.org.client.IUserInterface;
 import com.dendrytdev.org.client.bean.Function;
+import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class LogInController {
 	private IAuthenticateUserAsync loginService;
@@ -26,16 +36,26 @@ public class LogInController {
 
 		//REFACTOR THIS CRAP!!!!!!!!!!!!!!!!!!!!!!!!! TODO:
 		public void onSuccess(Function result) {
+			
+			
+			
 			IUserInterface userInterface = null;
 			
 			RootPanel.get().clear();
+			
+//			userInterface.mainInterface();
+		
+			
+			
 			
 			if(result == Function.NOT_A_USER){
 				userInterface = new LogInInterface();
 				//TODO sprawdzic kolejnosc
 				//(new LogInInterface()).mainInterface();
 				Window.alert("Niepoprawny login lub haslo!");
-				userInterface.mainInterface();
+//				userInterface.mainInterface();
+				DendrytAA.start();
+				return;
 			}else if(result == Function.SERVICE){
 //				userInterface = new ServiceInterface(login);		
 			}else if(result == Function.DESIGNER){
@@ -54,8 +74,35 @@ public class LogInController {
 			}
 				
 			
-//			userInterface.mainInterface();
-			RootPanel.get().add(new LogoutButton());
+			HorizontalPanel hp = new HorizontalPanel();
+			Hyperlink h = new Hyperlink();
+		
+			h.setText("wyloguj");
+			h.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					loginService.logout(new AsyncCallback<?>(){
+
+						@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub	
+						}
+
+						@Override
+						public void onSuccess(Object result) {
+							DendrytAA.start();
+						}
+						
+					});
+				}
+				
+			});
+			hp.add(new Label("Zalogowany jako " + login + "  |  "));
+			hp.add(h);
+
+			RootPanel.get().add(hp);
+
 			
 		}
 		
