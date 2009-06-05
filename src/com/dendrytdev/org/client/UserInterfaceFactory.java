@@ -1,5 +1,6 @@
 package com.dendrytdev.org.client;
 
+import com.dendrytdev.org.client.Servicer.Services;
 import com.dendrytdev.org.client.problemOverview.ProblemOverview;
 import com.dendrytdev.org.client.problemSubmiting.ProblemSubmiting;
 import com.dendrytdev.org.client.productsAndGroupsAddition.GroupsAddition;
@@ -66,9 +67,15 @@ public class UserInterfaceFactory implements IUserInterfaceFactory {
 	public Composite generateProgrammerInterface() {
 		throw new RuntimeException("not implemented yet!");
 	}
+	
 	@Override
 	public Composite generateServicerInterface() {
-		throw new RuntimeException("not implemented yet!");
+		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
+		Services s = new Services();
+		decoratedTabPanel.add(s, "Zglaszanie problemow");
+		s.setSize("300", "300");
+		decoratedTabPanel.selectTab(0);
+		return decoratedTabPanel;
 	}
 	@Override
 	public Composite generateTesterInterface() {
