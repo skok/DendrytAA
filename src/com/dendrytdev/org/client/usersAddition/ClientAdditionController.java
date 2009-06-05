@@ -21,7 +21,7 @@ public class ClientAdditionController implements IClientAdditionController {
 			p.setAddress(ca.tbAddress.getText());
 			p.setCity(ca.tbCity.getText());
 			p.setEmail(ca.tbCity.getText());
-			p.setFirstName(ca.tbNazwa.getText());
+			p.setCompanyName(ca.tbNazwa.getText());
 			p.setFunction(Function.CLIENT);
 			p.setLogin(ca.tbLogin.getText());
 			p.setPassword(ca.ptbHaslo.getText());

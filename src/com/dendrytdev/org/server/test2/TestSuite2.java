@@ -8,7 +8,11 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	TestUserAddition.class,
 	TestDeleteUsers.class,
-	TestSetChangesUser.class
+	TestSetChangesUser.class,
+	TestAddGroupsAndProducts.class,
+	TestRemoveGroupsAndProducts.class,
+	TestServicer.class
+	
 })
 
 public class TestSuite2 {

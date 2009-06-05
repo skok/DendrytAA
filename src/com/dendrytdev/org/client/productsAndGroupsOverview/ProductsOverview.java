@@ -95,6 +95,15 @@ public class ProductsOverview extends Composite{
 			
 			gProduct.setWidget(3, 0, bRemove);
 			
+			
+			lbProducts.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					controller.setProduct();
+					
+				}});
+			
 			bRefresh.addClickHandler(new ClickHandler(){
 
 				@Override

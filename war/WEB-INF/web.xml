@@ -76,5 +76,12 @@
 		<url-pattern>/dendrytaa/GroupsService</url-pattern>
 	</servlet-mapping>
 
-
+		<servlet>
+		<servlet-name>servicerServiceImpl</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.ServicerServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servicerServiceImpl</servlet-name>
+		<url-pattern>/dendrytaa/ServicerService</url-pattern>
+	</servlet-mapping>
 </web-app>

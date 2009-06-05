@@ -67,6 +67,8 @@ public class ClientsOverview extends Composite{
 			
 			initWidget(hpGlowny);
 	
+			
+			
 			bOdswiez.setSize("75", "25");
 			lbClients.setVisibleItemCount(9);
 			lbClients.setWidth("380");
@@ -125,6 +127,15 @@ public class ClientsOverview extends Composite{
 			controller=new ClientsOverviewController(this);
 			
 
+			
+			
+			lbClients.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					controller.setClient();
+					
+				}});
 			bOdswiez.addClickHandler(new ClickHandler(){
 
 				@Override

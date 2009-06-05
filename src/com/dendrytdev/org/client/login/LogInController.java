@@ -5,6 +5,7 @@ package com.dendrytdev.org.client.login;
 import com.dendrytdev.org.client.ClientUIFactory;
 import com.dendrytdev.org.client.DesignerUIFactory;
 import com.dendrytdev.org.client.IUserInterface;
+import com.dendrytdev.org.client.Servicer.Services;
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.tools.IType;
 import com.google.gwt.core.client.GWT;
@@ -38,7 +39,7 @@ public class LogInController {
 				Window.alert("Niepoprawny login lub haslo!");
 				userInterface.mainInterface();
 			}else if(result == Function.SERVICE){
-//				userInterface = new ServiceInterface(login);		
+//				userInterface = new ServiceInterface(login);	
 			}else if(result == Function.DESIGNER){
 //				userInterface = new DesignerInterface(login);
 				RootPanel.get().add(new DesignerUIFactory().generateMainUI());
