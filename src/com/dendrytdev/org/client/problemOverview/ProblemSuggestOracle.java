@@ -17,15 +17,12 @@ public class ProblemSuggestOracle extends SuggestOracle {
 		callback.onSuggestionsReady(request, resp);
 	}
 
-	public Collection matchingPeople(String query, int limit) {
+	public Collection<ProblemMultiWordSuggestion> matchingPeople(String query, int limit) {
 		List<ProblemMultiWordSuggestion> matchingProblems = new ArrayList<ProblemMultiWordSuggestion>(limit);
 
 		// start only for minimum 2 characters
 		if (query.length() >= 2) {
 			String prefixToMatch = query.toLowerCase();
-
-			int i = 0;
-			int s = _problemSuggestions.size();
 
 			for(ProblemMultiWordSuggestion p : _problemSuggestions){
 				if(p.getDisplayString().toLowerCase().contains(prefixToMatch)){
@@ -40,7 +37,7 @@ public class ProblemSuggestOracle extends SuggestOracle {
 
 	public boolean add(ProblemMultiWordSuggestion o) {
 		if (_problemSuggestions == null) {
-			_problemSuggestions = new ArrayList();
+			_problemSuggestions = new ArrayList<ProblemMultiWordSuggestion>();
 		}
 
 		return _problemSuggestions.add(o);

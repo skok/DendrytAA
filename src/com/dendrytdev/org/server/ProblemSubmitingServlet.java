@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
-import com.dendrytdev.org.client.tools.IType;
 import com.dendrytdev.org.server.login.LoginTool;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

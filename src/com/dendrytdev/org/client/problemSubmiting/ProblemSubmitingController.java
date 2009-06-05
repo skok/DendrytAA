@@ -2,9 +2,6 @@ package com.dendrytdev.org.client.problemSubmiting;
 
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
-import com.dendrytdev.org.client.problemOverview.IProblemOverview;
-import com.dendrytdev.org.client.problemOverview.ProblemOverviewService;
-import com.dendrytdev.org.client.problemOverview.ProblemOverviewServiceAsync;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

@@ -1,17 +1,10 @@
 package com.dendrytdev.org.client.problemSubmiting;
 
-import java.util.Calendar;
+
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
-import com.dendrytdev.org.client.problemOverview.IProblemOverview;
-import com.dendrytdev.org.client.problemOverview.IProblemOverviewController;
-import com.dendrytdev.org.client.problemOverview.ProblemMultiWordSuggestion;
-import com.dendrytdev.org.client.problemOverview.ProblemOverviewController;
 import com.dendrytdev.org.client.problemOverview.ProblemSuggestOracle;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;

@@ -5,5 +5,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface IAuthenticateUserAsync {
 	void authenticate(LoginDTO person, AsyncCallback<Function> callback);
-	void logout(AsyncCallback a);
+	void logout(AsyncCallback<?> a);
 }

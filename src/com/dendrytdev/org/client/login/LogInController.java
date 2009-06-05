@@ -6,7 +6,6 @@ import com.dendrytdev.org.client.ClientUIFactory;
 import com.dendrytdev.org.client.DesignerUIFactory;
 import com.dendrytdev.org.client.IUserInterface;
 import com.dendrytdev.org.client.bean.Function;
-import com.dendrytdev.org.client.tools.IType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;

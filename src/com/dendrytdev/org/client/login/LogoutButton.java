@@ -23,7 +23,7 @@ public class LogoutButton extends Button{
 		addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-				_loginService.logout(new AsyncCallback(){
+				_loginService.logout(new AsyncCallback<Object>(){
 
 					@Override
 					public void onFailure(Throwable caught) {

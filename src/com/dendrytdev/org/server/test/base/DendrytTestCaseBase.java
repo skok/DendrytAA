@@ -3,9 +3,6 @@ package com.dendrytdev.org.server.test.base;
 import java.io.File;
 
 import org.junit.*;
-
-import junit.framework.TestCase;
-
 import com.google.appengine.api.datastore.dev.LocalDatastoreService;
 import com.google.appengine.tools.development.ApiProxyLocalImpl;
 import com.google.apphosting.api.ApiProxy;

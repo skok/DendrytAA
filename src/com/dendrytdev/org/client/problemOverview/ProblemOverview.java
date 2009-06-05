@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.problemOverview.raportOverview.RaportOverview;
 import com.dendrytdev.org.client.tools.GuiFactory;

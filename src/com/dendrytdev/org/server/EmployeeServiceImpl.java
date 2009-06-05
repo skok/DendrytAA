@@ -13,6 +13,11 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 public class EmployeeServiceImpl extends RemoteServiceServlet implements
 		EmployeeService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public EmployeeServiceImpl() {
 		super();
 	}

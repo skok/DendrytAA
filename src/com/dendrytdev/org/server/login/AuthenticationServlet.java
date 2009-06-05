@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
-import com.dendrytdev.org.client.tools.IType;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class AuthenticationServlet extends RemoteServiceServlet implements IAuthenticateUser, IHttpSessionProvider {

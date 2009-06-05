@@ -6,14 +6,11 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
 import com.dendrytdev.org.server.ProblemSubmitingServiceImpl;
-import com.dendrytdev.org.server.dao.CommentDAO;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProductDAO;
-import com.dendrytdev.org.server.dao.intf.ICommentDAO;
 import com.dendrytdev.org.server.dao.intf.IProductDAO;
 import com.dendrytdev.org.server.test.base.DendrytTestCaseBase;
 

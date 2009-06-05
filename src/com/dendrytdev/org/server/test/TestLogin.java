@@ -1,12 +1,7 @@
 package com.dendrytdev.org.server.test;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-import com.dendrytdev.org.client.login.LoginDTO;
-import com.dendrytdev.org.client.login.IAuthenticateUser;
-import com.dendrytdev.org.client.tools.IType;
-import com.dendrytdev.org.server.login.AuthenticationServlet;
 import com.dendrytdev.org.server.test.base.DendrytTestCaseBase;
 
 

@@ -1,9 +1,6 @@
 package com.dendrytdev.org.client.problemOverview;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;

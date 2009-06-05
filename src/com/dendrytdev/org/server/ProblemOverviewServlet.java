@@ -1,15 +1,11 @@
 package com.dendrytdev.org.server;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
-
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.problemOverview.ProblemOverviewService;
-import com.dendrytdev.org.client.tools.IType;
-import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 

@@ -1,27 +1,23 @@
 package com.dendrytdev.org.server.dao;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import com.dendrytdev.org.client.bean.Comment;
-import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.PMF;
 import com.dendrytdev.org.server.dao.intf.ICommentDAO;
 
 public class CommentDAO implements ICommentDAO{
 	
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean create(Comment p) throws DendrytDAOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		boolean result = false;
 		try {
-			Query q = pm.newQuery(Comment.class);
 			pm.makePersistent(p);
 			result = true;
 		} catch (Throwable e) {

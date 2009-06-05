@@ -1,7 +1,5 @@
 package com.dendrytdev.org.client.tools;
 
-import com.dendrytdev.org.client.problemOverview.ProblemOverview;
-import com.dendrytdev.org.client.problemSubmiting.ProblemSubmiting;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.ui.*;
 

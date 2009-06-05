@@ -1,17 +1,8 @@
 package com.dendrytdev.org.server.test;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
-
-import com.dendrytdev.org.client.bean.Problem;
-import com.dendrytdev.org.client.problemSubmiting.ProblemSubmitingService;
-import com.dendrytdev.org.server.ProblemSubmitingServlet;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
-import com.dendrytdev.org.server.dao.ProblemDAO;
-import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 import com.dendrytdev.org.server.test.base.DendrytTestCaseBase;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 
 //falling when session was added - need to create special mock's .... TODO later....

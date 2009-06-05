@@ -1,10 +1,5 @@
 package com.dendrytdev.org.server.dao.intf;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 

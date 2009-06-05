@@ -188,7 +188,6 @@ public class EmployeeOverviewController implements IEmployeeOverviewController {
 
 		Person p = new Person();
 		p.setLogin(login);
-		Iterator<Person> it = persons.iterator();
 
 		for (int i = 0; i < persons.size(); i++) {
 			if (persons.get(i).getLogin().equals(login)) {

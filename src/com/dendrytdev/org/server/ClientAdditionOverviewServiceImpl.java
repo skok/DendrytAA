@@ -8,6 +8,10 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class ClientAdditionOverviewServiceImpl extends RemoteServiceServlet implements ClientAdditionOverviewService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ClientAdditionOverviewServiceImpl(){
 		super();
 	}

@@ -8,7 +8,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 
-import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.PMF;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
@@ -28,17 +27,16 @@ public class ProblemDAO implements IProblemDAO{
 		Query q = pm.newQuery(Problem.class);
 		Collection<Problem> col = (Collection<Problem>) q.execute();
 		pm.close();
-		return null;
+//		return null;
+		throw new RuntimeException("not implementet yet!");
 	}
 
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean create(Problem p) throws DendrytDAOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		boolean result = false;
 		try {
-			Query q = pm.newQuery(Problem.class);
 			pm.makePersistent(p);
 			result = true;
 		} catch (Throwable e) {
@@ -50,6 +48,7 @@ public class ProblemDAO implements IProblemDAO{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Problem[] readAll() throws DendrytDAOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
