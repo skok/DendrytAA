@@ -3,15 +3,10 @@ package com.dendrytdev.org.server.login;
 
 
 import java.util.logging.Logger;
-
 import javax.servlet.http.HttpSession;
-
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
-import com.dendrytdev.org.server.ProblemSubmitingServiceImpl;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class AuthenticationServlet extends RemoteServiceServlet implements IAuthenticateUser, IHttpSessionProvider {

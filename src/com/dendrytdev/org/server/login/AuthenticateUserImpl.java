@@ -3,9 +3,6 @@ package com.dendrytdev.org.server.login;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.login.LoginDTO;

@@ -9,7 +9,7 @@ import com.dendrytdev.org.client.servicer.ServicerService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class  ServicerServiceImpl extends RemoteServiceServlet implements ServicerService {
-
+	private static final long serialVersionUID = 1L;
 	@Override
 	public void addProblem(Problem problem) {
 		DatabaseConnector.addProblem(problem);

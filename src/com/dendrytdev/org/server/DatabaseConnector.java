@@ -5,12 +5,8 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-
-import org.eclipse.jdt.internal.compiler.IErrorHandlingPolicy;
-
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Group;
 import com.dendrytdev.org.client.bean.Person;
@@ -19,6 +15,7 @@ import com.dendrytdev.org.client.bean.Product;
 
 public class DatabaseConnector {
 
+	@SuppressWarnings("unchecked")
 	public static synchronized List<Person> getAllPerson() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Person> result = new ArrayList<Person>();
@@ -41,6 +38,7 @@ public class DatabaseConnector {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static synchronized List<Person> getAllEmployees() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Person> result = new ArrayList<Person>();
@@ -67,6 +65,7 @@ public class DatabaseConnector {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static synchronized List<Person> getAllClients() {
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -96,6 +95,7 @@ public class DatabaseConnector {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public static synchronized Boolean addPerson(Person person) {
 		Boolean result = false;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -119,6 +119,7 @@ public class DatabaseConnector {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static synchronized void remove(Person p) {
 		String l = p.getLogin();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -153,6 +154,7 @@ public class DatabaseConnector {
 			pm.close();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static synchronized Boolean addGroup(Group g){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Boolean result=false;
@@ -175,6 +177,7 @@ public class DatabaseConnector {
 		}
 		return result;
 	}
+	@SuppressWarnings("unchecked")
 	public static synchronized Boolean addProduct(Product p){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Boolean result=false;
@@ -199,6 +202,7 @@ public class DatabaseConnector {
 		}
 		return result;
 	}
+	@SuppressWarnings("unchecked")
 	public static synchronized void removeGroup(Group g){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try{
@@ -215,6 +219,7 @@ public class DatabaseConnector {
 			pm.close();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static synchronized void removeProduct(Product p){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try{
@@ -232,6 +237,7 @@ public class DatabaseConnector {
 			pm.close();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static synchronized List<Group> getAllGroups(){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Group> result=new ArrayList<Group>();
@@ -251,6 +257,7 @@ public class DatabaseConnector {
 		}
 		return result;
 	}
+	@SuppressWarnings("unchecked")
 	public static synchronized List<Product> getAllProducts(){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Product> result=new ArrayList<Product>();
@@ -283,6 +290,7 @@ public class DatabaseConnector {
 			pm.close();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static List<Problem> getAllProblems(){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Problem> result=new ArrayList<Problem>();

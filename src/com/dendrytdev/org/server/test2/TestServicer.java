@@ -1,13 +1,7 @@
 package com.dendrytdev.org.server.test2;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.DatabaseConnector;
 import com.dendrytdev.org.server.test.base.DendrytTestCaseBase;

@@ -1,15 +1,15 @@
 package com.dendrytdev.org.client.login;
 
 import com.dendrytdev.org.client.IUserInterface;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 public class LogInInterface implements IUserInterface{
 	private RootPanel rootPanel;
@@ -40,9 +40,9 @@ public class LogInInterface implements IUserInterface{
 
 		
 		
-		Button Blogin=new Button("Zaloguj", new ClickListener(){
+		Button Blogin=new Button("Zaloguj", new ClickHandler(){
 
-		public void onClick(Widget sender) {
+		public void onClick(ClickEvent event) {
 			rootPanel.clear();
 			rootPanel.add(new Label("Prosze czekac..."));			
 			logInController.authenticate(TBname.getText(), TBpassword.getText());

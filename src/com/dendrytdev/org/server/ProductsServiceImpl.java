@@ -7,6 +7,7 @@ import com.dendrytdev.org.client.designer.productsAndGroupsAddition.ProductsServ
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class ProductsServiceImpl extends RemoteServiceServlet implements ProductsService{
+	private static final long serialVersionUID = 1L;
 
 	public ProductsServiceImpl(){
 		super();

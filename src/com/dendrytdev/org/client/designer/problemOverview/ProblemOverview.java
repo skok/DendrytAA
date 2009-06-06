@@ -10,7 +10,12 @@ import com.dendrytdev.org.client.designer.raportOverview.RaportOverview;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;
 import com.dendrytdev.org.client.tools.IType;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 
 /**
  * ProblemOverview composite
@@ -92,59 +97,57 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	public ProblemOverview() {
 
 		_listBox.setVisibleItemCount(5);
-		_listBox.addClickListener(new ClickListener(){
+		_listBox.addClickHandler(new ClickHandler(){
 
 			@Override
-			public void onClick(Widget sender) {
+			public void onClick(ClickEvent event) {
 				onListboxClick();						
 			}
 			
 		});
 		
-		
-		_suggestBox.addEventHandler(new SuggestionHandler(){
+	
 
+		_suggestBox.addSelectionHandler(new SelectionHandler<Suggestion>() {
 			@Override
-			public void onSuggestionSelected(SuggestionEvent event) {
-				ProblemMultiWordSuggestion p = (ProblemMultiWordSuggestion) event.getSelectedSuggestion();
-				
+			public void onSelection(SelectionEvent<Suggestion> event) {
+				ProblemMultiWordSuggestion p = (ProblemMultiWordSuggestion) event.getSelectedItem();
 				int inx = 0;
-				for(Integer i : _problemMap.keySet()){
-					if(_problemMap.get(i).equals(p.getProblem())){
+				for (Integer i : _problemMap.keySet()) {
+					if (_problemMap.get(i).equals(p.getProblem())) {
 						inx = i;
 					}
 				}
-				_listBox.setSelectedIndex(inx - 1); //indexed from 0
+				_listBox.setSelectedIndex(inx - 1); // indexed from 0
 				onListboxClick();
+			}
+		});
+		
+	
+		_assignmentButton = new Button("Przydziel", new ClickHandler(){
+			@Override
+			public void onClick(ClickEvent event) {
+				DialogBox todoDialogBox1 = _factory.createTODODialogBox();
+				todoDialogBox1.center();
+				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);		
 			}
 			
 		});
-	
-		_assignmentButton = new Button("Przydziel", new ClickListener(){
-			@Override
-			public void onClick(Widget sender) {
-				
-				DialogBox todoDialogBox1 = _factory.createTODODialogBox();
-				todoDialogBox1.center();
-				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);				
-			}
-		});
 
-		_gotoRaportsButton = new Button("Otworz raporty", new ClickListener(){
+
+		_gotoRaportsButton = new Button("Otworz raporty", new ClickHandler(){
 			@Override
-			public void onClick(Widget sender) {
+			public void onClick(ClickEvent event) {
 				DialogBox todoDialogBox1 = _factory.createInfoDialogBox("Przeglad raportow", null, new RaportOverview());
 				todoDialogBox1.center();
 				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);				
 			}
 		});
 		
-		
 
-		final DialogBox todoDialogBox2 = _factory.createTODODialogBox();
-		_refreshListButton = new Button("Odswiez liste", new ClickListener(){
+		_refreshListButton = new Button("Odswiez liste", new ClickHandler(){
 			@Override
-			public void onClick(Widget sender) {
+			public void onClick(ClickEvent event) {
 				controller.updateProblemList();
 			}
 		});

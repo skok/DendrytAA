@@ -7,6 +7,8 @@ import com.dendrytdev.org.client.designer.productsAndGroupsAddition.GroupsServic
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class GroupsServiceImpl extends RemoteServiceServlet implements GroupsService {
+	private static final long serialVersionUID = 1L;
+
 	public GroupsServiceImpl(){
 		super();
 	}

@@ -1,7 +1,6 @@
 package com.dendrytdev.org.client;
 
 import com.dendrytdev.org.client.login.LogInInterface;
-import com.dendrytdev.org.client.servicer.Services;
 import com.google.gwt.core.client.EntryPoint;
 
 

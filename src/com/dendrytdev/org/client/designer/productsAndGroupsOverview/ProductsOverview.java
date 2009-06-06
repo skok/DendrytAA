@@ -1,6 +1,5 @@
 package com.dendrytdev.org.client.designer.productsAndGroupsOverview;
 
-import com.dendrytdev.org.client.designer.usersOverview.ClientsOverviewController;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;

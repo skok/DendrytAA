@@ -20,14 +20,15 @@ public class ProblemDAO implements IProblemDAO{
 //		TODO: rozkminic to - good shit
 		
 	
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@Override
 	public Problem[] read() {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query q = pm.newQuery(Problem.class);
-		Collection<Problem> col = (Collection<Problem>) q.execute();
-		pm.close();
+//		PersistenceManager pm = PMF.get().getPersistenceManager();
+//		Query q = pm.newQuery(Problem.class);
+//		Collection<Problem> col = (Collection<Problem>) q.execute();
+//		pm.close();
 //		return null;
+		// TODO: !!!
 		throw new RuntimeException("not implementet yet!");
 	}
 
@@ -64,6 +65,7 @@ public class ProblemDAO implements IProblemDAO{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Problem read(Long id) throws DendrytDAOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -88,6 +90,7 @@ public class ProblemDAO implements IProblemDAO{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void delete(Problem c) throws DendrytDAOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();

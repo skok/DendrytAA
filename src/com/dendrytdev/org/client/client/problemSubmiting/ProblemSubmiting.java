@@ -8,6 +8,8 @@ import com.dendrytdev.org.client.designer.problemOverview.ProblemSuggestOracle;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;
 import com.dendrytdev.org.client.tools.IType;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
 public class ProblemSubmiting extends Composite implements IProblemSubmiting {
@@ -43,13 +45,10 @@ public class ProblemSubmiting extends Composite implements IProblemSubmiting {
 		_importanceTextBox.addItem("3");
 		_importanceTextBox.addItem("4");
 		
-
-		final DialogBox todoDialogBox1 = _factory.createTODODialogBox();
-
-		_submitButton = new Button("Zglos problem", new ClickListener() {
+		_submitButton = new Button("Zglos problem", new ClickHandler() {
 
 			@Override
-			public void onClick(Widget sender) {
+			public void onClick(ClickEvent event) {
 				controller.submitProblem(getFilledProblem()); 
 			}
 
