@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.designer.usersAddition.ClientAdditionOverviewService;
-import com.dendrytdev.org.server.DatabaseConnector;
+import com.dendrytdev.org.server.dao.DatabaseConnector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class ClientAdditionOverviewServiceImpl extends RemoteServiceServlet implements ClientAdditionOverviewService {

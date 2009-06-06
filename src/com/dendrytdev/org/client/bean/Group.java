@@ -8,7 +8,24 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
+/*
+ *               |
+          \   |   /
+     .     \  |  /    .
+      `-.__|\/_\/|_.-'
+    .__  \ /     `./
+       `-</        \
+    ----<|         _|
+     _.-<|    _    o(
+    '    /   (.      >
+      .-'`.   `     -
+     '     `     __.'
+           _)___(
+          //    \\
+         | |    | \
+         | |    |  \
 
+ */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Group implements IsSerializable{
 	

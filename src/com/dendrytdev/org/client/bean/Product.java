@@ -7,7 +7,15 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
+/*
+ * 
+  ( ! )
+    `
+      O    ( ? )
+     /\__O '
+     > > \
 
+ */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Product implements IsSerializable{
 	

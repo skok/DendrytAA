@@ -6,7 +6,7 @@ import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.servicer.ServicerService;
-import com.dendrytdev.org.server.DatabaseConnector;
+import com.dendrytdev.org.server.dao.DatabaseConnector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class  ServicerServiceImpl extends RemoteServiceServlet implements ServicerService {

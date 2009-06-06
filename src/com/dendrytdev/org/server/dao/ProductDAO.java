@@ -7,7 +7,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import com.dendrytdev.org.client.bean.Product;
-import com.dendrytdev.org.server.PMF;
 import com.dendrytdev.org.server.dao.intf.IProductDAO;
 
 public class ProductDAO implements IProductDAO{

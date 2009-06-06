@@ -9,7 +9,7 @@ public class DendrytAA implements EntryPoint {
 	 * TODO: refactor :>
 	 */
 	public static void start(){
-		IUserInterface i = new LogInInterface();
+		LogInInterface i = new LogInInterface();
 		i.mainInterface();
 	}
 	

@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Composite;
  *      \         AlkoAgileDOG                            /
  *       |    |                    |    |                /
  *       |    |                    |    |-----    -------
- *       |    |\                  /|    |     \  WWWWWW/
+ *       |    |\      grrr            /|    | \  WWWWWW/
  *       |    | \                / |    |      \-------
  *       |    |  \--------------/  |    |
  *      /     |                   /     |

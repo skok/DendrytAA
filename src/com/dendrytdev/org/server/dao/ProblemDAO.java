@@ -10,7 +10,6 @@ import javax.jdo.Query;
 
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
-import com.dendrytdev.org.server.PMF;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 
 public class ProblemDAO implements IProblemDAO{

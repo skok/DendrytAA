@@ -1,6 +1,5 @@
 package com.dendrytdev.org.client.login;
 
-import com.dendrytdev.org.client.IUserInterface;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -11,7 +10,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class LogInInterface implements IUserInterface{
+public class LogInInterface{
 	private RootPanel rootPanel;
 	private LogInController logInController;
 

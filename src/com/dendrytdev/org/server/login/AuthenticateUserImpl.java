@@ -7,7 +7,7 @@ import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.login.LoginDTO;
 import com.dendrytdev.org.client.login.IAuthenticateUser;
-import com.dendrytdev.org.server.DatabaseConnector;
+import com.dendrytdev.org.server.dao.DatabaseConnector;
 
 public class AuthenticateUserImpl implements IAuthenticateUser {
 	public static final String HARDCODED_DESIGNER_ACCOUNT_LOGIN = "d";

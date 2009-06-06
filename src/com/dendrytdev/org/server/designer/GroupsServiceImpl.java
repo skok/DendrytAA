@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dendrytdev.org.client.bean.Group;
 import com.dendrytdev.org.client.designer.productsAndGroupsAddition.GroupsService;
-import com.dendrytdev.org.server.DatabaseConnector;
+import com.dendrytdev.org.server.dao.DatabaseConnector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class GroupsServiceImpl extends RemoteServiceServlet implements GroupsService {
