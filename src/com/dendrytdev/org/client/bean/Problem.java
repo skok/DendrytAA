@@ -144,4 +144,17 @@ public class Problem implements IsSerializable{
 	public void setCurrentWorker(Function currentWorker) {
 		this.currentWorker = currentWorker;
 	}
+	
+	public void fill(Problem p){
+		product = p.product;
+		clientImportance = p.clientImportance;
+		problemDate = p.problemDate;
+		client = p.client;
+		service = p.service;
+		designer = p.designer;
+		programmer = p.programmer;
+		tester = p.tester;
+		description = p.description;	
+		comments = p.comments;		
+	}
 }

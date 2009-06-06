@@ -8,6 +8,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 
+import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.PMF;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
@@ -109,4 +110,29 @@ public class ProblemDAO implements IProblemDAO{
 			pm.close();			
 		}
 	}
+	
+	
+	public void update(Problem p) throws DendrytDAOException{
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Problem com = null;
+		try{
+			Query q = pm.newQuery(Problem.class);
+			q.setFilter("id == " + p.getId());
+			Collection<Problem> col = (Collection<Problem>) q.execute();
+			if(col.size() > 1){
+				throw new DendrytDAOException("For Problem with id=" + p.getId() + " there are " + col.size() + " instances in DB!");
+			}else if(col.size() == 1){
+				com = (Problem) col.toArray()[0];
+			}
+			com.fill(p);			
+		}catch(DendrytDAOException de){
+			throw de;			
+		}catch(Throwable t){
+			throw new DendrytDAOException(t);
+		}finally{
+			pm.close();			
+		}
+	}
+	
+
 }

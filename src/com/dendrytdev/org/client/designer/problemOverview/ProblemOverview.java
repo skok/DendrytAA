@@ -6,6 +6,7 @@ import java.util.Map;
 
 
 import com.dendrytdev.org.client.bean.Problem;
+import com.dendrytdev.org.client.designer.problemAssignment.ProblemAssignmentComposite;
 import com.dendrytdev.org.client.designer.raportOverview.RaportOverview;
 import com.dendrytdev.org.client.tools.GuiFactory;
 import com.dendrytdev.org.client.tools.IDialogBoxFactory;
@@ -77,16 +78,24 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	Map<Integer, Problem> _problemMap;
 	int _problemListHashCode;
 	
-	void onListboxClick(){
+	int getSelectedListBoxIndex(){
 		int inx = -100;
+		inx = _listBox.getSelectedIndex();
+		if(inx == -1){ // none is selected
+			return -1;
+		}
+		String s = _listBox.getItemText(inx);			
+		s = s.split("\\.")[0];
+		Integer i = Integer.valueOf(s);
+		return i;
+	}
+	void onListboxClick(){
+		
 		try{
-			inx = _listBox.getSelectedIndex();
-			if(inx == -1){ // none is selected
+			int i = getSelectedListBoxIndex();
+			if(i == -1){
 				return;
 			}
-			String s = _listBox.getItemText(inx);			
-			s = s.split("\\.")[0];
-			Integer i = Integer.valueOf(s);
 			fillTextBoxes(i);	
 		}catch(Throwable t){
 //			t.printStackTrace();
@@ -127,9 +136,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_assignmentButton = new Button("Przydziel", new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-				DialogBox todoDialogBox1 = _factory.createTODODialogBox();
-				todoDialogBox1.center();
-				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);		
+				onAssignmentClick();	
 			}
 			
 		});
@@ -138,9 +145,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_gotoRaportsButton = new Button("Otworz raporty", new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-				DialogBox todoDialogBox1 = _factory.createInfoDialogBox("Przeglad raportow", null, new RaportOverview());
-				todoDialogBox1.center();
-				todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);				
+				onRaportsClick();			
 			}
 		});
 		
@@ -148,7 +153,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_refreshListButton = new Button("Odswiez liste", new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-				controller.updateProblemList();
+				updateProblemList();
 			}
 		});
 
@@ -274,7 +279,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		 * @param textBox - should be already initialized (member of the class)
 		 * @return
 		 */
-		public static HorizontalPanel generateLabeledTextBoxPanel(String labelName, TextBox textBox){
+		public static HorizontalPanel generateLabeledTextBoxPanel(String labelName, Widget textBox){
 			HorizontalPanel horizontalPane = new HorizontalPanel();
 			Label l = new Label(labelName);
 			l.setWidth(width);
@@ -380,5 +385,47 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		return _problemListHashCode;
 	}
 	
+	
+	public void updateProblemList(){
+		controller.updateProblemList();
+	}
+	
+	DialogBox _lastAssignmentDialogBox;
+	public void hideAssignmentDialogBox(){
+		_lastAssignmentDialogBox.hide();
+	}
+	
+	void onAssignmentClick() {
+		long prId = _problemMap.get(getSelectedListBoxIndex()).getId();
+
+		ProblemAssignmentComposite p = new ProblemAssignmentComposite();
+		p.setProblemId(prId);
+		p.setParent(this);
+		DialogBox todoDialogBox1 = _factory.createInfoDialogBox(
+				"Przydzial pracownikow", null, p);
+		_lastAssignmentDialogBox = todoDialogBox1;
+		todoDialogBox1.center();
+		todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);
+	}
+	
+	
+	
+	void onRaportsClick(){
+		// TODO: do it
+//		long prId = _problemMap.get(getSelectedListBoxIndex()).getId();
+		RaportOverview r = new RaportOverview();
+		r.setParent(this);
+//		r.setProblemId(prId);
+		
+		
+		DialogBox todoDialogBox1 = _factory.createInfoDialogBox("Przeglad raportow", null, r);
+		todoDialogBox1.center();
+		todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);	
+	}
+	
+	DialogBox _lastRaportsDialogBox;
+	public void hideRaportsDialogBox(){
+		_lastAssignmentDialogBox.hide();
+	}
 	
 }

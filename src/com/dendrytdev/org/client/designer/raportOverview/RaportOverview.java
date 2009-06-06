@@ -3,15 +3,21 @@ package com.dendrytdev.org.client.designer.raportOverview;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dendrytdev.org.client.bean.Comment;
+import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
+import com.dendrytdev.org.client.bean.dto.RaportDTO;
 import com.dendrytdev.org.client.designer.problemOverview.*;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview.StaticHelperClass;
 import com.dendrytdev.org.client.tools.*;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.*;
 
 
 public class RaportOverview extends Composite {
-		
+	RaportOverviewServiceAsync service;
 		
 		void blankAllFields(){			
 			// initialize textboxes
@@ -49,7 +55,40 @@ public class RaportOverview extends Composite {
 		Map<Integer, Problem> _problemMap = new HashMap<Integer, Problem>();
 		int _problemListHashCode;
 		
+		
+		
+		ProblemOverviewServiceAsync _service = GWT.create(ProblemOverviewService.class);
+		
 		public RaportOverview() {
+			
+			// TODO: refactor the shit (into controler)
+			service = GWT.create(RaportOverviewService.class);
+			service.getCommentsWithPeople(_problemID, new AsyncCallback<RaportDTO>(){
+
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void onSuccess(RaportDTO result) {
+					System.out.println("___ONS");
+//					System.out.println("people" + result.getPersonList().size());
+					for(Person p : result.getPersonList()){
+						System.out.println(p.getLogin());
+					}
+					
+					
+					System.out.println("comment" + result.getCommentArray().length);
+					for(Comment c : result.getCommentArray()){
+						System.out.println(c.getUser() + " " + c.getContent());
+					}
+				}
+				
+			});
+			
+			
 			_actualAssignmentTextBox.setEnabled(false);		
 			_textArea.setCharacterWidth(40);
 		    _textArea.setVisibleLines(20);
@@ -135,6 +174,14 @@ public class RaportOverview extends Composite {
 		
 			return vp; // sorry ... refactor this shit later !!! TODO!
 		}
+		
+		IProblemOverview _parent;
+		public void setParent(IProblemOverview i){
+			_parent = i;
+		}
 			
-			
+		long _problemID;	
+		public void setProblemId(long id){
+			_problemID = id;
+		}
 	}

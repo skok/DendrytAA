@@ -12,6 +12,7 @@ import com.dendrytdev.org.client.bean.Group;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.Product;
+import com.dendrytdev.org.server.dao.DendrytDAOException;
 
 public class DatabaseConnector {
 
@@ -309,6 +310,33 @@ public class DatabaseConnector {
 			pm.close();
 		}
 		return result;
+	}
+	
+	
+	
+	 
+	
+	@SuppressWarnings("unchecked")
+	public static Person readPerson(String login) throws DendrytDAOException {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Person com = null;
+		try{
+			Query q = pm.newQuery(Person.class);
+			q.setFilter("login == " + login);
+			Collection<Person> col = (Collection<Person>) q.execute();
+			if(col.size() > 1){
+				throw new DendrytDAOException("For Person with login=" + login + " there are " + col.size() + " instances in DB!");
+			}else if(col.size() == 1){
+				com = (Person) col.toArray()[0];
+			}
+		}catch(DendrytDAOException de){
+			throw de;			
+		}catch(Throwable t){
+			throw new DendrytDAOException(t);
+		}finally{
+			pm.close();			
+		}
+		return com;
 	}
 }
 

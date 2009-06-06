@@ -154,9 +154,13 @@ public class Person implements IsSerializable{
 		return city;
 	}
 
-
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	@Override
+	public String toString(){
+		return getFirstName() + " " + getSurname() + " [" + getLogin() + "]";
 	}
 	
 }

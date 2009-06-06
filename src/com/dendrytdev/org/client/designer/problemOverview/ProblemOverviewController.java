@@ -12,19 +12,16 @@ import com.google.gwt.user.client.ui.DialogBox;
 public class ProblemOverviewController implements IProblemOverviewController {
 	
 	
-	ProblemOverviewServiceAsync service;
+	ProblemOverviewServiceAsync _service = GWT.create(ProblemOverviewService.class);
 	IProblemOverview i;
 	ProblemOverviewController(IProblemOverview ip) {
-		i = ip;
-		service = GWT.create(ProblemOverviewService.class);
-		ServiceDefTarget endpoint = (ServiceDefTarget) service;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "ProblemOverviewServlet");
+		i = ip; 
 	}
 
 
 	@Override
 	public void updateProblemList() {
-		service.getProblemList(i.getProblemListHashCode(), new AsyncCallback<List<Problem>>(){
+		_service.getProblemList(i.getProblemListHashCode(), new AsyncCallback<List<Problem>>(){
 
 			@Override
 			public void onFailure(Throwable caught) {

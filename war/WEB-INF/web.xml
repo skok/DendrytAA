@@ -104,4 +104,20 @@
 		<servlet-name>servicerServiceImpl</servlet-name>
 		<url-pattern>/dendrytaa/ServicerService</url-pattern>
 	</servlet-mapping>
+
+
+
+
+
+		<servlet>
+		<servlet-name>RaportOverviewServlet</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.designer.RaportOverviewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RaportOverviewServlet</servlet-name>
+		<url-pattern>/dendrytaa/RaportOverviewServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 </web-app>
