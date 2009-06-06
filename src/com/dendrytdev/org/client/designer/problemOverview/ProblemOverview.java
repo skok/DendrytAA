@@ -15,6 +15,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 
@@ -72,8 +73,12 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	IDialogBoxFactory _factory = GuiFactory.getInstance();
 	
 	//register controler - refactor later ...
-	IProblemOverviewController controller = new ProblemOverviewController(this);
+	IProblemOverviewController controller = createController();
 	
+	
+	protected ProblemOverviewController createController(){
+		 return new ProblemOverviewController(this);
+	}
 	
 	Map<Integer, Problem> _problemMap;
 	int _problemListHashCode;
@@ -396,7 +401,13 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	void onAssignmentClick() {
-		long prId = _problemMap.get(getSelectedListBoxIndex()).getId();
+		int inx = getSelectedListBoxIndex();
+		if(inx < 0){
+			Window.alert("Musisz wybrac najpierw problem!");
+			return;
+		}
+		
+		long prId = _problemMap.get(inx).getId();
 
 		ProblemAssignmentComposite p = new ProblemAssignmentComposite();
 		p.setProblemId(prId);
@@ -411,11 +422,17 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	
 	
 	void onRaportsClick(){
+		
+		int inx = getSelectedListBoxIndex();
+		if(inx < 0){
+			Window.alert("Musisz wybrac najpierw problem!");
+			return;
+		}
 		// TODO: do it
-//		long prId = _problemMap.get(getSelectedListBoxIndex()).getId();
+		long prId = _problemMap.get(inx).getId();
 		RaportOverview r = new RaportOverview();
 		r.setParent(this);
-//		r.setProblemId(prId);
+		r.setProblemId(prId);
 		
 		
 		DialogBox todoDialogBox1 = _factory.createInfoDialogBox("Przeglad raportow", null, r);

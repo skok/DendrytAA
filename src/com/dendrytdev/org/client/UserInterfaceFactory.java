@@ -42,6 +42,7 @@ public class UserInterfaceFactory implements IUserInterfaceFactory {
 
 		DecoratedTabPanel problemOverview = new DecoratedTabPanel();
 		problemOverview.add(new ProblemOverview(), "Przeglad wszystkich zgloszen");
+		
 		problemOverview.selectTab(0);
 
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();

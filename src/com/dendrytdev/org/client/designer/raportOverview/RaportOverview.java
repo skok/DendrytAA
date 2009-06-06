@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.*;
 
 
 public class RaportOverview extends Composite {
-	RaportOverviewServiceAsync service;
 		
 		void blankAllFields(){			
 			// initialize textboxes
@@ -58,49 +57,21 @@ public class RaportOverview extends Composite {
 		
 		
 		ProblemOverviewServiceAsync _service = GWT.create(ProblemOverviewService.class);
+		RaportOverviewServiceAsync service = GWT.create(RaportOverviewService.class);
 		
 		public RaportOverview() {
-			
-			// TODO: refactor the shit (into controler)
-			service = GWT.create(RaportOverviewService.class);
-			service.getCommentsWithPeople(_problemID, new AsyncCallback<RaportDTO>(){
+		_actualAssignmentTextBox.setEnabled(false);
+		_textArea.setCharacterWidth(40);
+		_textArea.setVisibleLines(20);
+		_userListTextBox.setVisibleItemCount(5);
+		_problemListHashCode = IProblemOverview.PROBLEM_LIST_NOT_DOWNLOADED_YET;
 
-				@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void onSuccess(RaportDTO result) {
-					System.out.println("___ONS");
-//					System.out.println("people" + result.getPersonList().size());
-					for(Person p : result.getPersonList()){
-						System.out.println(p.getLogin());
-					}
-					
-					
-					System.out.println("comment" + result.getCommentArray().length);
-					for(Comment c : result.getCommentArray()){
-						System.out.println(c.getUser() + " " + c.getContent());
-					}
-				}
-				
-			});
-			
-			
-			_actualAssignmentTextBox.setEnabled(false);		
-			_textArea.setCharacterWidth(40);
-		    _textArea.setVisibleLines(20);
-			_userListTextBox.setVisibleItemCount(5);
-			_problemListHashCode = IProblemOverview.PROBLEM_LIST_NOT_DOWNLOADED_YET;
-			
-			HorizontalPanel mainPanel = new HorizontalPanel();
-			initWidget(mainPanel);
-			mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-			mainPanel.add(generateLeftPanel());
-			mainPanel.add(generateRightPanel());
-		}
+		HorizontalPanel mainPanel = new HorizontalPanel();
+		initWidget(mainPanel);
+		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		mainPanel.add(generateLeftPanel());
+		mainPanel.add(generateRightPanel());
+	}
 		
 		Widget generateRightPanel(){
 			VerticalPanel rightPanel = new VerticalPanel();	
@@ -183,5 +154,36 @@ public class RaportOverview extends Composite {
 		long _problemID;	
 		public void setProblemId(long id){
 			_problemID = id;
+			
+			// TODO: refactor the shit (into controler)
+			service.getCommentsWithPeople(_problemID,
+					new AsyncCallback<RaportDTO>() {
+
+						@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub
+
+						}
+
+						@Override
+						public void onSuccess(RaportDTO result) {
+							System.out.println("___ONS");
+							// System.out.println("people" +
+							// result.getPersonList().size());
+							if (result != null) {
+								for (Person p : result.getPersonList()) {
+									System.out.println(p.getLogin());
+								}
+
+								System.out.println("comment"
+										+ result.getCommentArray().length);
+								for (Comment c : result.getCommentArray()) {
+									System.out.println(c.getUser() + " "
+											+ c.getContent());
+								}
+							}
+						}
+
+					});
 		}
 	}

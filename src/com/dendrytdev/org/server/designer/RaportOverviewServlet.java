@@ -27,6 +27,9 @@ public class RaportOverviewServlet extends RemoteServiceServlet implements
 			ProblemDAO pDAO = new ProblemDAO();
 			CommentDAO cDAO = new CommentDAO();
 			List<Long> commentsID = pDAO.read(problemID).getComments();
+			if(commentsID == null){
+				return dto;
+			}
 
 			List<Person> pList = DatabaseConnector.getAllPerson();
 			
