@@ -372,7 +372,6 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_designerTextBox.setText(p.getDesigner());
 		_programmerTextBox.setText(p.getProgrammer());
 		_testerTextBox.setText(p.getTester());
-		System.out.println("_" + p.getDescription());
 		_descriptionTextArea.setText(p.getDescription());		
 	}
 

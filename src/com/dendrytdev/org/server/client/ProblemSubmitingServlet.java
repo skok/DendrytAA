@@ -1,4 +1,4 @@
-package com.dendrytdev.org.server;
+package com.dendrytdev.org.server.client;
 
 import javax.servlet.http.HttpSession;
 

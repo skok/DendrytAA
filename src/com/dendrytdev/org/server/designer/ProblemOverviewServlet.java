@@ -1,4 +1,4 @@
-package com.dendrytdev.org.server;
+package com.dendrytdev.org.server.designer;
 
 
 import java.util.List;

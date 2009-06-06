@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.dendrytdev.org.client.bean.Product;
 import com.dendrytdev.org.client.client.problemSubmiting.ProblemSubmitingService;
-import com.dendrytdev.org.server.ProblemSubmitingServiceImpl;
+import com.dendrytdev.org.server.client.ProblemSubmitingServiceImpl;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProductDAO;
 import com.dendrytdev.org.server.dao.intf.IProductDAO;

@@ -10,10 +10,12 @@
 		<welcome-file>DendrytAA.html</welcome-file>
 	</welcome-file-list>
 
+
+
 	<servlet>
 		<servlet-name>employeeServiceImpl</servlet-name>
 		<servlet-class>
-			com.dendrytdev.org.server.EmployeeServiceImpl
+			com.dendrytdev.org.server.designer.EmployeeServiceImpl
   </servlet-class>
 	</servlet>
 	<servlet-mapping>
@@ -21,14 +23,18 @@
 		<url-pattern>/dendrytaa/EmployeeService</url-pattern>
 	</servlet-mapping>
 
+
+
 	<servlet>
 		<servlet-name>problemOverviewServlet</servlet-name>
-		<servlet-class>com.dendrytdev.org.server.ProblemOverviewServlet</servlet-class>
+		<servlet-class>com.dendrytdev.org.server.designer.ProblemOverviewServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>problemOverviewServlet</servlet-name>
 		<url-pattern>/dendrytaa/ProblemOverviewServlet</url-pattern>
 	</servlet-mapping>
+	
+	
 
 	<servlet>
 		<servlet-name>AuthenticationServlet</servlet-name>
@@ -39,9 +45,12 @@
 		<url-pattern>/dendrytaa/AuthenticationServlet</url-pattern>
 	</servlet-mapping>
 
+
+
+
 	<servlet>
 		<servlet-name>ProblemSubmitingServlet</servlet-name>
-		<servlet-class>com.dendrytdev.org.server.ProblemSubmitingServlet</servlet-class>
+		<servlet-class>com.dendrytdev.org.server.client.ProblemSubmitingServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProblemSubmitingServlet</servlet-name>
@@ -49,36 +58,47 @@
 	</servlet-mapping>
 
 
+
+
 	<servlet>
 		<servlet-name>clientAdditionOverviewServiceImpl</servlet-name>
-		<servlet-class>com.dendrytdev.org.server.ClientAdditionOverviewServiceImpl</servlet-class>
+		<servlet-class>com.dendrytdev.org.server.designer.ClientAdditionOverviewServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>clientAdditionOverviewServiceImpl</servlet-name>
 		<url-pattern>/dendrytaa/ClientAdditionOverviewService</url-pattern>
 	</servlet-mapping>
 
+
+
+
 	<servlet>
 		<servlet-name>productsServiceImpl</servlet-name>
-		<servlet-class>com.dendrytdev.org.server.ProductsServiceImpl</servlet-class>
+		<servlet-class>com.dendrytdev.org.server.designer.ProductsServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>productsServiceImpl</servlet-name>
 		<url-pattern>/dendrytaa/ProductsService</url-pattern>
 	</servlet-mapping>
 	
+	
+	
+	
 		<servlet>
 		<servlet-name>groupsServiceImpl</servlet-name>
-		<servlet-class>com.dendrytdev.org.server.GroupsServiceImpl</servlet-class>
+		<servlet-class>com.dendrytdev.org.server.designer.GroupsServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>groupsServiceImpl</servlet-name>
 		<url-pattern>/dendrytaa/GroupsService</url-pattern>
 	</servlet-mapping>
 
+
+
+
 		<servlet>
 		<servlet-name>servicerServiceImpl</servlet-name>
-		<servlet-class>com.dendrytdev.org.server.ServicerServiceImpl</servlet-class>
+		<servlet-class>com.dendrytdev.org.server.servicer.ServicerServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>servicerServiceImpl</servlet-name>
