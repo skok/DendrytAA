@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Group;
 import com.dendrytdev.org.client.bean.Person;
@@ -372,6 +374,99 @@ public class DatabaseConnector {
 		}
 		return com;
 	}
+	
+	
+	public static void addComment(Long problemId,Function function,Boolean direction, String content){
+		Comment c=new Comment();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Problem problem;
+		Calendar calendar=Calendar.getInstance();
+		Comment comment=new Comment();
+		try{
+			Query q=pm.newQuery(Problem.class);
+			q.declareParameters("Long i");
+			q.setFilter("id==i");
+			List<Problem> problems=(List<Problem>) q.execute(problemId);
+			
+			
+			
+			if(problems!=null && problems.size()>0){
+				comment.setDate(calendar.getTime());
+				comment.setContent(content);
+				
+				
+				comment=pm.makePersistent(comment);
+				
+				problem=problems.get(0);
+				
+				problem.addComment(comment.getId());
+				
+				if(function==Function.DESIGNER){
+					comment.setUser(problem.getDesigner());
+					if(direction){
+						problem.setCurrentWorker(problem.getProgrammer());
+					}
+					//no option backward 
+				}else if(function==Function.PROGRAMMER){
+					comment.setUser(problem.getProgrammer());
+					if(direction){
+						problem.setCurrentWorker(problem.getProgrammer());
+					}else{
+						problem.setCurrentWorker(problem.getDesigner());
+					}
+				}else if(function==Function.SERVICE){
+					comment.setUser(problem.getService());
+					if(direction){
+						//finish it! END!
+					}else{
+						problem.setCurrentWorker(problem.getTester());
+					}
+				}else if(function==Function.TESTER){
+					comment.setUser(problem.getTester());
+					if(direction){
+						problem.setCurrentWorker(problem.getService());
+					}else{
+						problem.setCurrentWorker(problem.getProgrammer());
+					}
+				}
+				
+				pm.makePersistent(comment);
+				pm.makePersistent(problem);
+				
+				
+				
+				
+				
+			}
+			
+		}catch(Throwable t){
+			t.printStackTrace();
+		}finally{
+			pm.close();
+		}
+		
+		
+	}
+	public static synchronized List<Comment> getAllComments(){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		List<Comment> result=new ArrayList<Comment>();
+		
+		try{
+			Query q=pm.newQuery(Comment.class);
+			List<Comment> comments=(List<Comment>) q.execute();
+			Iterator<Comment> it=comments.iterator();
+			while(it.hasNext()){
+				result.add(it.next());
+			}
+		}catch(Throwable t){
+			t.printStackTrace();
+		}finally{
+			pm.close();
+		}
+		return result;
+		
+	}
+	
 }
 
 
