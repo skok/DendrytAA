@@ -4,8 +4,8 @@
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/junit-4.6.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-jee-ganymede-SR1-win32/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.2.1.v200905131143/appengine-java-sdk-1.2.1/lib/impl/appengine-local-runtime.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-jee-ganymede-SR1-win32/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.2.1.v200905131143/appengine-java-sdk-1.2.1/lib/impl/appengine-api-stubs.jar"/>
+	<classpathentry kind="lib" path="C:/lib/junit4.5/junit-4.5.jar" sourcepath="C:/lib/junit4.5/junit-4.5-src.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-GWT-GAE-JEE/plugins/com.google.appengine.eclipse.sdkbundle_1.2.1.v200905131143/appengine-java-sdk-1.2.1/lib/impl/appengine-local-runtime.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-GWT-GAE-JEE/plugins/com.google.appengine.eclipse.sdkbundle_1.2.1.v200905131143/appengine-java-sdk-1.2.1/lib/impl/appengine-api-stubs.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
