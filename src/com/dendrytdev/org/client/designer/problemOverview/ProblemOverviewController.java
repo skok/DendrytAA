@@ -23,8 +23,16 @@ public class ProblemOverviewController implements IProblemOverviewController {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox("Problem:updateProblemList()" + caught.getMessage());
-			todoDialogBox1.center();				
+			final DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox("Problem:updateProblemList()" + caught.getMessage());
+			Timer t = new Timer(){
+				@Override
+				public void run() {
+					todoDialogBox1.hide();					
+				}
+			};
+			t.schedule(3000);
+			todoDialogBox1.center();	
+			_timer.schedule(2500);
 		}
 
 		@Override

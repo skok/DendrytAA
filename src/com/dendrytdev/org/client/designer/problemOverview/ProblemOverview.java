@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.designer.problemAssignment.ProblemAssignmentComposite;
 import com.dendrytdev.org.client.designer.raportOverview.RaportOverview;
@@ -477,6 +478,22 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 
 		_controller.takeOverTheTask(prId);
 		
+	}
+	@Override
+	public Function getCurrentFunction() {
+		return Function.DESIGNER;
+	}
+	
+	
+	@Override
+	public Long getCurrentProblemId() {
+		int inx = getSelectedListBoxIndex();
+		if(inx < 0){
+//			Window.alert("Musisz wybrac najpierw problem!");
+			return -1L;
+		}
+		long prId = _problemMap.get(inx).getId();
+		return prId;
 	}
 	
 }

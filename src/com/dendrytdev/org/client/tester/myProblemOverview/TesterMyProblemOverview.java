@@ -1,5 +1,6 @@
 package com.dendrytdev.org.client.tester.myProblemOverview;
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview;
 
 public class TesterMyProblemOverview extends ProblemOverview{
@@ -10,5 +11,11 @@ public class TesterMyProblemOverview extends ProblemOverview{
 	
 	protected void generateAssignmentButton(){
 		_assignmentButton = null; // will not be added if is null		
+	}
+	
+	
+	@Override
+	public Function getCurrentFunction() {
+		return Function.TESTER;
 	}
 }

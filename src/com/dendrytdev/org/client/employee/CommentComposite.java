@@ -23,7 +23,7 @@ public class CommentComposite extends Composite{
 
 	Button bForward=new Button("Forward");
 	Button bBackward=new Button("Backward");
-	Button bCancel=new Button("Anuluj");
+	
 	
 	
 	VerticalPanel vpMain=new VerticalPanel();
@@ -42,17 +42,18 @@ public class CommentComposite extends Composite{
 		vpMain.add(cpComment);
 		vpMain.add(hpButtons);
 		
+		hpButtons.add(lSpace);
+		hpButtons.add(lSpace);
 		hpButtons.add(bForward);
 		hpButtons.add(bBackward);
-		hpButtons.add(lSpace);
-		hpButtons.add(bCancel);
+	
 	
 		taComment.setSize("400", "300");
 		
-		bForward.setSize("100", "25");
-		bBackward.setSize("100", "25");
+		bForward.setSize("150", "25");
+		bBackward.setSize("150", "25");
 		lSpace.setSize("100", "25");
-		bCancel.setSize("100", "25");
+	
 		
 		this.function=function;
 		this.problemId=problemId;

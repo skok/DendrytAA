@@ -58,6 +58,7 @@ public class ProblemOverviewServlet extends RemoteServiceServlet implements Prob
 		((ProblemOverviewServiceImpl)impl).set_currentLogin(login);
 		List<Problem> out = impl.getMyProblemList();		
 		return out;
+//		return null; //kurwo dziwko pizdo szmato
 	}
 	public HttpSession getHttpSession(){
 		return getThreadLocalRequest().getSession();

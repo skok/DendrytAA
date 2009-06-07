@@ -2,6 +2,7 @@ package com.dendrytdev.org.client.designer.problemOverview;
 
 import java.util.List;
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Problem;
 
 public interface IProblemOverview {
@@ -13,5 +14,9 @@ public interface IProblemOverview {
 	public void hideRaportsDialogBox();
 	
 	public static final int PROBLEM_LIST_NOT_DOWNLOADED_YET = 0;
+	
+	
+	public Long getCurrentProblemId();
+	public Function getCurrentFunction();
 
 }

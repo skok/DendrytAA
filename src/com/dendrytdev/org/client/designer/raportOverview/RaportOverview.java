@@ -5,11 +5,13 @@ import java.util.Map;
 
 
 import com.dendrytdev.org.client.bean.Comment;
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.dto.RaportDTO;
 import com.dendrytdev.org.client.designer.problemOverview.*;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview.StaticHelperClass;
+import com.dendrytdev.org.client.employee.CommentComposite;
 import com.dendrytdev.org.client.tools.*;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -25,7 +27,12 @@ public class RaportOverview extends Composite {
 		@Override
 		public void onClick(ClickEvent event) {
 			_parent.hideRaportsDialogBox();
-			DialogBox d = GuiFactory.getInstance().createTODODialogBox();
+			
+			Function fun = _parent.getCurrentFunction();
+			Long pId = _parent.getCurrentProblemId();
+			CommentComposite com = new CommentComposite(fun, pId);
+			DialogBox d = GuiFactory.getInstance().createInfoDialogBox("Dodaj Komentarz", null, com);
+//			DialogBox d = GuiFactory.getInstance().createTODODialogBox();
 			d.show();
 			d.center();
 		}

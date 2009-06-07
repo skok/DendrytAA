@@ -6,6 +6,7 @@ import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.designer.problemOverview.IProblemOverview;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverviewController;
 import com.dendrytdev.org.client.tools.GuiFactory;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DialogBox;
 
@@ -19,12 +20,23 @@ public class MyProblemOverviewController extends ProblemOverviewController{
 	
 	@Override
 	public void updateProblemList() {
+		
+		System.out.println("MyProblemOverviewController.updateProblemList");
+		
 		_service.getMyProblemList(new AsyncCallback<List<Problem>>(){
 
 			@Override
 			public void onFailure(Throwable caught) {
-				DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox(ERROR_TEXT + caught.getMessage());
-				todoDialogBox1.center();				
+				final DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox(ERROR_TEXT + caught.getMessage());
+				Timer t = new Timer(){
+					@Override
+					public void run() {
+						todoDialogBox1.hide();					
+					}
+				};
+				t.schedule(3000);
+				todoDialogBox1.center();	
+				_timer.schedule(2500);
 			}
 
 			@Override

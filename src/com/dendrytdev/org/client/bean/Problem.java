@@ -1,7 +1,7 @@
 package com.dendrytdev.org.client.bean;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -77,7 +77,7 @@ public class Problem implements IsSerializable{
 	 */
 	public void addComment(Long commentId){
 		if(comments==null){
-			comments=new LinkedList<Long>();
+			comments=new ArrayList<Long>();
 		}
 		comments.add(commentId);
 	}

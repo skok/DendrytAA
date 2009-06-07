@@ -1,10 +1,14 @@
 package com.dendrytdev.org.server.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 
@@ -57,7 +61,7 @@ public class ProblemDAO implements IProblemDAO{
 			arr[i] = it.next();
 		}
 		pm.close();
-		return arr;
+		return cureDendrytProblemArray(arr);
 	}
 
 
@@ -82,7 +86,7 @@ public class ProblemDAO implements IProblemDAO{
 		}finally{
 			pm.close();			
 		}
-		return com;
+		return cureOneDendrytProblemKurwa(com);
 	}
 
 
@@ -130,6 +134,31 @@ public class ProblemDAO implements IProblemDAO{
 		}
 	}
 	
+	
+	
+	private Problem[] cureDendrytProblemArray(Problem[] in){
+		Problem[] out = new Problem[in.length];
+		Problem p;
+		List<Long> list;
+		List<Long> listNew;
+		for(int i = 0; i < out.length; i++){
+			out[i] = cureOneDendrytProblemKurwa(in[i]);
+		}
+		return out; //kdps		
+	}
+	
+	private Problem cureOneDendrytProblemKurwa(Problem p){
+		List<Long> list = p.getComments();
+		if(list != null){
+			List<Long> listNew = new ArrayList<Long>();
+			for(Long l : list){
+				listNew.add(l);
+			}
+			p.setComments(listNew);				
+		}
+		return p;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Problem[] read(String currentWorkerLogin) throws DendrytDAOException {
@@ -154,7 +183,7 @@ public class ProblemDAO implements IProblemDAO{
 			pm.close();			
 		}
 		_tracer.info("arr.size=" + arr.length);
-		return arr;
+		return cureDendrytProblemArray(arr);
 	}
 	
 

@@ -12,7 +12,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface ProblemOverviewServiceAsync {
 	public void getProblemList(int hash, AsyncCallback<List<Problem>> ac);
+	
 	public void getMyProblemList(AsyncCallback<List<Problem>> ac);	
+	
 	public void getMapOfCommentList(List<Long> problemId, AsyncCallback<Map<Long, List<Comment>>> ac);
 	public void getAllPeople(AsyncCallback<Person[]> a);
 	public void setAssignment(AssignmentDTO a, AsyncCallback<?> call);

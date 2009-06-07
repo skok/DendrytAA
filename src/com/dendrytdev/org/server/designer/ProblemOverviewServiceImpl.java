@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Person;
@@ -21,6 +22,7 @@ import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 
 public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 	
+	Logger _tracer = Logger.getLogger(this.getClass().getName());	
 	static List<Problem> testingList = new ArrayList<Problem>();
 	IProblemDAO i = new ProblemDAO();
 
@@ -46,6 +48,7 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 		
 	@Override
 	public List<Problem> getProblemList(int lastListHashCode) {
+		_tracer.info("getProblemList");
 //		List<Problem> list = generateTestingValues(); // TODO: take it from DB!!!
 //		int hash = list.hashCode();
 //		System.out.println("hash" + hash);
@@ -132,14 +135,25 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 
 	@Override
 	public List<Problem> getMyProblemList() {
+		_tracer.info("PIIK");
 		List<Problem> out = null;
 		try {
 			out = Arrays.asList(i.read(_currentLogin));
+			
+//			Problem[] pArr = i.read(_currentLogin);
+//			out = new ArrayList<Problem>();
+//			for(Problem p : pArr){
+////				p.setComments(null);
+//				out.add(p);	
+//				_tracer.info("added to out list.....CurrentWorker=" + p.getCurrentWorker());
+//			}
+			
 		} catch (DendrytDAOException e) {
 			System.out.println("!!!!!!!!!!!!!!:)");
 			e.printStackTrace();
 		}
 		return out;
+
 	}
 
 

@@ -410,7 +410,7 @@ public class DatabaseConnector {
 				}else if(function==Function.PROGRAMMER){
 					comment.setUser(problem.getProgrammer());
 					if(direction){
-						problem.setCurrentWorker(problem.getProgrammer());
+						problem.setCurrentWorker(problem.getTester());
 					}else{
 						problem.setCurrentWorker(problem.getDesigner());
 					}
@@ -418,6 +418,7 @@ public class DatabaseConnector {
 					comment.setUser(problem.getService());
 					if(direction){
 						//finish it! END!
+						problem.setCurrentWorker("FINISHED_DENDRYT_WHITE_POWER;)"); //TODO:
 					}else{
 						problem.setCurrentWorker(problem.getTester());
 					}

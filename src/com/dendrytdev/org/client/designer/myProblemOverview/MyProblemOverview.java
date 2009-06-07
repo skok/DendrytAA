@@ -1,5 +1,6 @@
 package com.dendrytdev.org.client.designer.myProblemOverview;
 
+import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -24,5 +25,10 @@ public class MyProblemOverview extends ProblemOverview {
 			
 		});
 		
+	}
+	
+	@Override
+	public Function getCurrentFunction() {
+		return Function.DESIGNER;
 	}
 }
