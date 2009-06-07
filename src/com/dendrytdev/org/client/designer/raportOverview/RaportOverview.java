@@ -32,7 +32,6 @@ public class RaportOverview extends Composite {
 			Long pId = _parent.getCurrentProblemId();
 			CommentComposite com = new CommentComposite(fun, pId);
 			DialogBox d = GuiFactory.getInstance().createInfoDialogBox("Dodaj Komentarz", null, com);
-//			DialogBox d = GuiFactory.getInstance().createTODODialogBox();
 			d.show();
 			d.center();
 		}
@@ -89,6 +88,13 @@ public class RaportOverview extends Composite {
 		_userListTextBox.setVisibleItemCount(5);
 		_problemListHashCode = IProblemOverview.PROBLEM_LIST_NOT_DOWNLOADED_YET;
 
+		_userListTextBox.addClickHandler(new ClickHandler(){
+			@Override
+			public void onClick(ClickEvent event) {
+				onUserListTextBoxClick();
+			}
+		});
+		
 		HorizontalPanel mainPanel = new HorizontalPanel();
 		initWidget(mainPanel);
 		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -175,6 +181,11 @@ public class RaportOverview extends Composite {
 		}
 			
 		long _problemID;	
+		/**
+		 * all the logic here
+		 * ...
+		 * i know that smells bad.. ... TODO:refactor
+		 */
 		public void setProblemId(long id){
 			_problemID = id;
 			
@@ -192,23 +203,64 @@ public class RaportOverview extends Composite {
 						public void onSuccess(RaportDTO result) {
 							if (result != null) {
 							
-								System.out.println("comment.length="+ result.getCommentArray().length);
-								for (Person p : result.getPersonList()) {
-									System.out.println(p.getLogin());
-								}
-
-								for (Comment c : result.getCommentArray()) {
-									System.out.println(c.getUser() + " " + c.getContent());
-								}
+//								System.out.println("comment.length="+ result.getCommentArray().length);
+//								for (Person p : result.getPersonList()) {
+//									System.out.println(p.getLogin());
+//								}
+//
+//								for (Comment c : result.getCommentArray()) {
+//									System.out.println(c.getUser() + " " + c.getContent());
+//								}
 								String worker = result.getCurrentWorker();
 								if(worker != null){
 									_actualAssignmentTextBox.setText(worker);
 								}else{
 									System.out.println("!!");
 								}
+								
+								fillUserListBox(result.getCommentArray(), result.getPersonList());
 							}
 						}
 
 					});
 		}
+		
+		Map<String, Comment> _textboxidInComment = new HashMap<String, Comment>();
+		Map<String, Person> _loginInPersonMap = new HashMap<String, Person>();
+		void fillUserListBox(Comment[] carr, Person[] parr){
+			_textboxidInComment = new HashMap<String, Comment>();
+			_loginInPersonMap = new HashMap<String, Person>();
+			if(parr != null){
+				for(Person p : parr){
+					_loginInPersonMap.put(p.getLogin(), p);
+				}
+			}
+//			_commentArray = carr;
+			
+			_userListTextBox.clear();
+			int i = 0;
+			for(Comment c : carr){
+				String inx = String.valueOf(i++);
+				_userListTextBox.addItem(_loginInPersonMap.get(c.getUser()).toString(), inx);
+				_textboxidInComment.put(inx, c);
+			}
+			
+		}
+		
+		
+		
+		@SuppressWarnings("deprecation")
+		void onUserListTextBoxClick(){
+			int inx = Integer.valueOf(_userListTextBox.getValue(_userListTextBox.getSelectedIndex()));
+			Comment c = _textboxidInComment.get(String.valueOf(inx));
+			System.out.println(c + " " + inx);
+			
+			Person p = _loginInPersonMap.get(c.getUser());
+			_userNameAndSurname.setText(p.toString());
+			_timeOfAddingComment.setText(c.getDate().toLocaleString());
+			_textArea.setText(c.getContent());
+			
+			
+		}
+		
 	}
