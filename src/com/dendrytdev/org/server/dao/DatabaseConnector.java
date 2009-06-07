@@ -386,7 +386,7 @@ public class DatabaseConnector {
 			Query q=pm.newQuery(Problem.class);
 			q.declareParameters("Long i");
 			q.setFilter("id==i");
-			List<Problem> problems=(List<Problem>) q.execute();
+			List<Problem> problems=(List<Problem>) q.execute(problemId);
 			
 			
 			
@@ -404,23 +404,30 @@ public class DatabaseConnector {
 				if(function==Function.DESIGNER){
 					comment.setUser(problem.getDesigner());
 					if(direction){
-						problem.setCurrentWorker(Function.PROGRAMMER);
-					}else{
-						problem.setCurrentWorker(Function.SERVICE);
+						problem.setCurrentWorker(problem.getProgrammer());
 					}
+					//no option backward 
 				}else if(function==Function.PROGRAMMER){
 					comment.setUser(problem.getProgrammer());
 					if(direction){
-						problem.setCurrentWorker(Function.TESTER);
+						problem.setCurrentWorker(problem.getProgrammer());
 					}else{
-						problem.setCurrentWorker(Function.DESIGNER);
+						problem.setCurrentWorker(problem.getDesigner());
 					}
 				}else if(function==Function.SERVICE){
 					comment.setUser(problem.getService());
-					problem.setCurrentWorker(Function.SERVICE);
+					if(direction){
+						//finish it! END!
+					}else{
+						problem.setCurrentWorker(problem.getTester());
+					}
 				}else if(function==Function.TESTER){
 					comment.setUser(problem.getTester());
-					problem.setCurrentWorker(Function.TESTER);
+					if(direction){
+						problem.setCurrentWorker(problem.getService());
+					}else{
+						problem.setCurrentWorker(problem.getProgrammer());
+					}
 				}
 				
 				pm.makePersistent(comment);
@@ -440,7 +447,7 @@ public class DatabaseConnector {
 		
 		
 	}
-	public List<Comment> getAllComments(){
+	public static synchronized List<Comment> getAllComments(){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Comment> result=new ArrayList<Comment>();
 		
