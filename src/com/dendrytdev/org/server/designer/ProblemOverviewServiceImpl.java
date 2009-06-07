@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
@@ -18,6 +20,7 @@ import com.dendrytdev.org.server.dao.DatabaseConnector;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProblemDAO;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
+import com.dendrytdev.org.server.login.LoginTool;
 
 public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 	
@@ -120,5 +123,42 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 		// TODO Auto-generated method stub
 		return dto;
 	}
+
+
+	String _currentLogin;
+	
+	
+	public void set_currentLogin(String login) {
+		_currentLogin = login;
+	}
+
+
+	@Override
+	public List<Problem> getMyProblemList() {
+		List<Problem> out = null;
+		try {
+			out = Arrays.asList(i.read(_currentLogin));
+		} catch (DendrytDAOException e) {
+			System.out.println("!!!!!!!!!!!!!!:)");
+			e.printStackTrace();
+		}
+		return out;
+	}
+
+
+	@Override
+	public void assignMeAsDesigner(Long problemID) {
+		try {
+			ProblemDAO dao = new ProblemDAO();
+			Problem p = dao.read(problemID);
+			p.setDesigner(_currentLogin);
+			p.setCurrentWorker(_currentLogin);
+			dao.update(p);
+		} catch (DendrytDAOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
 
 }

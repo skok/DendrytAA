@@ -19,6 +19,8 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 public class RaportDTO implements IsSerializable {
 	private Comment[] commentArray;
 	private Person[] personList;
+	private String currentWorker;
+	
 	public Comment[] getCommentArray() {
 		return commentArray;
 	}
@@ -31,6 +33,14 @@ public class RaportDTO implements IsSerializable {
 	public void setPersonList(Person[] personList) {
 		this.personList = personList;
 	}
+	public String getCurrentWorker() {
+		return currentWorker;
+	}
+	public void setCurrentWorker(String currentWorker) {
+		this.currentWorker = currentWorker;
+	}
+	
+	
 
 
 }

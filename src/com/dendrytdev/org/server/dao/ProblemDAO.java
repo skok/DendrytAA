@@ -2,6 +2,8 @@ package com.dendrytdev.org.server.dao;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Logger;
 
 
 import javax.jdo.PersistenceManager;
@@ -13,7 +15,7 @@ import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
 
 public class ProblemDAO implements IProblemDAO{
-	
+	Logger _tracer = Logger.getLogger(this.getClass().getName());
 	public ProblemDAO(){
 	}
 //		pm = PMF.get().getPersistenceManagerProxy()		 
@@ -131,6 +133,33 @@ public class ProblemDAO implements IProblemDAO{
 		}finally{
 			pm.close();			
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Problem[] read(String currentWorkerLogin) throws DendrytDAOException {
+		_tracer.info("currentWorkerLogin=" + currentWorkerLogin);
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Collection<Problem> col = null;
+		Problem[] arr = null;
+		try{
+			Query q = pm.newQuery(Problem.class);
+			q.setFilter("currentWorker == \"" + currentWorkerLogin +"\"");
+			col = (Collection<Problem>) q.execute();
+			
+			arr = new Problem[col.size()];
+			Iterator<Problem> it = col.iterator();
+			for(int i = 0; i < arr.length; i++){
+				arr[i] = it.next();
+			}
+
+		}catch(Throwable t){
+			throw new DendrytDAOException(t);
+		}finally{
+			pm.close();			
+		}
+		_tracer.info("arr.size=" + arr.length);
+		return arr;
 	}
 	
 

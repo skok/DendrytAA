@@ -1,5 +1,7 @@
 package com.dendrytdev.org.server.dao.intf;
 
+import java.util.List;
+
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 
@@ -9,4 +11,5 @@ public interface IProblemDAO {
 	Problem read(Long id) throws DendrytDAOException;
 	Problem[] readAll() throws DendrytDAOException;
 	void delete(Problem c) throws DendrytDAOException;
+	Problem[] read(String currentWorkerLogin) throws DendrytDAOException;
 }

@@ -3,6 +3,8 @@ package com.dendrytdev.org.server.login;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
+
 import com.dendrytdev.org.client.bean.Function;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.login.LoginDTO;
@@ -10,6 +12,7 @@ import com.dendrytdev.org.client.login.IAuthenticateUser;
 import com.dendrytdev.org.server.dao.DatabaseConnector;
 
 public class AuthenticateUserImpl implements IAuthenticateUser {
+	Logger _tracer = Logger.getLogger(this.getClass().getName());
 	public static final String HARDCODED_DESIGNER_ACCOUNT_LOGIN = "d";
 	public static final String HARDCODED_PROGRAMMER_ACCOUNT_LOGIN = "p";
 	public static final String HARDCODED_SERVICE_ACCOUNT_LOGIN = "s";
@@ -28,17 +31,51 @@ public class AuthenticateUserImpl implements IAuthenticateUser {
 
 	@Override
 	public Function authenticate(LoginDTO person) {
+		_tracer.info(person.getLogin() + "/" + person.getPassword());
 		String login = person.getLogin();
 		if (login == null) {
 			login = "";
 		}
 		// TODO: hardcoded!!! NOT FOR PRODUCTION SYSTEM!
-		Function f = _mapHardcodedLoginInFunction.get(login); //check if this user is not a hardcoded user:)
-		if (f == null) { // normal user handling
+//		Function f = _mapHardcodedLoginInFunction.get(login); //check if this user is not a hardcoded user:)
+//		if (f == null) { // normal user handling
 			return getUserFromDB(person);
-		}else{ // hardcoded, predefined user
-			return f;
+//		}else{ // hardcoded, predefined user
+//			return f;
+//		}
+	}
+	
+	
+	private boolean checkIfAlreadyFilled(List<Person> l){
+		boolean ok = false;
+		for(String login : _mapHardcodedLoginInFunction.keySet()){
+			ok = false;
+			for(Person p: l){
+				if(p.getLogin().equals(login)){
+					ok = true;
+				}
+			}
+			if(!ok){
+				_tracer.info(login + " not in DB!");
+				return false;
+			}else{
+				_tracer.info(login + " already in DB");
+			}
 		}
+		return true;
+	}
+	private void fillForTestingPurposesONLY_DELETE_IT_ON_PRODUCTION_SYSTEM(List<Person> l){
+		int i = 0;
+		if(!checkIfAlreadyFilled(l)){
+			for(String login : _mapHardcodedLoginInFunction.keySet()){
+				Person p = new Person();
+				p.setLogin(login);
+				p.setFunction(_mapHardcodedLoginInFunction.get(login));
+				p.setFirstName("fir_" + i);
+				p.setSurname("sur_" + i++);
+				DatabaseConnector.addPerson(p);
+			}
+		}	
 	}
 	
 	Function getUserFromDB(LoginDTO person){
@@ -47,6 +84,9 @@ public class AuthenticateUserImpl implements IAuthenticateUser {
 		}
 		// TODO: refactor later, get it by direct GQL-querry
 		List<Person> list = DatabaseConnector.getAllPerson();
+		_tracer.info("already in DB:" + list);
+		fillForTestingPurposesONLY_DELETE_IT_ON_PRODUCTION_SYSTEM(list);
+
 		
 		String login = person.getLogin();
 		String pass = person.getPassword();

@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import com.dendrytdev.org.client.bean.Function;
@@ -44,6 +46,8 @@ import com.dendrytdev.org.client.bean.Product;
  */
 public class DatabaseConnector {
 
+	static Logger _tracer = Logger.getLogger(DatabaseConnector.class.getName());
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized List<Person> getAllPerson() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -126,6 +130,7 @@ public class DatabaseConnector {
 
 	@SuppressWarnings("unchecked")
 	public static synchronized Boolean addPerson(Person person) {
+		_tracer.info(person.getLogin() + "/" + person.getPassword() + "/" + person.getFunction());
 		Boolean result = false;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
@@ -142,6 +147,7 @@ public class DatabaseConnector {
 			}
 		} catch (Throwable t) {
 			t.printStackTrace();
+			_tracer.warning(t.getMessage());
 		} finally {
 			pm.close();
 		}

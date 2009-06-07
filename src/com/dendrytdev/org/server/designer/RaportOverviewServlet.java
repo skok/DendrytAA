@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Person;
+import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.client.bean.dto.RaportDTO;
 import com.dendrytdev.org.client.designer.raportOverview.RaportOverviewService;
 import com.dendrytdev.org.server.dao.CommentDAO;
@@ -22,12 +23,25 @@ public class RaportOverviewServlet extends RemoteServiceServlet implements
 	public RaportDTO getCommentsWithPeople(Long problemID) {
 		RaportDTO dto = new RaportDTO();
 		try {
-			System.out.println("!!!&&**");
+			System.out.println("!!!&&**" + problemID);
 
 			ProblemDAO pDAO = new ProblemDAO();
 			CommentDAO cDAO = new CommentDAO();
-			List<Long> commentsID = pDAO.read(problemID).getComments();
+			Problem p = pDAO.read(problemID);
+			//get current worker ///// refactor the shit!!!
+			List<Person> lp = DatabaseConnector.getAllPerson();
+			for(Person pp : lp){
+				if(pp.getLogin().equals(p.getCurrentWorker())){
+					dto.setCurrentWorker(pp.getFirstName() + " " + pp.getSurname() + " ["
+							+ pp.getLogin() + "]");
+					break;
+				}
+			}
+			
+			List<Long> commentsID = p.getComments();
 			if(commentsID == null){
+				dto.setCommentArray(new Comment[0]);
+				dto.setPersonList(new Person[0]);
 				return dto;
 			}
 
@@ -41,9 +55,9 @@ public class RaportOverviewServlet extends RemoteServiceServlet implements
 				commentsOut.add(c);
 				if (c != null) {
 					String login = c.getUser();
-					for (Person p : pList) {
-						if (login.equals(p.getLogin())) {
-							peopleOut.add(p);
+					for (Person pp : pList) {
+						if (login.equals(pp.getLogin())) {
+							peopleOut.add(pp);
 						}
 					}
 				}
