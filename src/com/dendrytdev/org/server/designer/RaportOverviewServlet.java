@@ -11,7 +11,6 @@ import com.dendrytdev.org.server.dao.CommentDAO;
 import com.dendrytdev.org.server.dao.DatabaseConnector;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProblemDAO;
-import com.dendrytdev.org.server.dao.intf.ICommentDAO;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class RaportOverviewServlet extends RemoteServiceServlet implements

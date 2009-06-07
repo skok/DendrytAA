@@ -69,7 +69,7 @@ public class LogInController {
 				}
 				
 			});
-			hp.add(new Label("Zalogowany jako " + login + "  |  "));
+			hp.add(new Label("Zalogowany jako " + /*result +*/ " [" + login + "]  |  "));
 			hp.add(h);
 			RootPanel.get().add(hp);
 		}

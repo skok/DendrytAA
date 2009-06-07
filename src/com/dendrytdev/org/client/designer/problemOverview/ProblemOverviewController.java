@@ -7,7 +7,6 @@ import com.dendrytdev.org.client.tools.GuiFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.DialogBox;
 
 public class ProblemOverviewController implements IProblemOverviewController {

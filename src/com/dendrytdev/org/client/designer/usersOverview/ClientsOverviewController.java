@@ -107,7 +107,8 @@ public class ClientsOverviewController implements IClientOverviewController {
 			co.tbLogin.setText(p.getLogin());
 			co.tbNazwa.setText(p.getCompanyName());
 			co.tbTelefon.setText(p.getTelephone());
-			co.cbPolisa.setValue(p.getPolicy());
+			co.cbPolisa.setValue((p.getPolicy() == null)? false : p.getPolicy());
+			
 			co.ptbHaslo.setText(p.getPassword());
 			co.ptbPowtHaslo.setText(p.getPassword());
 		}else{

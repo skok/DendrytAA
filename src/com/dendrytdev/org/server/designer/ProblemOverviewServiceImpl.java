@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
@@ -20,7 +18,6 @@ import com.dendrytdev.org.server.dao.DatabaseConnector;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 import com.dendrytdev.org.server.dao.ProblemDAO;
 import com.dendrytdev.org.server.dao.intf.IProblemDAO;
-import com.dendrytdev.org.server.login.LoginTool;
 
 public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 	

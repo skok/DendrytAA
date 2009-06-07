@@ -11,7 +11,10 @@ import com.dendrytdev.org.client.designer.usersAddition.ClientsAddition;
 import com.dendrytdev.org.client.designer.usersAddition.EmpAddition;
 import com.dendrytdev.org.client.designer.usersOverview.ClientsOverview;
 import com.dendrytdev.org.client.designer.usersOverview.EmpOverview;
+import com.dendrytdev.org.client.programmer.myProblemOverview.ProgrammerMyProblemOverview;
 import com.dendrytdev.org.client.servicer.Services;
+import com.dendrytdev.org.client.servicer.myProblemOverview.ServicerMyProblemOvervie;
+import com.dendrytdev.org.client.tester.myProblemOverview.TesterMyProblemOverview;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 
@@ -76,7 +79,13 @@ public class UserInterfaceFactory implements IUserInterfaceFactory {
 	
 	@Override
 	public Composite generateProgrammerInterface() {
-		throw new RuntimeException("not implemented yet!");
+		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
+		ProgrammerMyProblemOverview mprob = new ProgrammerMyProblemOverview();
+		mprob.createController();
+		mprob.updateProblemList();
+		decoratedTabPanel.add(mprob, "Przeglad moich zgloszen");
+		decoratedTabPanel.selectTab(0);
+		return decoratedTabPanel;
 	}
 	
 	@Override
@@ -84,13 +93,28 @@ public class UserInterfaceFactory implements IUserInterfaceFactory {
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
 		Services s = new Services();
 		decoratedTabPanel.add(s, "Zglaszanie problemow");
+		
+		//add 2nd panel
+		ServicerMyProblemOvervie mprob = new ServicerMyProblemOvervie();
+		mprob.createController();
+		mprob.updateProblemList();
+		decoratedTabPanel.add(mprob, "Przeglad moich zgloszen");
+
+		
+		
 		s.setSize("300", "300");
 		decoratedTabPanel.selectTab(0);
 		return decoratedTabPanel;
 	}
 	@Override
 	public Composite generateTesterInterface() {
-		throw new RuntimeException("not implemented yet!");
+		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
+		TesterMyProblemOverview mprob = new TesterMyProblemOverview();
+		mprob.createController();
+		mprob.updateProblemList();
+		decoratedTabPanel.add(mprob, "Przeglad moich zgloszen");
+		decoratedTabPanel.selectTab(0);
+		return decoratedTabPanel;
 	}
 	
 

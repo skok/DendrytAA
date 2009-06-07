@@ -11,7 +11,8 @@ import com.google.gwt.user.client.ui.DialogBox;
 
 public class MyProblemOverviewController extends ProblemOverviewController{
 
-	MyProblemOverviewController(IProblemOverview ip) {
+	protected String ERROR_TEXT = "MyProblemOverviewController:updateProblemList()";
+	protected MyProblemOverviewController(IProblemOverview ip) {
 		super(ip);
 	}
 	
@@ -22,14 +23,12 @@ public class MyProblemOverviewController extends ProblemOverviewController{
 
 			@Override
 			public void onFailure(Throwable caught) {
-				DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox("MyProblemOverviewController:updateProblemList()" + caught.getMessage());
+				DialogBox todoDialogBox1 = GuiFactory.getInstance().createSystemErrorBox(ERROR_TEXT + caught.getMessage());
 				todoDialogBox1.center();				
 			}
 
 			@Override
 			public void onSuccess(List<Problem> result) {
-				// TODO: cos tu nie dziala, za kazdym razem zwraca inny hashcode,
-				// pomimo tego, ze leci ten sam obiekt z serwera !!!!!!
 				if(result == null){
 				}else{
 					i.updateProblemList(result);		

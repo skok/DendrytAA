@@ -17,6 +17,7 @@ public class ProblemMultiWordSuggestion extends MultiWordSuggestion{
 	 * @param p
 	 * @return
 	 */
+	@SuppressWarnings("deprecation") // TODO: toLocaleString - refactor into
 	private static String getText(Problem p) {
 		StringBuilder sb = new StringBuilder();
 		

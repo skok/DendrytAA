@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.SuggestOracle;
 
 public class ProblemSuggestOracle extends SuggestOracle {
 
-	private List<ProblemMultiWordSuggestion> _problemSuggestions = null;
+	private List<ProblemMultiWordSuggestion> _problemSuggestions = new ArrayList<ProblemMultiWordSuggestion>();
 
 	@Override
 	public void requestSuggestions(Request request, Callback callback) {
@@ -36,10 +36,6 @@ public class ProblemSuggestOracle extends SuggestOracle {
 	
 
 	public boolean add(ProblemMultiWordSuggestion o) {
-		if (_problemSuggestions == null) {
-			_problemSuggestions = new ArrayList<ProblemMultiWordSuggestion>();
-		}
-
 		return _problemSuggestions.add(o);
 	}
 

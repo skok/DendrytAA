@@ -1,7 +1,5 @@
 package com.dendrytdev.org.server.dao.intf;
 
-import java.util.List;
-
 import com.dendrytdev.org.client.bean.Problem;
 import com.dendrytdev.org.server.dao.DendrytDAOException;
 

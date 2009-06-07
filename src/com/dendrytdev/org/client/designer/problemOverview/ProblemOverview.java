@@ -216,7 +216,9 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		VerticalPanel assignmentPanel = new VerticalPanel();
 		assignmentPanel.add(generateAssignmentFieldsPanel()); //creating ASSIGNMENT panel HERE
 		assignmentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-		assignmentPanel.add(_assignmentButton);
+		if(_assignmentButton !=null){
+			assignmentPanel.add(_assignmentButton);			
+		}
 
 		CaptionPanel panel = new CaptionPanel("Przydzial");
 		panel.add(assignmentPanel);
@@ -363,6 +365,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	/**
 	 * @param i - index from the map
 	 */
+	@SuppressWarnings("deprecation")// TODO: toLocaleString - refactor into
 	void fillTextBoxes(int i){
 		Problem p = _problemMap.get(i);
 		_productTextBox.setText(p.getProduct());
