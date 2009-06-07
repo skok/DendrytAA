@@ -119,5 +119,35 @@
 	</servlet-mapping>
 	
 	
+		<servlet>
+		<servlet-name>commentServiceServlet</servlet-name>
+		<servlet-class>com.dendrytdev.org.server.employee.CommentServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>commentServiceServlet</servlet-name>
+		<url-pattern>/dendrytaa/CommentService</url-pattern>
+	</servlet-mapping>
+	
 	
 </web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
