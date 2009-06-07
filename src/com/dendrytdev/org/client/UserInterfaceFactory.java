@@ -1,6 +1,7 @@
 package com.dendrytdev.org.client;
 
 import com.dendrytdev.org.client.client.problemSubmiting.ProblemSubmiting;
+import com.dendrytdev.org.client.designer.myProblemOverview.MyProblemOverview;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview;
 import com.dendrytdev.org.client.designer.productsAndGroupsAddition.GroupsAddition;
 import com.dendrytdev.org.client.designer.productsAndGroupsAddition.ProductsAddition;
@@ -41,7 +42,16 @@ public class UserInterfaceFactory implements IUserInterfaceFactory {
 		productsAndGroupsOverview.selectTab(0);
 
 		DecoratedTabPanel problemOverview = new DecoratedTabPanel();
-		problemOverview.add(new ProblemOverview(), "Przeglad wszystkich zgloszen");
+		MyProblemOverview mprob = new MyProblemOverview();
+		mprob.createController();
+		mprob.updateProblemList();
+		problemOverview.add(mprob, "Przeglad moich zgloszen");
+		
+		// refactor TODO: change the way of initialization
+		ProblemOverview prob = new ProblemOverview();
+		prob.createController();
+		prob.updateProblemList();
+		problemOverview.add(prob, "Przeglad wszystkich zgloszen");
 		
 		problemOverview.selectTab(0);
 

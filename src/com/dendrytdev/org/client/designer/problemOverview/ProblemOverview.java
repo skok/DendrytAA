@@ -66,18 +66,18 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	ProblemSuggestOracle _oracle = new ProblemSuggestOracle(); 
 	SuggestBox _suggestBox = new SuggestBox(_oracle);
 	
-	Button _assignmentButton;
+	protected Button _assignmentButton;
 	Button _gotoRaportsButton;
-	Button _refreshListButton;
+//	Button _refreshListButton;
 
 	IDialogBoxFactory _factory = GuiFactory.getInstance();
 	
 	//register controler - refactor later ...
-	IProblemOverviewController controller = createController();
+	protected IProblemOverviewController _controller;
 	
 	
-	protected ProblemOverviewController createController(){
-		 return new ProblemOverviewController(this);
+	public void createController(){
+		 _controller = new ProblemOverviewController(this);
 	}
 	
 	Map<Integer, Problem> _problemMap;
@@ -94,7 +94,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		Integer i = Integer.valueOf(s);
 		return i;
 	}
-	void onListboxClick(){
+	public void onListboxClick(){
 		
 		try{
 			int i = getSelectedListBoxIndex();
@@ -109,8 +109,8 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	}
 	
 	public ProblemOverview() {
-
 		_listBox.setVisibleItemCount(5);
+		
 		_listBox.addClickHandler(new ClickHandler(){
 
 			@Override
@@ -138,13 +138,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		});
 		
 	
-		_assignmentButton = new Button("Przydziel", new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				onAssignmentClick();	
-			}
-			
-		});
+		generateAssignmentButton();
 
 
 		_gotoRaportsButton = new Button("Otworz raporty", new ClickHandler(){
@@ -155,12 +149,12 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		});
 		
 
-		_refreshListButton = new Button("Odswiez liste", new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				updateProblemList();
-			}
-		});
+//		_refreshListButton = new Button("Odswiez liste", new ClickHandler(){
+//			@Override
+//			public void onClick(ClickEvent event) {
+//				updateProblemList();
+//			}
+//		});
 
 		
 		
@@ -168,8 +162,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_problemListHashCode = IProblemOverview.PROBLEM_LIST_NOT_DOWNLOADED_YET;
 		
 		
-		// download problem list from server and fill the GUI
-		controller.updateProblemList();	
+			
 		
 		HorizontalPanel mainPanel = new HorizontalPanel();
 		initWidget(mainPanel);
@@ -213,6 +206,10 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		cpRight.setHeight("400");
 		cpRight.add(descriptionPanel);		
 		mainPanel.add(cpRight);	
+		
+		// download problem list from server and fill the GUI
+//		_controller = createController();
+//		_controller.updateProblemList();
 	}
 
 	Panel generateRightDownPanel() {
@@ -247,7 +244,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 
 		_suggestBox.setWidth("120");
 		
-		leftVerticalPanel.add(_refreshListButton);
+//		leftVerticalPanel.add(_refreshListButton);
 		
 		return leftVerticalPanel;
 	}
@@ -339,6 +336,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 			return; 
 		}
 		_problemListHashCode = problemList.hashCode();
+		int lastInx = _listBox.getSelectedIndex();
 		_listBox.clear();
 		_problemMap.clear();
 		_oracle.clear();
@@ -355,6 +353,8 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		}		
 
 		blankAllFields();
+		_listBox.setSelectedIndex(lastInx);
+		onListboxClick();
 	}
 	
 	
@@ -392,7 +392,8 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 	
 	
 	public void updateProblemList(){
-		controller.updateProblemList();
+		_controller.updateProblemList();
+		
 	}
 	
 	DialogBox _lastAssignmentDialogBox;
@@ -400,7 +401,7 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		_lastAssignmentDialogBox.hide();
 	}
 	
-	void onAssignmentClick() {
+	protected void onAssignmentClick() {
 		int inx = getSelectedListBoxIndex();
 		if(inx < 0){
 			Window.alert("Musisz wybrac najpierw problem!");
@@ -436,13 +437,43 @@ public class ProblemOverview extends Composite implements IProblemOverview {
 		
 		
 		DialogBox todoDialogBox1 = _factory.createInfoDialogBox("Przeglad raportow", null, r);
+		_lastRaportsDialogBox = todoDialogBox1;
 		todoDialogBox1.center();
 		todoDialogBox1.setPopupPosition(todoDialogBox1.getAbsoluteLeft(), 100);	
 	}
 	
 	DialogBox _lastRaportsDialogBox;
 	public void hideRaportsDialogBox(){
-		_lastAssignmentDialogBox.hide();
+		_lastRaportsDialogBox.hide();
+	}
+	
+	
+	
+	
+	
+
+	protected void generateAssignmentButton(){
+		_assignmentButton = new Button("Przejmij zgloszenie", new ClickHandler(){
+			@Override
+			public void onClick(ClickEvent event) {
+				onTaskTakeOver();	
+			}
+			
+		});
+		
+	}
+	
+	void onTaskTakeOver(){
+		int inx = getSelectedListBoxIndex();
+		if(inx < 0){
+			Window.alert("Musisz wybrac najpierw problem!");
+			return;
+		}
+		
+		long prId = _problemMap.get(inx).getId();
+
+		_controller.takeOverTheTask(prId);
+		
 	}
 	
 }

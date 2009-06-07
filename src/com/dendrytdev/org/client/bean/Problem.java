@@ -64,16 +64,9 @@ public class Problem implements IsSerializable{
 	@Persistent
 	private List<Long> comments;
 	
-	/**
-	 * describes who actually is handling the Problem
-	 * identification is done by function.
-	 * so any real-user match should be implemented
-	 * for example as a mapping (Function, String)
-	 * like this one below:
-	 * (currentWorker -> Person.login)
-	 */
+
 	@Persistent
-	private Function currentWorker;
+	private String currentWorker;
 
 
 	/**
@@ -157,11 +150,11 @@ public class Problem implements IsSerializable{
 		this.comments = comments;
 	}
 	
-	public Function getCurrentWorker() {
+	public String getCurrentWorker() {
 		return currentWorker;
 	}
 
-	public void setCurrentWorker(Function currentWorker) {
+	public void setCurrentWorker(String currentWorker) {
 		this.currentWorker = currentWorker;
 	}
 	
@@ -175,6 +168,11 @@ public class Problem implements IsSerializable{
 		programmer = p.programmer;
 		tester = p.tester;
 		description = p.description;	
-		comments = p.comments;		
+		comments = p.comments;
+		currentWorker = p.currentWorker;
 	}
+
+
+	
+	
 }

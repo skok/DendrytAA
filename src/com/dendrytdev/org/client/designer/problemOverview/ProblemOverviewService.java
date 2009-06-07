@@ -13,7 +13,20 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("ProblemOverviewServlet")
 public interface ProblemOverviewService extends RemoteService {
+	
+	/**
+	 * get all problems
+	 * @return
+	 */
 	public List<Problem> getProblemList(int hash);
+	
+	
+	
+	/**
+	 * @return list of loged-in user problems
+	 */
+	public List<Problem> getMyProblemList();
+	
 	
 	
 	/**
@@ -31,4 +44,8 @@ public interface ProblemOverviewService extends RemoteService {
 	public Person[] getAllPeople();
 	public void setAssignment(AssignmentDTO a);
 	public RaportDTO getRaport(Long problemID); 
+	
+	
+	
+	public void assignMeAsDesigner(Long problemID);
 }

@@ -3,6 +3,7 @@ package com.dendrytdev.org.client.designer.raportOverview;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import com.dendrytdev.org.client.bean.Comment;
 import com.dendrytdev.org.client.bean.Person;
 import com.dendrytdev.org.client.bean.Problem;
@@ -11,12 +12,27 @@ import com.dendrytdev.org.client.designer.problemOverview.*;
 import com.dendrytdev.org.client.designer.problemOverview.ProblemOverview.StaticHelperClass;
 import com.dendrytdev.org.client.tools.*;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.*;
 
 
 public class RaportOverview extends Composite {
+	
+	ClickHandler _ch = new ClickHandler(){
+
+		@Override
+		public void onClick(ClickEvent event) {
+			_parent.hideRaportsDialogBox();
+			DialogBox d = GuiFactory.getInstance().createTODODialogBox();
+			d.show();
+			d.center();
+		}
+		
+	};
+	
+	
 		
 		void blankAllFields(){			
 			// initialize textboxes
@@ -117,7 +133,7 @@ public class RaportOverview extends Composite {
 		Composite generateRightLowerPanel() {
 			CaptionPanel cp = new CaptionPanel("Komentarz");
 			VerticalPanel v = new VerticalPanel();
-			Button b = new Button("Nowy komentarz");
+			Button b = new Button("Nowy komentarz", _ch);
 			v.add(_textArea);
 			v.add(b);
 			_textArea.setHeight("265");
@@ -167,19 +183,21 @@ public class RaportOverview extends Composite {
 
 						@Override
 						public void onSuccess(RaportDTO result) {
-							System.out.println("___ONS");
-							// System.out.println("people" +
-							// result.getPersonList().size());
 							if (result != null) {
+							
+								System.out.println("comment.length="+ result.getCommentArray().length);
 								for (Person p : result.getPersonList()) {
 									System.out.println(p.getLogin());
 								}
 
-								System.out.println("comment"
-										+ result.getCommentArray().length);
 								for (Comment c : result.getCommentArray()) {
-									System.out.println(c.getUser() + " "
-											+ c.getContent());
+									System.out.println(c.getUser() + " " + c.getContent());
+								}
+								String worker = result.getCurrentWorker();
+								if(worker != null){
+									_actualAssignmentTextBox.setText(worker);
+								}else{
+									System.out.println("!!");
 								}
 							}
 						}
