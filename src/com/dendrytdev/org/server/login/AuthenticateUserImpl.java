@@ -13,11 +13,11 @@ import com.dendrytdev.org.server.dao.DatabaseConnector;
 
 public class AuthenticateUserImpl implements IAuthenticateUser {
 	Logger _tracer = Logger.getLogger(this.getClass().getName());
-	public static final String HARDCODED_DESIGNER_ACCOUNT_LOGIN = "d";
-	public static final String HARDCODED_PROGRAMMER_ACCOUNT_LOGIN = "p";
-	public static final String HARDCODED_SERVICE_ACCOUNT_LOGIN = "s";
-	public static final String HARDCODED_TESTER_ACCOUNT_LOGIN = "t";
-	public static final String HARDCODED_CLIENT_ACCOUNT_LOGIN = "c";
+	public static final String HARDCODED_DESIGNER_ACCOUNT_LOGIN = "des";
+	public static final String HARDCODED_PROGRAMMER_ACCOUNT_LOGIN = "pro";
+	public static final String HARDCODED_SERVICE_ACCOUNT_LOGIN = "ser";
+	public static final String HARDCODED_TESTER_ACCOUNT_LOGIN = "tes";
+	public static final String HARDCODED_CLIENT_ACCOUNT_LOGIN = "cli";
 	
 	static final Map<String, Function> _mapHardcodedLoginInFunction;
 	static{
@@ -64,15 +64,34 @@ public class AuthenticateUserImpl implements IAuthenticateUser {
 		}
 		return true;
 	}
+	
+	
+	final static String[] ARRRRRR_FIRST = {
+		"Maciek",
+		"Waldek",
+		"Piotrek",
+		"Olga",
+		"Pawel"
+	}; 
+	
+	final static String[] ARRRRRR_SND = {
+		"Lubicz",
+		"Chrzastawa",
+		"Plaza",
+		"Awerjanovv",
+		"Rakowiecki"
+	}; 
+	
 	private void fillForTestingPurposesONLY_DELETE_IT_ON_PRODUCTION_SYSTEM(List<Person> l){
 		int i = 0;
 		if(!checkIfAlreadyFilled(l)){
 			for(String login : _mapHardcodedLoginInFunction.keySet()){
 				Person p = new Person();
 				p.setLogin(login);
+				p.setPassword(login + "123");
 				p.setFunction(_mapHardcodedLoginInFunction.get(login));
-				p.setFirstName("fir_" + i);
-				p.setSurname("sur_" + i++);
+				p.setFirstName(ARRRRRR_FIRST[i]);
+				p.setSurname(ARRRRRR_SND[i++]);
 				DatabaseConnector.addPerson(p);
 			}
 		}	
