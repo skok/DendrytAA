@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	DendrytTestSuit.class,
-	TestSuite2.class
+	TestSuite2.class,
+	PawlakTest.class
 })
 public class __AllTestsSuite {
 

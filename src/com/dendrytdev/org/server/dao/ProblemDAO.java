@@ -137,6 +137,9 @@ public class ProblemDAO implements IProblemDAO{
 	
 	
 	private Problem[] cureDendrytProblemArray(Problem[] in){
+		if(in == null){
+			return null;
+		}
 		Problem[] out = new Problem[in.length];
 		Problem p;
 		List<Long> list;
@@ -148,6 +151,9 @@ public class ProblemDAO implements IProblemDAO{
 	}
 	
 	private Problem cureOneDendrytProblemKurwa(Problem p){
+		if(p == null){
+			return null;
+		}
 		List<Long> list = p.getComments();
 		if(list != null){
 			List<Long> listNew = new ArrayList<Long>();

@@ -135,25 +135,19 @@ public class ProblemOverviewServiceImpl implements ProblemOverviewService{
 
 	@Override
 	public List<Problem> getMyProblemList() {
-		_tracer.info("PIIK");
-		List<Problem> out = null;
-		try {
-			out = Arrays.asList(i.read(_currentLogin));
-			
-//			Problem[] pArr = i.read(_currentLogin);
-//			out = new ArrayList<Problem>();
-//			for(Problem p : pArr){
-////				p.setComments(null);
-//				out.add(p);	
-//				_tracer.info("added to out list.....CurrentWorker=" + p.getCurrentWorker());
-//			}
-			
-		} catch (DendrytDAOException e) {
-			System.out.println("!!!!!!!!!!!!!!:)");
-			e.printStackTrace();
+		_tracer.info("getMyProblemList()");
+		Problem[] problemArray = null;
+		boolean ok = false;	
+		while(!ok){
+			try {
+				problemArray = i.read(_currentLogin);
+				ok = true;
+			} catch (Throwable e) {
+				_tracer.warning("PROBLEM!!!!XXX");
+				_tracer.warning(e.getMessage());
+			}
 		}
-		return out;
-
+		return Arrays.asList(problemArray);
 	}
 
 
